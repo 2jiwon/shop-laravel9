@@ -2,11 +2,11 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
-        <!-- Name -->
+        <!-- Uid -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <x-input-label for="uid" :value="__('Uid')" />
+            <x-text-input id="uid" class="block mt-1 w-full" type="text" name="uid" :value="old('uid')" required autofocus />
+            <x-input-error :messages="$errors->get('uid')" class="mt-2" />
         </div>
 
         <!-- Email Address -->
@@ -37,6 +37,13 @@
                             name="password_confirmation" required />
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        </div>
+
+        <!-- Nickname -->
+        <div class="mt-4">
+            <x-input-label for="nickname" :value="__('Nickname')" />
+            <x-text-input id="nickname" class="block mt-1 w-full" type="text" name="nickname" :value="old('nickname')" required autofocus />
+            <x-input-error :messages="$errors->get('nickname')" class="mt-2" />
         </div>
 
         <div class="flex items-center justify-end mt-4">
