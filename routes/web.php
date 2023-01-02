@@ -18,9 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', function () {
-    return view('layouts/admin/dashboard');
-});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -33,3 +31,15 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+/**
+ * Admin
+ * 
+ */
+Route::get('/admin', function () {
+    return view('admin/dashboard');
+});
+
+Route::get('/admin/products', function () {
+    return view('admin/products');
+});
