@@ -38,8 +38,12 @@ require __DIR__.'/auth.php';
  */
 Route::get('/admin', function () {
     return view('admin/dashboard');
-});
+})->name('admin.dashboard');
 
 Route::get('/admin/products', function () {
     return view('admin/products');
-});
+})->name('admin.products');
+
+Route::get('/admin/orders', function () {
+    return view('admin/products');
+})->name('admin.orders');
