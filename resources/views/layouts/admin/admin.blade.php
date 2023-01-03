@@ -10,18 +10,18 @@
     <meta name="description" content="">
 
     <!-- Tailwind -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <!-- @vite(['resources/css/app.css']) -->
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"> -->
+    @vite(['resources/css/app.css'])
     <style>
         @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
         .font-family-karla { font-family: karla; }
-        .bg-sidebar { background: #3d68ff; }
-        .cta-btn { color: #3d68ff; }
-        .upgrade-btn { background: #1947ee; }
+        .bg-sidebar { background: #118ab2; }
+        .cta-btn { color: #118ab2; }
+        .upgrade-btn { background: #073b4c; }
         .upgrade-btn:hover { background: #0038fd; }
-        .active-nav-link { background: #1947ee; }
-        .nav-item:hover { background: #1947ee; }
-        .account-link:hover { background: #3d68ff; }
+        .active-nav-link { background: #073b4c; }
+        .nav-item:hover { background: #073b4c; }
+        .account-link:hover { background: #118ab2; }
     </style>
 </head>
 <body class="bg-gray-100 font-family-karla flex">
