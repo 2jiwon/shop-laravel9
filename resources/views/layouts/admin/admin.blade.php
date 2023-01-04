@@ -12,6 +12,10 @@
     <!-- Tailwind -->
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet"> -->
     @vite(['resources/css/app.css'])
+    
+    <!-- custom css -->
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}"/>
+
     <style>
         @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
         .font-family-karla { font-family: karla; }
@@ -49,11 +53,14 @@
     </div>
 
     <!-- AlpineJS -->
-    <!-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script> -->
-    @vite(['resources/js/app.js'])
+    <!-- @vite(['resources/js/app.js']) -->
+    <script defer src="https://unpkg.com/alpinejs-form-data@latest/dist/form-data.min.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  
 
     <!-- Font Awesome -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
 
+     
 </body>
 </html>
