@@ -9,13 +9,13 @@
             </button>
         </div>
 
-        <form x-data x-on:submit.prevent="myForm($formData)">
+        <form x-data x-on:submit.prevent="tinymce.triggerSave();myForm($formData)">
             <div class="flex flex-wrap bg-white">
                 <div class="w-full mt-12 lg:w-1/2 my-6 pr-0 lg:pr-2">
                     <div class="p-10 rounded">
                         <div class="">
                             <label class="block text-sm text-gray-600" for="name">상품명</label>
-                            <input class="w-full px-5 py-1 text-gray-300 rounded" id="name" name="name" type="text" required="" placeholder="상품명을 입력" aria-label="Name">
+                            <input class="w-full px-5 py-1 text-gray-300 rounded" name="name" type="text" required="" value="" placeholder="상품명을 입력" aria-label="Name">
                         </div>
                         
                         <div class="mt-2">
@@ -134,30 +134,20 @@
             </div>
         </div>
 
-        <!-- Tinymce -->
-        <script src="https://cdn.tiny.cloud/1/ttm2ripndo2cw7gbv5crh3gxgykustof3wq45gb3rsmx885j/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-        <script>
-        tinymce.init({
-            selector:'#detail',
-            height: 300, 
-            menubar: 'edit format'
-        });
-        </script>
+       
         
         <!-- form 처리 -->
         <script>
 function myForm(formdata) {
     console.log(formdata);
 
-    const url = route('product.create');
-    fetch(url, {
-        method: 'POST',
-        body: formdata
-    }).then(response => {
+    const url = `{{ route('product.store') }}`;
+
+    
+    axios.post(url, formdata).then((response) => { 
         console.log(response);
-    }).error(error => {
-        console.log(error);
-    })
+        // location.reload();
+    });
 }
         
         </script>
