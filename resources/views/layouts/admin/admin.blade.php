@@ -27,6 +27,16 @@
         .nav-item:hover { background: #073b4c; }
         .account-link:hover { background: #118ab2; }
     </style>
+
+     <!-- Tinymce -->
+     <script src="https://cdn.tiny.cloud/1/ttm2ripndo2cw7gbv5crh3gxgykustof3wq45gb3rsmx885j/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+        <script>
+        tinymce.init({
+            selector:'#detail',
+            height: 300, 
+            menubar: 'edit format'
+        });
+        </script>
 </head>
 <body class="bg-gray-100 font-family-karla flex">
 
@@ -56,11 +66,10 @@
     <!-- @vite(['resources/js/app.js']) -->
     <script defer src="https://unpkg.com/alpinejs-form-data@latest/dist/form-data.min.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.25.0/axios.min.js"></script>
 
     <!-- Font Awesome -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
 
-     
 </body>
 </html>
