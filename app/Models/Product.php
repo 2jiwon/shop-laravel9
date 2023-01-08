@@ -17,4 +17,11 @@ class Product extends Model
     public function images() {
         return $this->hasMany(ProductImage::class);
     }
+
+    /**
+     *  Category
+     */
+    public function categories() {
+        return $this->hasMany(Category::class);
+    }
 }
