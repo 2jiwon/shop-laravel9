@@ -112,35 +112,54 @@
             <i class="fas fa-list mr-3"></i>상품 목록 
         </p>
         <div class="bg-white overflow-auto">
-            <table class="min-w-full bg-white">
-                <thead class="bg-gray-800 text-white">
+            <table class="min-w-full  text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-white uppercase bg-gray-600 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Name</th>
-                        <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Last name</th>
-                        <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Phone</th>
-                        <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Email</th>
+                        <th scope="col" class="text-center py-3 px-4 font-semibold text-sm">번호</th>
+                        <th scope="col" class="text-center py-3 px-4 font-semibold text-sm">상품명</th>
+                        <th scope="col" class="text-center py-3 px-4 font-semibold text-sm">이미지</th>
+                        <th scope="col" class="text-center py-3 px-4 font-semibold text-sm">상세설명</th>
+                        <th scope="col" class="text-center py-3 px-4 font-semibold text-sm">공급가</th>
+                        <th scope="col" class="text-center py-3 px-4 font-semibold text-sm">판매가</th>
+                        <th scope="col" class="text-center py-3 px-4 font-semibold text-sm">배송비</th>
+                        <th scope="col" class="text-center py-3 px-4 font-semibold text-sm">재고</th>
+                        <th scope="col" class="text-center py-3 px-4 font-semibold text-sm">판매여부</th>
+                        <th scope="col" class="text-center py-3 px-4 font-semibold text-sm">진열여부</th>
                     </tr>
                 </thead>
-                <tbody class="text-gray-700">
-                    <tr>
-                        <td class="w-1/3 text-left py-3 px-4">Lian</td>
-                        <td class="w-1/3 text-left py-3 px-4">Smith</td>
-                        <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                        <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td>
+                <tbody>
+                    @foreach ($products as $product)
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <td class="text-center py-3 px-2">{{ $product->id }}</td>
+                        <td class="text-center py-3 px-2">{{ $product->name }}</td>
+                        <td class="text-left py-3 px-2">
+                            <div class="grid grid-cols-2">
+                            @foreach ($product->images as $image)
+                                <img class="w-20 h-20 border-2 border-solid border-slate-400" src="{{ asset('storage/'.$image->filename) }}" alt="">
+                            @endforeach
+                            </div>
+                        </td>
+                        <td class="text-center text-xs py-3 px-2">{{ $product->detail }}</td>
+                        <td class="text-center py-3 px-2">{{ number_format($product->supply_price) }} 원</td>
+                        <td class="text-center py-3 px-2">{{ number_format($product->selling_price) }} 원</td>
+                        <td class="text-center py-3 px-2">{{ number_format($product->delivery_fee) }} 원</td>
+                        <td class="text-center py-3 px-2">{{ number_format($product->stock_amount) }} EA</td>
+                        <td class="text-center py-3 px-2">{{ $product->is_selling == "Y" ? "판매중" : "판매중지" }}</td>
+                        <td class="text-center py-3 px-2">{{ $product->is_displaying == "Y" ? "진열중" : "진열중지" }}</td>
                     </tr>
-                    <tr class="bg-gray-200">
-                        <td class="w-1/3 text-left py-3 px-4">Emma</td>
-                        <td class="w-1/3 text-left py-3 px-4">Johnson</td>
-                        <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                        <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
     </div>
 
-    <!-- form 처리 -->
-    <script>
+    <!-- pagination -->
+    <div class="mt-5">
+        {{ $products->links() }}
+    </div>
+
+<!-- form 처리 -->
+<script>
 const form = document.querySelector("form");
 form.addEventListener("submit", (e) => {
 e.preventDefault();
@@ -161,6 +180,6 @@ axios
     console.log("에러 발생 " + err);
 });
 });
-    
-    </script>
+</script>
+
 </x-admin-layout>

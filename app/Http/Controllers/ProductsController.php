@@ -14,7 +14,9 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::paginate(15);
+
+        return view('admin.products')->with('products', $products);
     }
 
     /**
@@ -24,7 +26,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -58,7 +60,7 @@ class ProductsController extends Controller
      */
     public function show(Product $product)
     {
-        //
+
     }
 
     /**
