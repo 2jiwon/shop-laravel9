@@ -15,14 +15,14 @@
                 {{ __('상품 관리') }}
             </x-admin.nav-link>
 
-            <x-admin.nav-link :href="route('admin.orders')" :active="request()->routeIs('admin.orders')">
+             <x-admin.nav-link :href="route('admin.categories')" :active="request()->routeIs('admin.categories')">
                 <x-slot:icon class="fa-table"></x-slot>
-                {{ __('주문 관리') }}
+                {{ __('카테고리 관리') }}
             </x-admin.nav-link>
 
             <x-admin.nav-link :href="route('admin.orders')" :active="request()->routeIs('admin.orders')">
                 <x-slot:icon class="fa-table"></x-slot>
-                {{ __('카테고리 관리') }}
+                {{ __('주문 관리') }}
             </x-admin.nav-link>
 
             <x-admin.nav-link :href="route('admin.orders')" :active="request()->routeIs('admin.orders')">
