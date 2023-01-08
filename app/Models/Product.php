@@ -12,4 +12,11 @@ class Product extends Model
     protected $primaryKey = 'product_id';
 
     protected $guarded = [];
+
+    /**
+     *  Product Image
+     */
+    public function images() {
+        return $this->hasMany(ProductImage::class);
+    }
 }
