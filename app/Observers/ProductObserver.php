@@ -9,6 +9,9 @@ use Illuminate\Support\Str;
 
 class ProductObserver
 {
+    /**
+     *  트랜잭션이 커밋된 후에만 이벤트 핸들러를 실행하도록
+     */
     public $afterCommit = true;
     
     /**
