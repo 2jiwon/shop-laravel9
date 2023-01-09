@@ -25,7 +25,7 @@
                 {{ __('주문 관리') }}
             </x-admin.nav-link>
 
-            <x-admin.nav-link :href="route('admin.orders')" :active="request()->routeIs('admin.orders')">
+            <x-admin.nav-link :href="route('admin.users')" :active="request()->routeIs('admin.users')">
                 <x-slot:icon class="fa-table"></x-slot>
                 {{ __('회원 관리') }}
             </x-admin.nav-link>

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{CategoriesController, ProfileController, ProductsController};
+use App\Http\Controllers\{CategoriesController, ProfileController, ProductsController, UsersController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,3 +49,5 @@ Route::get('/admin/orders', function () {
 
 Route::get('/admin/categories', [CategoriesController::class, 'index'])->name('admin.categories');
 Route::post('/category/store', [CategoriesController::class, 'store'])->name('category.store');
+
+Route::get('/admin/users', [UsersController::class, 'index'])->name('admin.users');
