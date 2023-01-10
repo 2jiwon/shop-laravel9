@@ -15,14 +15,46 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return view('home');
 });
 
+Route::get('/account/dashboard', function () {
+    return view('account.dashboard');
+});
+Route::get('/account/orders', function () {
+    return view('account.orders');
+});
+Route::get('/account/wishlist', function () {
+    return view('account.wishlist');
+});
+Route::get('/cart', function () {
+    return view('cart');
+});
+Route::get('/product', function () {
+    return view('product');
+});
+Route::get('/contact', function () {
+    return view('contact');
+});
+Route::get('/search', function () {
+    return view('search');
+});
+Route::get('/single', function () {
+    return view('single');
+});
+Route::get('/collection-grid', function () {
+    return view('collection-grid');
+});
+Route::get('/collection-list', function () {
+    return view('collection-list');
+});
 
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -31,6 +63,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
 
 /**
  * Admin
