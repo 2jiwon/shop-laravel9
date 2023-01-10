@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{CategoriesController, ProfileController, ProductsController, UsersController};
+use App\Http\Controllers\{BannersController, CategoriesController, ProfileController, ProductsController, UsersController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -84,3 +84,6 @@ Route::get('/admin/categories', [CategoriesController::class, 'index'])->name('a
 Route::post('/category/store', [CategoriesController::class, 'store'])->name('category.store');
 
 Route::get('/admin/users', [UsersController::class, 'index'])->name('admin.users');
+
+Route::get('/admin/banners', [BannersController::class, 'index'])->name('admin.banners');
+Route::post('/banner/store', [BannersController::class, 'store'])->name('banner.store');
