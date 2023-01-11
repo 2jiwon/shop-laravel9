@@ -39,10 +39,11 @@ class BannersController extends Controller
     public function store(Request $request)
     {
         $image = $request->file('image');
-        $path = $image->storeAs('banners', Str::lower(Str::random(6)).".".$image->extension());
+        $path = $image->storeAs('banners', Str::lower(Str::random(6)).".".$image->extension(), 'public');
 
         Banner::create([
             'type' => $request->type,
+            'title' => $request->title,
             'filename' => $path,
         ]);
 
