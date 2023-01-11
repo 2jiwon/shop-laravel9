@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{BannersController, CategoriesController, ProfileController, ProductsController, UsersController};
+use App\Http\Controllers\{BannersController, CategoriesController, Layouts, ProfileController, ProductsController, UsersController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    // return view('welcome');
-    return view('home');
-});
+// Route::get('/', function () {
+//     // return view('welcome');
+//     return view('home');
+// });
+
+Route::get('/', Layouts::class);
+
 
 Route::get('/account/dashboard', function () {
     return view('account.dashboard');

@@ -124,8 +124,8 @@
 			class="fixed top-0 right-0 mr-0 mt-2 z-50">
             <i class="bx bx-x mr-6 cursor-pointer text-2xl text-grey-darkest sm:text-3xl"></i>
         </button>
-		<div class="p-16 px-6 absolute top-0 w-full h-full overflow-y-scroll">
-            <div class="container text-grey mx-auto px-2 py-2" x-data="{
+		<div class="p-16 px-6 absolute top-0 w-full h-full overflow-hidden">
+            <div class="container font-dohyeon text-3xl text-grey mx-auto px-2 py-2" x-data="{
                 categories: [
                     {
                         main: '여성복',
@@ -145,10 +145,10 @@
                 ]
             }">
             <h2 class="text-2xl font-bold">메뉴</h2>
-            <div class="leading-loose text-lg mt-6">
+            <div class="leading-loose text-2xl mt-6">
                 <template x-for="(category, index) in categories" :key="category.main">
                 <div>
-                    <button class="w-full font-bold py-3 flex justify-between items-center mt-4" :class="index !== categories.length - 1 && 'border-b border-gray-400'" @click="categories = categories.map(f => ({ ...f, isOpen: f.main !== category.main ? false : !f.isOpen}))">
+                    <button class="w-full py-3 flex justify-between items-center mt-4" :class="index !== categories.length - 1 && 'border-b border-gray-400'" @click="categories = categories.map(f => ({ ...f, isOpen: f.main !== category.main ? false : !f.isOpen}))">
                     <!-- Specs has it that only one component can be open at a time and also you should be able to toggle the open state of the active component too -->
                     <div x-text="category.main"></div>
                     <svg x-show="!category.isOpen" class="fill-current" viewBox="0 0 24 24" width="24" height="24">
@@ -159,7 +159,7 @@
                     </svg>
                     </button>
 
-                    <div class="text-gray-700 text-sm mt-2" x-text="category.sub" x-show="category.isOpen"></div>
+                    <div class="text-gray-700 text-xl mt-2" x-text="category.sub" x-show="category.isOpen"></div>
                 </div>
                 </template>
             </div>
