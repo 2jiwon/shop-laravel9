@@ -54,7 +54,7 @@
       <div class="flex flex-col py-20 md:flex-row md:py-24">
         <div class="mx-auto flex w-4/5 items-start justify-start pb-3 last:border-r-0 sm:w-1/2 md:w-2/5 md:flex-col md:items-center md:justify-center md:border-r-2 md:border-primary-lighter md:pb-0 md:text-center lg:mx-0 lg:w-1/3 lg:flex-row lg:text-left">
           <div>
-            <img src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-shipping.svg" class="h-12 w-12 object-contain object-center" alt="icon"/>
+            <img src="{{ asset('assets/theme/icons/shipping-package.svg') }}" class="h-12 w-12 opacity-70 object-contain object-center" alt="icon"/>
           </div>
           <div class="ml-6 md:mt-3 lg:mt-0">
             <h3 class="font-dohyeon text-xl font-semibold tracking-wide text-primary">
@@ -68,7 +68,7 @@
 
         <div class="mx-auto flex w-4/5 items-start justify-start pb-3 last:border-r-0 sm:w-1/2 md:w-2/5 md:flex-col md:items-center md:justify-center md:border-r-2 md:border-primary-lighter md:pb-0 md:text-center lg:mx-0 lg:w-1/3 lg:flex-row lg:text-left">
           <div>
-            <img src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-support.svg" class="h-12 w-12 object-contain object-center" alt="icon"/>
+            <img src="{{ asset('assets/theme/icons/service.svg') }}" class="h-12 w-12 opacity-70 object-contain object-center" alt="icon"/>
           </div>
           <div class="ml-6 md:mt-3 lg:mt-0">
             <h3 class="font-dohyeon text-xl font-semibold tracking-wide text-primary">
@@ -82,7 +82,7 @@
 
         <div class="mx-auto flex w-4/5 items-start justify-start pb-3 last:border-r-0 sm:w-1/2 md:w-2/5 md:flex-col md:items-center md:justify-center md:border-r-2 md:border-primary-lighter md:pb-0 md:text-center lg:mx-0 lg:w-1/3 lg:flex-row lg:text-left">
           <div>
-            <img src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-return.svg" class="h-12 w-12 object-contain object-center" alt="icon"/>
+            <img src="{{ asset('assets/theme/icons/shipping-fast.svg') }}" class="h-12 w-12 opacity-70 object-contain object-center" alt="icon"/>
           </div>
           <div class="ml-6 md:mt-3 lg:mt-0">
             <h3 class="font-dohyeon text-xl font-semibold tracking-wide text-primary">
