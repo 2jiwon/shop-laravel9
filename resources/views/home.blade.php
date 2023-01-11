@@ -20,27 +20,17 @@
     <div class="container" x-data x-init="collectionSliders">
 
       <!-- 상단 슬라이더 -->
-      <div class="hero-slider relative"
-        x-data
-        x-init="new Splide('.hero-slider', { type: 'loop', arrows: false, pagination: true, autoplay: true, interval: 3000, perMove: 1}).mount()">
-
-        
+      <div class="hero-slider relative" x-data x-init="new Splide('.hero-slider', { type: 'loop', arrows: false, pagination: true, autoplay: true, interval: 5000, perMove: 1}).mount()">
         <div class="splide__track">
           <ul class="splide__list">
             @foreach ($main_banners as $m_banner)
             <li class="splide__slide">
-              <div
-                class="bg-cover bg-left bg-no-repeat sm:bg-center"
-                style="background-image:url({{ asset('storage/'.$m_banner->filename) }})">
-                <div
-                  class="py-48 px-5 text-center sm:w-5/6 sm:px-10 sm:text-left md:px-12 lg:w-3/4 xl:w-2/3 xl:px-24">
-                  <h3
-                    class="font-gowunbatang text-3xl font-medium text-secondary sm:text-3xl md:text-4xl lg:text-5xl">
+              <div class="bg-cover bg-left bg-no-repeat sm:bg-center" style="background-image:url({{ asset('storage/'.$m_banner->filename) }})">
+                <div class="py-48 px-5 text-center sm:w-5/6 sm:px-10 sm:text-left md:px-12 lg:w-3/4 xl:w-2/3 xl:px-24">
+                  <h3 class="font-gowunbatang text-3xl font-medium text-secondary sm:text-3xl md:text-4xl lg:text-5xl">
                     {{ $m_banner->title }}
                   </h3>
-                  <a
-                    href="/collection-grid"
-                    class="btn btn-primary btn-lg mt-8">확인하러 가기</a>
+                  <a href="/collection-grid" class="btn btn-primary btn-lg mt-8">확인하러 가기</a>
                 </div>
               </div>
             </li>

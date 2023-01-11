@@ -11,39 +11,39 @@
                 </button>
                 <a
                 href="/search"
-                class="group ml-2 hidden cursor-pointer rounded-full border-2 border-transparent p-2 transition-colors hover:border-primary focus:outline-none sm:ml-3 sm:p-4 md:ml-5 lg:mr-8 lg:block">
+                class="group ml-2 hidden cursor-pointer rounded-full border-2 border-transparent p-2 transition-colors hover:border-[#073b4c] focus:outline-none sm:ml-3 sm:p-4 md:ml-5 lg:mr-8 lg:block">
                 <img
-                    src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-search.svg"
-                    class="block h-5 w-5 group-hover:hidden sm:h-6 sm:w-6 md:h-8 md:w-8"
+                    src="{{ asset('assets/theme/icons/search.svg') }}"
+                    class="block h-5 w-5 group-hover:hidden sm:h-6 sm:w-6 md:h-8 md:w-8 opacity-70"
                     alt="icon search"/>
                 <img
-                    src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-search-hover.svg"
+                    src="{{ asset('assets/theme/icons/search.svg') }}"
                     class="hidden h-5 w-5 group-hover:block sm:h-6 sm:w-6 md:h-8 md:w-8"
                     alt="icon search hover"/>
                 </a>
 
                 <button
                 @click="mobileSearch = !mobileSearch"
-                class="group ml-2 block cursor-pointer rounded-full border-2 border-transparent p-2 transition-colors hover:border-primary focus:outline-none sm:ml-3 sm:p-4 md:ml-5 lg:mr-8 lg:hidden">
+                class="group ml-2 block cursor-pointer rounded-full border-2 border-transparent p-2 transition-colors hover:border-[#073b4c] focus:outline-none sm:ml-3 sm:p-4 md:ml-5 lg:mr-8 lg:hidden">
                 <img
-                    src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-search.svg"
-                    class="block h-5 w-5 group-hover:hidden sm:h-6 sm:w-6 md:h-8 md:w-8"
+                    src="{{ asset('assets/theme/icons/search.svg') }}"
+                    class="block h-5 w-5 group-hover:hidden sm:h-6 sm:w-6 md:h-8 md:w-8 opacity-70"
                     alt="icon search"/>
                 <img
-                    src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-search-hover.svg"
+                    src="{{ asset('assets/theme/icons/search.svg') }}"
                     class="hidden h-5 w-5 group-hover:block sm:h-6 sm:w-6 md:h-8 md:w-8"
                     alt="icon search hover"/>
                 </button>
 
                 <a
                 href="/account/wishlist"
-                class="group hidden rounded-full border-2 border-transparent p-2 transition-all hover:border-primary sm:p-4 lg:block">
+                class="group hidden rounded-full border-2 border-transparent p-2 transition-all hover:border-[#073b4c] sm:p-4 lg:block">
                 <img
-                    src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-heart.svg"
-                    class="block h-5 w-5 group-hover:hidden sm:h-6 sm:w-6 md:h-8 md:w-8"
+                    src="{{ asset('assets/theme/icons/wishlist.svg') }}"
+                    class="block h-5 w-5 group-hover:hidden sm:h-6 sm:w-6 md:h-8 md:w-8 opacity-70"
                     alt="icon heart"/>
                 <img
-                    src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-heart-hover.svg"
+                    src="{{ asset('assets/theme/icons/wishlist.svg') }}"
                     class="hidden h-5 w-5 group-hover:block sm:h-6 sm:w-6 md:h-8 md:w-8"
                     alt="icon heart hover"/>
                 </a>
@@ -52,7 +52,7 @@
             <!-- 타이틀 로고 -->
             <a href="/">
                 <!-- <img src="https://elyssi.redpixelthemes.com/assets/img/logo-elyssi.svg" class="h-auto w-28 sm:w-48" alt="logo"/> -->
-                <div class="text-teal-800 font-extrabold lg:text-4xl">
+                <div class="text-teal-800 font-dohyeon font-extrabold text-xl lg:text-4xl">
                     <h1>FANCYTANK SHOP</h1>
                 </div>
             </a>
@@ -60,40 +60,40 @@
             <div class="flex items-center">
                 <a
                 href="/account/dashboard"
-                class="group rounded-full border-2 border-transparent p-2 transition-all hover:border-primary sm:p-4">
+                class="group rounded-full border-2 border-transparent py-2 pr-0 transition-all hover:border-[#073b4c] sm:p-4">
                 <img
-                    src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-user.svg"
-                    class="block h-5 w-5 group-hover:hidden sm:h-6 sm:w-6 md:h-8 md:w-8"
+                    src="{{ asset('assets/theme/icons/profile.svg') }}"
+                    class="block h-6 w-6 sm:h-3 sm:w-3 md:h-8 md:w-8 opacity-70"
                     alt="icon user"/>
                 <img
-                    src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-user-hover.svg"
-                    class="hidden h-5 w-5 group-hover:block sm:h-6 sm:w-6 md:h-8 md:w-8"
+                    src="{{ asset('assets/theme/icons/profile.svg') }}"
+                    class="hidden h-6 w-6 sm:h-3 sm:w-3 md:h-8 md:w-8"
                     alt="icon user hover"/>
                 </a>
 
                 <a
                 href="/cart/index"
-                class="group ml-2 hidden rounded-full border-2 border-transparent p-2 transition-all hover:border-primary sm:ml-3 sm:p-4 md:ml-5 lg:ml-8 lg:block">
+                class="group ml-2 hidden rounded-full border-2 border-transparent p-2 transition-all hover:border-[#073b4c] sm:ml-3 sm:p-4 md:ml-5 lg:ml-8 lg:block">
                 <img
-                    src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-cart.svg"
-                    class="block h-5 w-5 group-hover:hidden sm:h-6 sm:w-6 md:h-8 md:w-8"
+                    src="{{ asset('assets/theme/icons/shopping-cart.svg') }}"
+                    class="block h-6 w-6 group-hover:hidden sm:h-6 sm:w-6 md:h-8 md:w-8 opacity-70"
                     alt="icon cart"/>
                 <img
-                    src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-cart-hover.svg"
-                    class="hidden h-5 w-5 group-hover:block sm:h-6 sm:w-6 md:h-8 md:w-8"
+                    src="{{ asset('assets/theme/icons/shopping-cart.svg') }}"
+                    class="hidden h-6 w-6 group-hover:block sm:h-6 sm:w-6 md:h-8 md:w-8"
                     alt="icon cart hover"/>
                 </a>
 
                 <span
                 @click="mobileCart = !mobileCart"
-                class="group ml-2 block rounded-full border-2 border-transparent p-2 transition-all hover:border-primary sm:ml-3 sm:p-4 md:ml-5 lg:ml-8 lg:hidden">
+                class="group ml-2 block rounded-full border-2 border-transparent p-2 transition-all hover:border-[#073b4c] sm:ml-3 sm:p-4 md:ml-5 lg:ml-8 lg:hidden">
                 <img
-                    src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-cart.svg"
-                    class="block h-5 w-5 group-hover:hidden sm:h-6 sm:w-6 md:h-8 md:w-8"
+                    src="{{ asset('assets/theme/icons/shopping-cart.svg') }}"
+                    class="block h-6 w-6 group-hover:hidden sm:h-6 sm:w-6 md:h-8 md:w-8 opacity-70"
                     alt="icon cart"/>
                 <img
-                    src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-cart-hover.svg"
-                    class="hidden h-5 w-5 group-hover:block sm:h-6 sm:w-6 md:h-8 md:w-8"
+                    src="{{ asset('assets/theme/icons/shopping-cart.svg') }}"
+                    class="hidden h-6 w-6 group-hover:block sm:h-6 sm:w-6 md:h-8 md:w-8"
                     alt="icon cart hover"/>
                 </span>
             </div>
