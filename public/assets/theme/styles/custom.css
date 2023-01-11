@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gowun+Batang:wght@400;700&family=Nanum+Gothic:wght@400;700;800&display=swap');
+body {
+    font-family: 'Nanum Gothic','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.bg-primary {
+    background-color: #073b4c;
+}
+.bg-primary-light {
+    background-color: #118ab2;
+}
+.bg-primary-light:hover {
+    background-color: #118ab2;
+}
+
+.btn {
+    font-family: 'Do Hyeon', sans-serif;
+    font-weight: 100;
+}
+.btn-primary {
+    background-color: #073b4c;
+}
+.btn-primary:hover {
+    background-color: #118ab2;
+}
+.btn-primary:hover {
+    background-color: #118ab2;
+}
+
+.border-primary {
+    border-color: #073b4c;
+}
+
+.text-primary {
+    color: #073b4c;
+}
+.text-primary:hover {
+    color: #118ab2;
+}
+.text-primary-light {
+    color: #118ab2;
+}
+
+.font-gowunbatang {
+    font-family: 'Gowun Batang', serif;
+}
+.font-dohyeon {
+    font-family: 'Do Hyeon', sans-serif;
+}
+.font-dohyeon-lighter {
+    font-family: 'Do Hyeon', sans-serif;
+    font-weight: 100;
+}
+.font-nanumgothic {
+    font-family: 'Nanum Gothic', sans-serif;
+}
