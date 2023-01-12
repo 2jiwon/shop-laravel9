@@ -8,7 +8,7 @@
   <title>Home | FANCYTANK SHOP</title>
 
   <meta property="og:title" content="Home | FANCYTANK SHOP"/>
-  <meta property="og:locale" content="en_US"/>
+  <meta property="og:locale" content="ko_KR"/>
   <meta name="theme-color" content="#118ab2"/>
   <meta property="og:url" content="https://shop.fancytank.com/"/>
   <meta name="description" content=""/>
@@ -40,3 +40,17 @@
     	[x-cloak] { display: none; }
   </style>
 </head>
+
+<body
+  x-data="{
+      modal: false,
+      mobileMenu: false,
+      mobileSearch: false,
+      mobileCart: false
+  }"
+  :class="{ 'overflow-hidden max-h-screen': modal || mobileMenu }"
+  @keydown.escape="modal = false">
+    
+    <div id="main">
+
+    @include('layouts.navigation')
