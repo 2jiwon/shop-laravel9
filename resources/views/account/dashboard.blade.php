@@ -1,25 +1,6 @@
 @include('layouts.head')
 
-
-<div class="container border-t border-grey-dark">
-  <div class="flex flex-col justify-between pt-10 pb-12 sm:pt-12 sm:pb-20 lg:flex-row lg:pb-24">
-
-    <!-- 왼쪽 사이드 메뉴 -->
-    <div class="lg:w-1/4">
-      <p class="pb-6 font-dohyeon text-2xl text-secondary sm:text-3xl lg:text-4xl">
-        내 쇼핑
-      </p>
-      <div class="flex flex-col pl-3">
-        <a href="/account/dashboard" class="transition-all hover:font-bold hover:text-[#118ab2] px-4 py-3 border-l-2 border-primary-lighter hover:border-primary  font-dohyeon text-2xl font-bold text-[#118ab2] border-primary ">주문현황</a>
-        <a href="/account/orders" class="transition-all hover:font-bold hover:text-[#118ab2] px-4 py-3 border-l-2 border-primary-lighter hover:border-primary  font-dohyeon text-2xl text-grey-darkest ">주문내역</a>
-        <a href="/account/orders" class="transition-all hover:font-bold hover:text-[#118ab2] px-4 py-3 border-l-2 border-primary-lighter hover:border-primary  font-dohyeon text-2xl text-grey-darkest ">장바구니</a>
-        <a href="/account/wishlist" class="transition-all hover:font-bold hover:text-[#118ab2] px-4 py-3 border-l-2 border-primary-lighter hover:border-primary  font-dohyeon text-2xl text-grey-darkest ">위시리스트</a>
-        <a href="/account/wishlist" class="transition-all hover:font-bold hover:text-[#118ab2] px-4 py-3 border-l-2 border-primary-lighter hover:border-primary  font-dohyeon text-2xl text-grey-darkest ">리뷰관리</a>
-        <a href="/account/account-details" class="transition-all hover:font-bold hover:text-[#118ab2] px-4 py-3 border-l-2 border-primary-lighter hover:border-primary  font-dohyeon text-2xl text-grey-darkest ">내 정보관리</a>
-      </div>
-      <a href="/logout" class="mt-24 hidden md:inline-block rounded border border-primary px-8 py-3 font-nanumgothic font-bold text-[#118ab2] transition-all hover:bg-primary hover:text-white">로그아웃</a>
-    </div>
-    <!-- 왼쪽 사이드 메뉴 End -->
+  @include('layouts.account.side')
 
     <!-- 메인 컨텐츠 -->
     <div class="mt-12 lg:mt-0 lg:w-3/4">
@@ -79,13 +60,8 @@
         </div>
         <!-- pagination End -->
       </div>
-
-      <a href="/logout" class="mt-24 inline-block md:hidden rounded border border-primary px-8 py-3 font-nanumgothic font-bold text-[#118ab2] transition-all hover:bg-primary hover:text-white">로그아웃</a>
-
+  
     </div>
     <!-- 메인 컨텐츠 End -->
-  </div>
-</div>
-
-
-@include('layouts.foot')
+    
+    @include('layouts.account.foot')
