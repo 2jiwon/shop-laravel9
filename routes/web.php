@@ -28,6 +28,9 @@ Route::get('/account/dashboard', function () {
 Route::get('/account/orders', function () {
     return view('account.orders');
 });
+Route::get('/account/details', function () {
+    return view('account.details');
+});
 Route::get('/account/wishlist', function () {
     return view('account.wishlist');
 });
