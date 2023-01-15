@@ -36,14 +36,11 @@
 
   <!-- 2단 슬라이더  -->
   <div class="relative w-full">
-    <div
-      class="absolute inset-y-0 justify-center w-13/14 bg-cover bg-center bg-no-repeat"
+    <div class="absolute inset-y-0 justify-center w-13/14 bg-cover bg-center bg-no-repeat"
       style="background-image: url(/assets/img/bg-products.png)"></div>
-    <div
-      class="2xl:max-w-screen-xxl relative z-10 mx-auto w-5/6 md:max-w-screen-sm lg:mx-auto lg:max-w-full xl:mr-16 xl:w-5/6 2xl:mx-auto">
+    <div class="2xl:max-w-screen-xxl relative z-10 mx-auto w-5/6 md:max-w-screen-sm lg:mx-auto lg:max-w-full xl:mr-16 xl:w-5/6 2xl:mx-auto">
       <div class="flex flex-col-reverse items-center py-16 lg:flex-row">
-        <div
-          class="relative mt-8 ml-6 w-full bg-white px-4 pt-8 pb-6 sm:ml-10 lg:mt-0 lg:ml-0 lg:w-3/5 2xl:w-3/4">
+        <div class="relative mt-8 ml-6 w-full bg-white px-4 pt-8 pb-6 sm:ml-10 lg:mt-0 lg:ml-0 lg:w-3/5 2xl:w-3/4">
           <div class="collection-slider">
             <div class="splide__track">
               <div class="splide__list">
@@ -52,36 +49,27 @@
                   <div class="group mx-auto flex flex-col 2xl:w-88">
                     <div class="relative rounded">
                       <div class="aspect-w-1 aspect-h-1">
-                        <img
-                          src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/shoes-1.png"
+                        <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/shoes-1.png"
                           alt=""
                           class="object-cover"/>
                       </div>
-                      <span
-                        class="text-v-green absolute top-0 right-0 bg-white px-5 py-1 my-4 mx-4 rounded-full font-dohyeon font-bold text-sm uppercase tracking-wide">New</span>
-                      <div
-                        class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                        <a
-                          href="/"
+                      <span class="text-v-green absolute top-0 right-0 bg-white px-5 py-1 my-4 mx-4 rounded-full font-dohyeon font-bold text-sm uppercase tracking-wide">New</span>
+                      <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
+                        <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/cart.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/cart.svg') }}"
                             class="h-6 w-6"
                             alt="icon cart"/>
                         </a>
-                        <a
-                          href="/"
+                        <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/watch.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/watch.svg') }}"
                             class="h-6 w-6"
                             alt="icon search"/>
                         </a>
-                        <a
-                          href="/"
+                        <a href="/"
                           class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/wishlist.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
                             class="h-6 w-6"
                             alt="icon heart"/>
                         </a>
@@ -114,36 +102,27 @@
                   <div class="group mx-auto flex flex-col 2xl:w-88">
                     <div class="relative rounded">
                       <div class="aspect-w-1 aspect-h-1">
-                        <img
-                          src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/shoes-4.png"
+                        <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/shoes-4.png"
                           alt=""
                           class="object-cover"/>
                       </div>
-                      <span
-                        class="text-v-red absolute top-0 right-0 bg-white px-5 py-1 my-4 mx-4 rounded-full font-dohyeon font-bold text-sm uppercase tracking-wide">Hot</span>
-                      <div
-                        class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                        <a
-                          href="/"
+                      <span class="text-v-red absolute top-0 right-0 bg-white px-5 py-1 my-4 mx-4 rounded-full font-dohyeon font-bold text-sm uppercase tracking-wide">Hot</span>
+                      <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
+                        <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/cart.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/cart.svg') }}"
                             class="h-6 w-6"
                             alt="icon cart"/>
                         </a>
-                        <a
-                          href="/"
+                        <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="/assets/img/icons/icon-watch.svg"
+                          <img src="/assets/img/icons/icon-watch.svg"
                             class="h-6 w-6"
                             alt="icon search"/>
                         </a>
-                        <a
-                          href="/"
+                        <a href="/"
                           class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/wishlist.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
                             class="h-6 w-6"
                             alt="icon heart"/>
                         </a>
@@ -176,36 +155,27 @@
                   <div class="group mx-auto flex flex-col 2xl:w-88">
                     <div class="relative rounded">
                       <div class="aspect-w-1 aspect-h-1">
-                        <img
-                          src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/shoes-2.png"
+                        <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/shoes-2.png"
                           alt=""
                           class="object-cover"/>
                       </div>
-                      <span
-                        class="text-v-blue absolute top-0 right-0 bg-white px-5 py-1 my-4 mx-4 rounded-full font-dohyeon font-bold text-sm uppercase tracking-wide">Trend</span>
-                      <div
-                        class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                        <a
-                          href="/"
+                      <span class="text-v-blue absolute top-0 right-0 bg-white px-5 py-1 my-4 mx-4 rounded-full font-dohyeon font-bold text-sm uppercase tracking-wide">Trend</span>
+                      <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
+                        <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/cart.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/cart.svg') }}"
                             class="h-6 w-6"
                             alt="icon cart"/>
                         </a>
-                        <a
-                          href="/"
+                        <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/watch.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/watch.svg') }}"
                             class="h-6 w-6"
                             alt="icon search"/>
                         </a>
-                        <a
-                          href="/"
+                        <a href="/"
                           class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/wishlist.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
                             class="h-6 w-6"
                             alt="icon heart"/>
                         </a>
@@ -238,36 +208,27 @@
                   <div class="group mx-auto flex flex-col 2xl:w-88">
                     <div class="relative rounded">
                       <div class="aspect-w-1 aspect-h-1">
-                        <img
-                          src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/shoes-1.png"
+                        <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/shoes-1.png"
                           alt=""
                           class="object-cover"/>
                       </div>
-                      <span
-                        class="text-v-green absolute top-0 right-0 bg-white px-5 py-1 my-4 mx-4 rounded-full font-dohyeon font-bold text-sm uppercase tracking-wide">New</span>
-                      <div
-                        class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                        <a
-                          href="/"
+                      <span class="text-v-green absolute top-0 right-0 bg-white px-5 py-1 my-4 mx-4 rounded-full font-dohyeon font-bold text-sm uppercase tracking-wide">New</span>
+                      <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
+                        <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/cart.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/cart.svg') }}"
                             class="h-6 w-6"
                             alt="icon cart"/>
                         </a>
-                        <a
-                          href="/"
+                        <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/watch.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/watch.svg') }}"
                             class="h-6 w-6"
                             alt="icon search"/>
                         </a>
-                        <a
-                          href="/"
+                        <a href="/"
                           class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/wishlist.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
                             class="h-6 w-6"
                             alt="icon heart"/>
                         </a>
@@ -300,36 +261,27 @@
                   <div class="group mx-auto flex flex-col 2xl:w-88">
                     <div class="relative rounded">
                       <div class="aspect-w-1 aspect-h-1">
-                        <img
-                          src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/shoes-4.png"
+                        <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/shoes-4.png"
                           alt=""
                           class="object-cover"/>
                       </div>
-                      <span
-                        class="text-v-red absolute top-0 right-0 bg-white px-5 py-1 my-4 mx-4 rounded-full font-dohyeon font-bold text-sm uppercase tracking-wide">Hot</span>
-                      <div
-                        class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                        <a
-                          href="/"
+                      <span class="text-v-red absolute top-0 right-0 bg-white px-5 py-1 my-4 mx-4 rounded-full font-dohyeon font-bold text-sm uppercase tracking-wide">Hot</span>
+                      <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
+                        <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/cart.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/cart.svg') }}"
                             class="h-6 w-6"
                             alt="icon cart"/>
                         </a>
-                        <a
-                          href="/"
+                        <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/watch.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/watch.svg') }}"
                             class="h-6 w-6"
                             alt="icon search"/>
                         </a>
-                        <a
-                          href="/"
+                        <a href="/"
                           class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/wishlist.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
                             class="h-6 w-6"
                             alt="icon heart"/>
                         </a>
@@ -362,36 +314,27 @@
                   <div class="group mx-auto flex flex-col 2xl:w-88">
                     <div class="relative rounded">
                       <div class="aspect-w-1 aspect-h-1">
-                        <img
-                          src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/shoes-2.png"
+                        <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/shoes-2.png"
                           alt=""
                           class="object-cover"/>
                       </div>
-                      <span
-                        class="text-v-blue absolute top-0 right-0 bg-white px-5 py-1 my-4 mx-4 rounded-full font-dohyeon font-bold text-sm uppercase tracking-wide">Trend</span>
-                      <div
-                        class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                        <a
-                          href="/"
+                      <span class="text-v-blue absolute top-0 right-0 bg-white px-5 py-1 my-4 mx-4 rounded-full font-dohyeon font-bold text-sm uppercase tracking-wide">Trend</span>
+                      <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
+                        <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/cart.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/cart.svg') }}"
                             class="h-6 w-6"
                             alt="icon cart"/>
                         </a>
-                        <a
-                          href="/"
+                        <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/watch.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/watch.svg') }}"
                             class="h-6 w-6"
                             alt="icon search"/>
                         </a>
-                        <a
-                          href="/"
+                        <a href="/"
                           class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/wishlist.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
                             class="h-6 w-6"
                             alt="icon heart"/>
                         </a>
@@ -485,36 +428,27 @@
                   <div class="group mx-auto flex flex-col 2xl:w-88">
                     <div class="relative rounded">
                       <div class="aspect-w-1 aspect-h-1">
-                        <img
-                          src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/backpack-4.png"
+                        <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/backpack-4.png"
                           alt=""
                           class="object-cover"/>
                       </div>
-                      <span
-                        class="text-v-green absolute top-0 right-0 bg-white px-5 py-1 my-4 mx-4 rounded-full font-dohyeon font-bold text-sm uppercase tracking-wide">New</span>
-                      <div
-                        class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                        <a
-                          href="/"
+                      <span class="text-v-green absolute top-0 right-0 bg-white px-5 py-1 my-4 mx-4 rounded-full font-dohyeon font-bold text-sm uppercase tracking-wide">New</span>
+                      <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
+                        <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/cart.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/cart.svg') }}"
                             class="h-6 w-6"
                             alt="icon cart"/>
                         </a>
-                        <a
-                          href="/"
+                        <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/watch.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/watch.svg') }}"
                             class="h-6 w-6"
                             alt="icon search"/>
                         </a>
-                        <a
-                          href="/"
+                        <a href="/"
                           class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/wishlist.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
                             class="h-6 w-6"
                             alt="icon heart"/>
                         </a>
@@ -547,36 +481,27 @@
                   <div class="group mx-auto flex flex-col 2xl:w-88">
                     <div class="relative rounded">
                       <div class="aspect-w-1 aspect-h-1">
-                        <img
-                          src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/backpack-3.png"
+                        <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/backpack-3.png"
                           alt=""
                           class="object-cover"/>
                       </div>
-                      <span
-                        class="text-v-red absolute top-0 right-0 bg-white px-5 py-1 my-4 mx-4 rounded-full font-dohyeon font-bold text-sm uppercase tracking-wide">Hot</span>
-                      <div
-                        class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                        <a
-                          href="/"
+                      <span class="text-v-red absolute top-0 right-0 bg-white px-5 py-1 my-4 mx-4 rounded-full font-dohyeon font-bold text-sm uppercase tracking-wide">Hot</span>
+                      <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
+                        <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/cart.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/cart.svg') }}"
                             class="h-6 w-6"
                             alt="icon cart"/>
                         </a>
-                        <a
-                          href="/"
+                        <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/watch.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/watch.svg') }}"
                             class="h-6 w-6"
                             alt="icon search"/>
                         </a>
-                        <a
-                          href="/"
+                        <a href="/"
                           class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/wishlist.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
                             class="h-6 w-6"
                             alt="icon heart"/>
                         </a>
@@ -609,36 +534,27 @@
                   <div class="group mx-auto flex flex-col 2xl:w-88">
                     <div class="relative rounded">
                       <div class="aspect-w-1 aspect-h-1">
-                        <img
-                          src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/backpack-2.png"
+                        <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/backpack-2.png"
                           alt=""
                           class="object-cover"/>
                       </div>
-                      <span
-                        class="text-v-blue absolute top-0 right-0 bg-white px-5 py-1 my-4 mx-4 rounded-full font-dohyeon font-bold text-sm uppercase tracking-wide">Trend</span>
-                      <div
-                        class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                        <a
-                          href="/"
+                      <span class="text-v-blue absolute top-0 right-0 bg-white px-5 py-1 my-4 mx-4 rounded-full font-dohyeon font-bold text-sm uppercase tracking-wide">Trend</span>
+                      <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
+                        <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/cart.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/cart.svg') }}"
                             class="h-6 w-6"
                             alt="icon cart"/>
                         </a>
-                        <a
-                          href="/"
+                        <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/watch.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/watch.svg') }}"
                             class="h-6 w-6"
                             alt="icon search"/>
                         </a>
-                        <a
-                          href="/"
+                        <a href="/"
                           class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/wishlist.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
                             class="h-6 w-6"
                             alt="icon heart"/>
                         </a>
@@ -671,36 +587,27 @@
                   <div class="group mx-auto flex flex-col 2xl:w-88">
                     <div class="relative rounded">
                       <div class="aspect-w-1 aspect-h-1">
-                        <img
-                          src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/backpack-4.png"
+                        <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/backpack-4.png"
                           alt=""
                           class="object-cover"/>
                       </div>
-                      <span
-                        class="text-v-green absolute top-0 right-0 bg-white px-5 py-1 my-4 mx-4 rounded-full font-dohyeon font-bold text-sm uppercase tracking-wide">New</span>
-                      <div
-                        class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                        <a
-                          href="/"
+                      <span class="text-v-green absolute top-0 right-0 bg-white px-5 py-1 my-4 mx-4 rounded-full font-dohyeon font-bold text-sm uppercase tracking-wide">New</span>
+                      <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
+                        <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/cart.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/cart.svg') }}"
                             class="h-6 w-6"
                             alt="icon cart"/>
                         </a>
-                        <a
-                          href="/"
+                        <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/watch.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/watch.svg') }}"
                             class="h-6 w-6"
                             alt="icon search"/>
                         </a>
-                        <a
-                          href="/"
+                        <a href="/"
                           class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/wishlist.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
                             class="h-6 w-6"
                             alt="icon heart"/>
                         </a>
@@ -733,36 +640,27 @@
                   <div class="group mx-auto flex flex-col 2xl:w-88">
                     <div class="relative rounded">
                       <div class="aspect-w-1 aspect-h-1">
-                        <img
-                          src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/backpack-3.png"
+                        <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/backpack-3.png"
                           alt=""
                           class="object-cover"/>
                       </div>
-                      <span
-                        class="text-v-red absolute top-0 right-0 bg-white px-5 py-1 my-4 mx-4 rounded-full font-dohyeon font-bold text-sm uppercase tracking-wide">Hot</span>
-                      <div
-                        class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                        <a
-                          href="/"
+                      <span class="text-v-red absolute top-0 right-0 bg-white px-5 py-1 my-4 mx-4 rounded-full font-dohyeon font-bold text-sm uppercase tracking-wide">Hot</span>
+                      <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
+                        <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/cart.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/cart.svg') }}"
                             class="h-6 w-6"
                             alt="icon cart"/>
                         </a>
-                        <a
-                          href="/"
+                        <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/watch.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/watch.svg') }}"
                             class="h-6 w-6"
                             alt="icon search"/>
                         </a>
-                        <a
-                          href="/"
+                        <a href="/"
                           class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/wishlist.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
                             class="h-6 w-6"
                             alt="icon heart"/>
                         </a>
@@ -795,36 +693,27 @@
                   <div class="group mx-auto flex flex-col 2xl:w-88">
                     <div class="relative rounded">
                       <div class="aspect-w-1 aspect-h-1">
-                        <img
-                          src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/backpack-2.png"
+                        <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/backpack-2.png"
                           alt=""
                           class="object-cover"/>
                       </div>
-                      <span
-                        class="text-v-blue absolute top-0 right-0 bg-white px-5 py-1 my-4 mx-4 rounded-full font-dohyeon font-bold text-sm uppercase tracking-wide">Trend</span>
-                      <div
-                        class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                        <a
-                          href="/"
+                      <span class="text-v-blue absolute top-0 right-0 bg-white px-5 py-1 my-4 mx-4 rounded-full font-dohyeon font-bold text-sm uppercase tracking-wide">Trend</span>
+                      <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
+                        <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/cart.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/cart.svg') }}"
                             class="h-6 w-6"
                             alt="icon cart"/>
                         </a>
-                        <a
-                          href="/"
+                        <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/watch.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/watch.svg') }}"
                             class="h-6 w-6"
                             alt="icon search"/>
                         </a>
-                        <a
-                          href="/"
+                        <a href="/"
                           class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img
-                            src="{{ asset('assets/theme/icons/wishlist.svg') }}"
+                          <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
                             class="h-6 w-6"
                             alt="icon heart"/>
                         </a>
@@ -929,18 +818,14 @@
                   .mount();
               ">
         <div class="splide__arrows">
-          <div
-            class="splide__arrow--prev group absolute left-25 top-50 z-30 -translate-y-1/2 transform cursor-pointer rounded-full border border-grey-dark bg-grey shadow-md transition-all hover:bg-primary sm:left-35 md:left-0">
+          <div class="splide__arrow--prev group absolute left-25 top-50 z-30 -translate-y-1/2 transform cursor-pointer rounded-full border border-grey-dark bg-grey shadow-md transition-all hover:bg-primary sm:left-35 md:left-0">
             <div class="flex h-12 w-12 items-center justify-center">
-              <i
-                class="bx bx-chevron-left text-3xl leading-none text-primary transition-colors group-hover:text-white"></i>
+              <i class="bx bx-chevron-left text-3xl leading-none text-primary transition-colors group-hover:text-white"></i>
             </div>
           </div>
-          <div
-            class="splide__arrow--next group absolute right-25 top-50 z-30 -translate-y-1/2 transform cursor-pointer rounded-full border border-grey-dark bg-grey shadow-md transition-all hover:bg-primary sm:right-35 md:right-0">
+          <div class="splide__arrow--next group absolute right-25 top-50 z-30 -translate-y-1/2 transform cursor-pointer rounded-full border border-grey-dark bg-grey shadow-md transition-all hover:bg-primary sm:right-35 md:right-0">
             <div class="flex h-12 w-12 items-center justify-center">
-              <i
-                class="bx bx-chevron-right text-3xl leading-none text-primary transition-colors group-hover:text-white"></i>
+              <i class="bx bx-chevron-right text-3xl leading-none text-primary transition-colors group-hover:text-white"></i>
             </div>
           </div>
         </div>
@@ -952,41 +837,31 @@
               <div class="sm:px-5 lg:px-4">
                 <div class="relative flex items-center justify-center rounded">
                   <div class="aspect-w-1 aspect-h-1 w-full">
-                    <img
-                      src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/backpack-2.png"
+                    <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/backpack-2.png"
                       alt="product image"
                       class="object-cover"/>
                   </div>
-                  <div
-                    class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
-                    <p
-                      class="text-v-green font-dohyeon font-bold text-sm uppercase tracking-wide">
+                  <div class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
+                    <p class="text-v-green font-dohyeon font-bold text-sm uppercase tracking-wide">
                       New
                     </p>
                   </div>
-                  <div
-                    class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                    <a
-                      href="/cart"
+                  <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
+                    <a href="/cart"
                       class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img
-                        src="{{ asset('assets/theme/icons/cart.svg') }}"
+                      <img src="{{ asset('assets/theme/icons/cart.svg') }}"
                         class="h-6 w-6"
                         alt="icon cart"/>
                     </a>
-                    <a
-                      href="/product"
+                    <a href="/product"
                       class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img
-                        src="{{ asset('assets/theme/icons/watch.svg') }}"
+                      <img src="{{ asset('assets/theme/icons/watch.svg') }}"
                         class="h-6 w-6"
                         alt="icon search"/>
                     </a>
-                    <a
-                      href="/account/wishlist/"
+                    <a href="/account/wishlist/"
                       class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img
-                        src="{{ asset('assets/theme/icons/wishlist.svg') }}"
+                      <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
                         class="h-6 w-6"
                         alt="icon heart"/>
                     </a>
@@ -1017,41 +892,31 @@
               <div class="sm:px-5 lg:px-4">
                 <div class="relative flex items-center justify-center rounded">
                   <div class="aspect-w-1 aspect-h-1 w-full">
-                    <img
-                      src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/purse-1.png"
+                    <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/purse-1.png"
                       alt="product image"
                       class="object-cover"/>
                   </div>
-                  <div
-                    class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
-                    <p
-                      class="text-v-blue font-dohyeon font-bold text-sm uppercase tracking-wide">
+                  <div class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
+                    <p class="text-v-blue font-dohyeon font-bold text-sm uppercase tracking-wide">
                       trend
                     </p>
                   </div>
-                  <div
-                    class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                    <a
-                      href="/cart"
+                  <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
+                    <a href="/cart"
                       class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img
-                        src="{{ asset('assets/theme/icons/cart.svg') }}"
+                      <img src="{{ asset('assets/theme/icons/cart.svg') }}"
                         class="h-6 w-6"
                         alt="icon cart"/>
                     </a>
-                    <a
-                      href="/product"
+                    <a href="/product"
                       class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img
-                        src="{{ asset('assets/theme/icons/watch.svg') }}"
+                      <img src="{{ asset('assets/theme/icons/watch.svg') }}"
                         class="h-6 w-6"
                         alt="icon search"/>
                     </a>
-                    <a
-                      href="/account/wishlist/"
+                    <a href="/account/wishlist/"
                       class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img
-                        src="{{ asset('assets/theme/icons/wishlist.svg') }}"
+                      <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
                         class="h-6 w-6"
                         alt="icon heart"/>
                     </a>
@@ -1082,41 +947,31 @@
               <div class="sm:px-5 lg:px-4">
                 <div class="relative flex items-center justify-center rounded">
                   <div class="aspect-w-1 aspect-h-1 w-full">
-                    <img
-                      src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/sunglass-3.png"
+                    <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/sunglass-3.png"
                       alt="product image"
                       class="object-cover"/>
                   </div>
-                  <div
-                    class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
-                    <p
-                      class="text-secondary font-dohyeon font-bold text-sm uppercase tracking-wide">
+                  <div class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
+                    <p class="text-secondary font-dohyeon font-bold text-sm uppercase tracking-wide">
                       20%
                     </p>
                   </div>
-                  <div
-                    class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                    <a
-                      href="/cart"
+                  <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
+                    <a href="/cart"
                       class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img
-                        src="{{ asset('assets/theme/icons/cart.svg') }}"
+                      <img src="{{ asset('assets/theme/icons/cart.svg') }}"
                         class="h-6 w-6"
                         alt="icon cart"/>
                     </a>
-                    <a
-                      href="/product"
+                    <a href="/product"
                       class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img
-                        src="{{ asset('assets/theme/icons/watch.svg') }}"
+                      <img src="{{ asset('assets/theme/icons/watch.svg') }}"
                         class="h-6 w-6"
                         alt="icon search"/>
                     </a>
-                    <a
-                      href="/account/wishlist/"
+                    <a href="/account/wishlist/"
                       class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img
-                        src="{{ asset('assets/theme/icons/wishlist.svg') }}"
+                      <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
                         class="h-6 w-6"
                         alt="icon heart"/>
                     </a>
@@ -1147,41 +1002,31 @@
               <div class="sm:px-5 lg:px-4">
                 <div class="relative flex items-center justify-center rounded">
                   <div class="aspect-w-1 aspect-h-1 w-full">
-                    <img
-                      src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/watch-1.png"
+                    <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/watch-1.png"
                       alt="product image"
                       class="object-cover"/>
                   </div>
-                  <div
-                    class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
-                    <p
-                      class="text-v-red font-dohyeon font-bold text-sm uppercase tracking-wide">
+                  <div class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
+                    <p class="text-v-red font-dohyeon font-bold text-sm uppercase tracking-wide">
                       Hot
                     </p>
                   </div>
-                  <div
-                    class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                    <a
-                      href="/cart"
+                  <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
+                    <a href="/cart"
                       class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img
-                        src="{{ asset('assets/theme/icons/cart.svg') }}"
+                      <img src="{{ asset('assets/theme/icons/cart.svg') }}"
                         class="h-6 w-6"
                         alt="icon cart"/>
                     </a>
-                    <a
-                      href="/product"
+                    <a href="/product"
                       class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img
-                        src="{{ asset('assets/theme/icons/watch.svg') }}"
+                      <img src="{{ asset('assets/theme/icons/watch.svg') }}"
                         class="h-6 w-6"
                         alt="icon search"/>
                     </a>
-                    <a
-                      href="/account/wishlist/"
+                    <a href="/account/wishlist/"
                       class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img
-                        src="{{ asset('assets/theme/icons/wishlist.svg') }}"
+                      <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
                         class="h-6 w-6"
                         alt="icon heart"/>
                     </a>
@@ -1212,41 +1057,31 @@
               <div class="sm:px-5 lg:px-4">
                 <div class="relative flex items-center justify-center rounded">
                   <div class="aspect-w-1 aspect-h-1 w-full">
-                    <img
-                      src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/backpack-2.png"
+                    <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/backpack-2.png"
                       alt="product image"
                       class="object-cover"/>
                   </div>
-                  <div
-                    class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
-                    <p
-                      class="text-v-green font-dohyeon font-bold text-sm uppercase tracking-wide">
+                  <div class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
+                    <p class="text-v-green font-dohyeon font-bold text-sm uppercase tracking-wide">
                       New
                     </p>
                   </div>
-                  <div
-                    class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                    <a
-                      href="/cart"
+                  <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
+                    <a href="/cart"
                       class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img
-                        src="{{ asset('assets/theme/icons/cart.svg') }}"
+                      <img src="{{ asset('assets/theme/icons/cart.svg') }}"
                         class="h-6 w-6"
                         alt="icon cart"/>
                     </a>
-                    <a
-                      href="/product"
+                    <a href="/product"
                       class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img
-                        src="{{ asset('assets/theme/icons/watch.svg') }}"
+                      <img src="{{ asset('assets/theme/icons/watch.svg') }}"
                         class="h-6 w-6"
                         alt="icon search"/>
                     </a>
-                    <a
-                      href="/account/wishlist/"
+                    <a href="/account/wishlist/"
                       class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img
-                        src="{{ asset('assets/theme/icons/wishlist.svg') }}"
+                      <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
                         class="h-6 w-6"
                         alt="icon heart"/>
                     </a>
@@ -1277,41 +1112,31 @@
               <div class="sm:px-5 lg:px-4">
                 <div class="relative flex items-center justify-center rounded">
                   <div class="aspect-w-1 aspect-h-1 w-full">
-                    <img
-                      src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/shoes-1.png"
+                    <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/shoes-1.png"
                       alt="product image"
                       class="object-cover"/>
                   </div>
-                  <div
-                    class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
-                    <p
-                      class="text-v-blue font-dohyeon font-bold text-sm uppercase tracking-wide">
+                  <div class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
+                    <p class="text-v-blue font-dohyeon font-bold text-sm uppercase tracking-wide">
                       trend
                     </p>
                   </div>
-                  <div
-                    class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                    <a
-                      href="/cart"
+                  <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
+                    <a href="/cart"
                       class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img
-                        src="{{ asset('assets/theme/icons/cart.svg') }}"
+                      <img src="{{ asset('assets/theme/icons/cart.svg') }}"
                         class="h-6 w-6"
                         alt="icon cart"/>
                     </a>
-                    <a
-                      href="/product"
+                    <a href="/product"
                       class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img
-                        src="{{ asset('assets/theme/icons/watch.svg') }}"
+                      <img src="{{ asset('assets/theme/icons/watch.svg') }}"
                         class="h-6 w-6"
                         alt="icon search"/>
                     </a>
-                    <a
-                      href="/account/wishlist/"
+                    <a href="/account/wishlist/"
                       class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img
-                        src="{{ asset('assets/theme/icons/wishlist.svg') }}"
+                      <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
                         class="h-6 w-6"
                         alt="icon heart"/>
                     </a>
@@ -1342,41 +1167,31 @@
               <div class="sm:px-5 lg:px-4">
                 <div class="relative flex items-center justify-center rounded">
                   <div class="aspect-w-1 aspect-h-1 w-full">
-                    <img
-                      src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/shoes-4.png"
+                    <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/shoes-4.png"
                       alt="product image"
                       class="object-cover"/>
                   </div>
-                  <div
-                    class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
-                    <p
-                      class="text-secondary font-dohyeon font-bold text-sm uppercase tracking-wide">
+                  <div class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
+                    <p class="text-secondary font-dohyeon font-bold text-sm uppercase tracking-wide">
                       20%
                     </p>
                   </div>
-                  <div
-                    class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                    <a
-                      href="/cart"
+                  <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
+                    <a href="/cart"
                       class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img
-                        src="{{ asset('assets/theme/icons/cart.svg') }}"
+                      <img src="{{ asset('assets/theme/icons/cart.svg') }}"
                         class="h-6 w-6"
                         alt="icon cart"/>
                     </a>
-                    <a
-                      href="/product"
+                    <a href="/product"
                       class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img
-                        src="{{ asset('assets/theme/icons/watch.svg') }}"
+                      <img src="{{ asset('assets/theme/icons/watch.svg') }}"
                         class="h-6 w-6"
                         alt="icon search"/>
                     </a>
-                    <a
-                      href="/account/wishlist/"
+                    <a href="/account/wishlist/"
                       class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img
-                        src="{{ asset('assets/theme/icons/wishlist.svg') }}"
+                      <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
                         class="h-6 w-6"
                         alt="icon heart"/>
                     </a>
@@ -1407,41 +1222,31 @@
               <div class="sm:px-5 lg:px-4">
                 <div class="relative flex items-center justify-center rounded">
                   <div class="aspect-w-1 aspect-h-1 w-full">
-                    <img
-                      src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/watch-3.png"
+                    <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/watch-3.png"
                       alt="product image"
                       class="object-cover"/>
                   </div>
-                  <div
-                    class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
-                    <p
-                      class="text-v-red font-dohyeon font-bold text-sm uppercase tracking-wide">
+                  <div class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
+                    <p class="text-v-red font-dohyeon font-bold text-sm uppercase tracking-wide">
                       Hot
                     </p>
                   </div>
-                  <div
-                    class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                    <a
-                      href="/cart"
+                  <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
+                    <a href="/cart"
                       class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img
-                        src="{{ asset('assets/theme/icons/cart.svg') }}"
+                      <img src="{{ asset('assets/theme/icons/cart.svg') }}"
                         class="h-6 w-6"
                         alt="icon cart"/>
                     </a>
-                    <a
-                      href="/product"
+                    <a href="/product"
                       class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img
-                        src="{{ asset('assets/theme/icons/watch.svg') }}"
+                      <img src="{{ asset('assets/theme/icons/watch.svg') }}"
                         class="h-6 w-6"
                         alt="icon search"/>
                     </a>
-                    <a
-                      href="/account/wishlist/"
+                    <a href="/account/wishlist/"
                       class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img
-                        src="{{ asset('assets/theme/icons/wishlist.svg') }}"
+                      <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
                         class="h-6 w-6"
                         alt="icon heart"/>
                     </a>
