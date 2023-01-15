@@ -10,7 +10,17 @@ body {
 .btn-primary {
     background-color: #073b4c;
 }
+.btn-primary:hover {
+    background-color: #118ab2;
+}
 .btn-secondary {
+    background-color: #118ab2;
+}
+.btn-outline {
+    border-color: #073b4c;
+    color:#073b4c;
+}
+.btn-outline:hover {
     background-color: #118ab2;
 }
 
@@ -31,4 +41,8 @@ body {
 
 .splide__pagination__page {
     border-color: #073b4c !important;
+}
+
+:disabled {
+    background-color: lightgray;
 }
