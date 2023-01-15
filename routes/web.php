@@ -46,6 +46,9 @@ Route::get('/account/details', function () {
 Route::get('/cart', function () {
     return view('cart');
 });
+Route::get('/cart/customer-info', function () {
+    return view('customer-info');
+});
 Route::get('/product', function () {
     return view('product');
 });

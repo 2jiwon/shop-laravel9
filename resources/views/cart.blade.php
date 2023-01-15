@@ -95,6 +95,7 @@
         <a href="/" class="btn btn-primary mt-5 sm:mt-0 text-xl">수정</a>
       </div>
     </div>
+    
     <div class="mx-auto mt-16 sm:w-2/3 md:w-full lg:mx-0 lg:mt-0 lg:w-1/3">
       <div class="bg-grey-light py-8 px-8">
         <h4 class="font-hkbold pb-3 text-center text-2xl text-secondary sm:text-left">
