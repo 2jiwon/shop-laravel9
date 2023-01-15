@@ -16,7 +16,7 @@
                 <h3 class="font-gowunbatang text-3xl font-medium text-primary sm:text-3xl md:text-4xl lg:text-5xl">
                   {{ $m_banner->title }}
                 </h3>
-                <a href="/collection-grid" class="btn btn-primary hover:bg-secondary btn-lg mt-8">확인하러 가기</a>
+                <a href="/collection-grid" class="btn btn-primary btn-lg mt-8">확인하러 가기</a>
               </div>
             </div>
           </li>
@@ -870,7 +870,7 @@
         <h3 class="font-gowunbatang text-3xl font-medium text-primary sm:text-3xl md:text-4xl lg:text-5xl">
           Blouses & Jeans Up to 70% Off
         </h3>
-        <a href="/collection-grid" class="btn btn-primary hover:bg-secondary btn-lg mt-8">보러가기</a>
+        <a href="/collection-grid" class="btn btn-primary btn-lg mt-8">보러가기</a>
       </div>
     </div>
   </div>
