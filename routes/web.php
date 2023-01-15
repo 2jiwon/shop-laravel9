@@ -29,7 +29,7 @@ Route::get('/account/orders', function () {
     return view('account.orders');
 })->name('account.orders');
 Route::get('/account/cart', function () {
-    return view('account.orders');
+    return view('account.cart');
 })->name('account.cart');
 Route::get('/account/wishlist', function () {
     return view('account.wishlist');
