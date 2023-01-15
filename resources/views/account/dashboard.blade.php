@@ -64,4 +64,4 @@
     </div>
     <!-- 메인 컨텐츠 End -->
     
-    @include('layouts.account.foot')
+@include('layouts.account.foot')
