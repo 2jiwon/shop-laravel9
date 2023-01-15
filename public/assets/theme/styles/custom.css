@@ -3,16 +3,6 @@ body {
     font-family: 'Nanum Gothic','Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
-.bg-primary {
-    background-color: #073b4c;
-}
-.bg-primary-light {
-    background-color: #118ab2;
-}
-.bg-primary-light:hover {
-    background-color: #118ab2;
-}
-
 .btn {
     font-family: 'Do Hyeon', sans-serif;
     font-weight: 100;
@@ -20,26 +10,10 @@ body {
 .btn-primary {
     background-color: #073b4c;
 }
-.btn-primary:hover {
-    background-color: #118ab2;
-}
-.btn-primary:hover {
+.btn-secondary {
     background-color: #118ab2;
 }
 
-.border-primary {
-    border-color: #073b4c;
-}
-
-.text-primary {
-    color: #073b4c;
-}
-.text-primary:hover {
-    color: #118ab2;
-}
-.text-primary-light {
-    color: #118ab2;
-}
 
 .font-gowunbatang {
     font-family: 'Gowun Batang', serif;
@@ -53,4 +27,8 @@ body {
 }
 .font-nanumgothic {
     font-family: 'Nanum Gothic', sans-serif;
+}
+
+.splide__pagination__page {
+    border-color: #073b4c !important;
 }
