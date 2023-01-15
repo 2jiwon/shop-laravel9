@@ -75,11 +75,11 @@
                 href="/cart/index"
                 class="group ml-2 hidden rounded-full border-2 border-transparent p-2 transition-all hover:border-[#073b4c] sm:ml-3 sm:p-4 md:ml-5 lg:ml-8 lg:block">
                 <img
-                    src="{{ asset('assets/theme/icons/shopping-cart.svg') }}"
+                    src="{{ asset('assets/theme/icons/cart.svg') }}"
                     class="block h-6 w-6 group-hover:hidden sm:h-6 sm:w-6 md:h-8 md:w-8 opacity-70"
                     alt="icon cart"/>
                 <img
-                    src="{{ asset('assets/theme/icons/shopping-cart.svg') }}"
+                    src="{{ asset('assets/theme/icons/cart.svg') }}"
                     class="hidden h-6 w-6 group-hover:block sm:h-6 sm:w-6 md:h-8 md:w-8"
                     alt="icon cart hover"/>
                 </a>
@@ -88,11 +88,11 @@
                 @click="mobileCart = !mobileCart"
                 class="group ml-2 block rounded-full border-2 border-transparent p-2 transition-all hover:border-[#073b4c] sm:ml-3 sm:p-4 md:ml-5 lg:ml-8 lg:hidden">
                 <img
-                    src="{{ asset('assets/theme/icons/shopping-cart.svg') }}"
+                    src="{{ asset('assets/theme/icons/cart.svg') }}"
                     class="block h-6 w-6 group-hover:hidden sm:h-6 sm:w-6 md:h-8 md:w-8 opacity-70"
                     alt="icon cart"/>
                 <img
-                    src="{{ asset('assets/theme/icons/shopping-cart.svg') }}"
+                    src="{{ asset('assets/theme/icons/cart.svg') }}"
                     class="hidden h-6 w-6 group-hover:block sm:h-6 sm:w-6 md:h-8 md:w-8"
                     alt="icon cart hover"/>
                 </span>
