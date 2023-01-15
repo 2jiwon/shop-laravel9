@@ -24,16 +24,25 @@ Route::get('/', Layouts::class);
 
 Route::get('/account/dashboard', function () {
     return view('account.dashboard');
-});
+})->name('account.dashboard');
 Route::get('/account/orders', function () {
     return view('account.orders');
-});
-Route::get('/account/details', function () {
-    return view('account.details');
-});
+})->name('account.orders');
+Route::get('/account/cart', function () {
+    return view('account.orders');
+})->name('account.cart');
 Route::get('/account/wishlist', function () {
     return view('account.wishlist');
-});
+})->name('account.wishlist');
+Route::get('/account/reviews', function () {
+    return view('account.reviews');
+})->name('account.reviews');
+Route::get('/account/details', function () {
+    return view('account.details');
+})->name('account.details');
+
+
+
 Route::get('/cart', function () {
     return view('cart');
 });
@@ -55,6 +64,7 @@ Route::get('/collection-grid', function () {
 Route::get('/collection-list', function () {
     return view('collection-list');
 });
+
 
 
 Route::get('/dashboard', function () {
