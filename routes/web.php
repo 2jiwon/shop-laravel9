@@ -52,8 +52,8 @@ Route::get('/cart/customer-info', function () {
 Route::get('/product', function () {
     return view('product');
 });
-Route::get('/contact', function () {
-    return view('contact');
+Route::get('/faq', function () {
+    return view('faq');
 });
 Route::get('/search', function () {
     return view('search');

@@ -56,11 +56,11 @@
               <!-- <h4 class="pb-8 font-dohyeon text-xl font-bold text-white">Link</h4> -->
               <ul class="list-reset">
                 <li class="block pb-2">
-                  <a href="/collection-list"
+                  <a href="/faq"
                     class=" text-base tracking-wide text-white transition-colors hover:text-secondary">이용가이드</a>
                 </li>
                 <li class="block pb-2">
-                  <a href="/contact"
+                  <a href="/single"
                     class=" text-base tracking-wide text-white transition-colors hover:text-secondary">이용약관</a>
                 </li>
                 <li class="block pb-2">
