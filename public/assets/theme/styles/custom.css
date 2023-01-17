@@ -45,3 +45,7 @@ body {
 :disabled {
     background-color: lightgray;
 }
+
+.tab-item.active {
+    border-color: #073b4c;
+}
