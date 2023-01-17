@@ -65,21 +65,21 @@
             style="background-image:url(https://elyssi.redpixelthemes.com/assets/img/unlicensed/sunglass-1.png)"></div>
           <span class="absolute top-0 right-0 bg-white px-5 py-1 mt-4 mr-4 rounded-full font-hk font-bold  text-v-green text-sm uppercase tracking-wide">New</span>
 
-          <div class="group absolute inset-0 flex items-center justify-center bg-secondary bg-opacity-85 py-28 opacity-0 transition-opacity group-hover:opacity-100">
+          <div class="group absolute inset-0 flex items-center justify-center bg-primary bg-opacity-85 py-28 opacity-0 transition-opacity group-hover:opacity-100">
             <a href="/cart"
-              class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-primary-light">
+              class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
               <img src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-cart.svg "
                 class="h-6 w-6"
                 alt="icon cart"/>
             </a>
             <a href="/product"
-              class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-primary-light">
+              class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
               <img src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-search.svg"
                 class="h-6 w-6"
                 alt="icon search"/>
             </a>
             <a href="/account/wishlist/"
-              class="flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-primary-light">
+              class="flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
               <img src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-heart.svg"
                 class="h-6 w-6"
                 alt="icon heart"/>
@@ -112,21 +112,21 @@
             style="background-image:url(https://elyssi.redpixelthemes.com/assets/img/unlicensed/sunglass-2.png)"></div>
           <span class="absolute top-0 right-0 bg-white px-5 py-1 mt-4 mr-4 rounded-full font-hk font-bold  text-v-blue text-sm uppercase tracking-wide">trend</span>
 
-          <div class="group absolute inset-0 flex items-center justify-center bg-secondary bg-opacity-85 py-28 opacity-0 transition-opacity group-hover:opacity-100">
+          <div class="group absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 py-28 opacity-0 transition-opacity group-hover:opacity-100">
             <a href="/cart"
-              class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-primary-light">
+              class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
               <img src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-cart.svg "
                 class="h-6 w-6"
                 alt="icon cart"/>
             </a>
             <a href="/product"
-              class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-primary-light">
+              class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
               <img src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-search.svg"
                 class="h-6 w-6"
                 alt="icon search"/>
             </a>
             <a href="/account/wishlist/"
-              class="flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-primary-light">
+              class="flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
               <img src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-heart.svg"
                 class="h-6 w-6"
                 alt="icon heart"/>
@@ -159,21 +159,21 @@
             style="background-image:url(https://elyssi.redpixelthemes.com/assets/img/unlicensed/sunglass-3.png)"></div>
           <span class="absolute top-0 right-0 bg-white px-5 py-1 mt-4 mr-4 rounded-full font-hk font-bold  text-primary-light text-sm uppercase tracking-wide">25%</span>
 
-          <div class="group absolute inset-0 flex items-center justify-center bg-secondary bg-opacity-85 py-28 opacity-0 transition-opacity group-hover:opacity-100">
+          <div class="group absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 py-28 opacity-0 transition-opacity group-hover:opacity-100">
             <a href="/cart"
-              class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-primary-light">
+              class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
               <img src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-cart.svg "
                 class="h-6 w-6"
                 alt="icon cart"/>
             </a>
             <a href="/product"
-              class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-primary-light">
+              class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
               <img src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-search.svg"
                 class="h-6 w-6"
                 alt="icon search"/>
             </a>
             <a href="/account/wishlist/"
-              class="flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-primary-light">
+              class="flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
               <img src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-heart.svg"
                 class="h-6 w-6"
                 alt="icon heart"/>
@@ -206,21 +206,21 @@
             style="background-image:url(https://elyssi.redpixelthemes.com/assets/img/unlicensed/backpack-1.png)"></div>
           <span class="absolute top-0 right-0 bg-white px-5 py-1 mt-4 mr-4 rounded-full font-hk font-bold  text-v-red text-sm uppercase tracking-wide">Hot</span>
 
-          <div class="group absolute inset-0 flex items-center justify-center bg-secondary bg-opacity-85 py-28 opacity-0 transition-opacity group-hover:opacity-100">
+          <div class="group absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 py-28 opacity-0 transition-opacity group-hover:opacity-100">
             <a href="/cart"
-              class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-primary-light">
+              class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
               <img src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-cart.svg "
                 class="h-6 w-6"
                 alt="icon cart"/>
             </a>
             <a href="/product"
-              class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-primary-light">
+              class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
               <img src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-search.svg"
                 class="h-6 w-6"
                 alt="icon search"/>
             </a>
             <a href="/account/wishlist/"
-              class="flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-primary-light">
+              class="flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
               <img src="https://elyssi.redpixelthemes.com/assets/img/icons/icon-heart.svg"
                 class="h-6 w-6"
                 alt="icon heart"/>
