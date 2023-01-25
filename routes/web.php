@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\{BannersController, CategoriesController, Layouts, ProfileController, ProductsController, UsersController};
 use Illuminate\Support\Facades\Route;
 
@@ -21,34 +22,37 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', Layouts::class);
 
+Route::middleware('auth')->group(function () {
 
-Route::get('/account/dashboard', function () {
-    return view('account.dashboard');
-})->name('account.dashboard');
-Route::get('/account/orders', function () {
-    return view('account.orders');
-})->name('account.orders');
-Route::get('/account/cart', function () {
-    return view('account.cart');
-})->name('account.cart');
-Route::get('/account/wishlist', function () {
-    return view('account.wishlist');
-})->name('account.wishlist');
-Route::get('/account/reviews', function () {
-    return view('account.reviews');
-})->name('account.reviews');
-Route::get('/account/details', function () {
-    return view('account.details');
-})->name('account.details');
+    Route::get('/account/dashboard', function () {
+        return view('account.dashboard');
+    })->name('account.dashboard');
+    Route::get('/account/orders', function () {
+        return view('account.orders');
+    })->name('account.orders');
+    Route::get('/account/cart', function () {
+        return view('account.cart');
+    })->name('account.cart');
+    Route::get('/account/wishlist', function () {
+        return view('account.wishlist');
+    })->name('account.wishlist');
+    Route::get('/account/reviews', function () {
+        return view('account.reviews');
+    })->name('account.reviews');
+    Route::get('/account/details', function () {
+        return view('account.details');
+    })->name('account.details');
 
-
-
-Route::get('/cart', function () {
-    return view('cart');
+    Route::get('/cart', function () {
+        return view('cart');
+    });
+    Route::get('/cart/customer-info', function () {
+        return view('customer-info');
+    });
 });
-Route::get('/cart/customer-info', function () {
-    return view('customer-info');
-});
+
+
+
 Route::get('/product', function () {
     return view('product');
 });
@@ -70,6 +74,7 @@ Route::get('/collection-list', function () {
 
 
 
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -88,21 +93,29 @@ require __DIR__.'/auth.php';
  * Admin
  * 
  */
-Route::get('/admin', function () {
-    return view('admin.dashboard');
-})->name('admin.dashboard');
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/login', [AdminController::class, 'getLogin'])->name('admin.login');
+    Route::post('/login', [AdminController::class, 'setLogin'])->name('admin.login.post');
 
-Route::get('/admin/products', [ProductsController::class, 'index'])->name('admin.products');
-Route::post('/product/store', [ProductsController::class, 'store'])->name('product.store');
+    Route::get('/', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
 
-Route::get('/admin/orders', function () {
-    return view('admin.products');
-})->name('admin.orders');
+    Route::get('/products', [ProductsController::class, 'index'])->name('admin.products');
+    Route::post('/product/store', [ProductsController::class, 'store'])->name('product.store');
 
-Route::get('/admin/categories', [CategoriesController::class, 'index'])->name('admin.categories');
-Route::post('/category/store', [CategoriesController::class, 'store'])->name('category.store');
+    Route::get('/orders', function () {
+        return view('admin.products');
+    })->name('admin.orders');
 
-Route::get('/admin/users', [UsersController::class, 'index'])->name('admin.users');
+    Route::get('/categories', [CategoriesController::class, 'index'])->name('admin.categories');
+    Route::post('/category/store', [CategoriesController::class, 'store'])->name('category.store');
 
-Route::get('/admin/banners', [BannersController::class, 'index'])->name('admin.banners');
-Route::post('/banner/store', [BannersController::class, 'store'])->name('banner.store');
+    Route::get('/users', [UsersController::class, 'index'])->name('admin.users');
+
+    Route::get('/banners', [BannersController::class, 'index'])->name('admin.banners');
+    Route::post('/banner/store', [BannersController::class, 'store'])->name('banner.store');
+
+});
+
+
