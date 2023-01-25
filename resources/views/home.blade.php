@@ -37,7 +37,7 @@
   <!-- 2단 슬라이더  -->
   <div class="relative w-full">
     <div class="absolute inset-y-0 justify-center w-13/14 bg-cover bg-center bg-no-repeat"
-      style="background-image: url(/assets/img/bg-products.png)"></div>
+          style=""></div>
     <div class="2xl:max-w-screen-xxl relative z-10 mx-auto w-5/6 md:max-w-screen-sm lg:mx-auto lg:max-w-full xl:mr-16 xl:w-5/6 2xl:mx-auto">
       <div class="flex flex-col-reverse items-center py-16 lg:flex-row">
         <div class="relative mt-8 ml-6 w-full bg-white px-4 pt-8 pb-6 sm:ml-10 lg:mt-0 lg:ml-0 lg:w-3/5 2xl:w-3/4">
@@ -116,7 +116,7 @@
                         </a>
                         <a href="/"
                           class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                          <img src="/assets/img/icons/icon-watch.svg"
+                          <img src="{{ asset('assets/theme/icons/watch.svg') }}"
                             class="h-6 w-6"
                             alt="icon search"/>
                         </a>
