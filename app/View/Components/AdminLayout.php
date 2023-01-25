@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use Illuminate\Support\Facades\Auth;
 
 class AdminLayout extends Component
 {
@@ -23,6 +24,7 @@ class AdminLayout extends Component
      */
     public function render()
     {
-        return view('layouts.admin.admin');
+        if (Auth::guard('admin')->user()) return view('layouts.admin.admin');
+        else return view('admin.login');
     }
 }
