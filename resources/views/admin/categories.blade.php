@@ -42,7 +42,7 @@
                         <div class="mt-2" x-show="selected2">
                             <label class="block text-sm text-gray-600" for="type">중 카테고리 선택</label>
                             <select name="sub1" class="block w-full p-2 text-sm text-gray-500 rounded dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                                 @foreach ($sub1 as $s)
+                                @foreach ($sub1 as $s)
                                 <option value="{{ $s->id }}">{{ $s->name }}</option>
                                 @endforeach
                             </select>
@@ -77,7 +77,8 @@
                         <th scope="col" class="text-center py-3 px-4 font-semibold text-sm">번호</th>
                         <th scope="col" class="text-center py-3 px-4 font-semibold text-sm">카테고리 이름</th>
                         <th scope="col" class="text-center py-3 px-4 font-semibold text-sm">카테고리 타입</th>
-                        <th scope="col" class="text-center py-3 px-4 font-semibold text-sm">상위 카테고리</th>
+                        <th scope="col" class="text-center py-3 px-4 font-semibold text-sm">상위 카테고리1</th>
+                        <th scope="col" class="text-center py-3 px-4 font-semibold text-sm">상위 카테고리2</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -85,8 +86,17 @@
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="text-center py-3 px-2">{{ $category->id }}</td>
                         <td class="text-center py-3 px-2">{{ $category->name }}</td>
-                        <td class="text-center py-3 px-2">{{ $category->type }}</td>                        
-                        <td class="text-center py-3 px-2">{{ $category->parent }}</td>
+                        <td class="text-center py-3 px-2">{{ $category->type == 'main' ? "대" : ($category->type == 'sub1' ? "중" : "소") }}</td>                      
+                        <td class="text-center py-3 px-2">
+                            @foreach ($categories as $c)
+                            {{ $category->parent1 == $c->id ? $c->name : "" }}
+                            @endforeach
+                        </td>
+                        <td class="text-center py-3 px-2">
+                            @foreach ($categories as $c)
+                            {{ $category->parent2 == $c->id ? $c->name : "" }}
+                            @endforeach
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

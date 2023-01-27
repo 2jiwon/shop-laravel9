@@ -40,19 +40,20 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
+        $parent1 = $parent2 = NULL;
+
         if ($request->type == 'sub1') {
-            $parent = $request->main;
+            $parent1 = $request->main;
         } else if ($request->type == 'sub2') {
-            $parent = $request->main." , ".$request->sub1;
-        } else {
-            $parent = NULL;
+            $parent1 = $request->main;
+            $parent2 = $request->sub1;
         }
         
         Category::create([
             'name' => $request->name,
             'type' => $request->type,
-            'code' => 'aaa',
-            'parent' => $parent,
+            'parent1' => $parent1,
+            'parent2' => $parent2,
             'order' => 0
         ]);
 
