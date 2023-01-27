@@ -74,43 +74,53 @@
             <i class="bx bx-x mr-6 cursor-pointer text-2xl text-grey-darkest sm:text-3xl"></i>
         </button>
 		<div class="p-16 px-6 absolute top-0 w-full h-full overflow-hidden">
-            <div class="container font-dohyeon text-3xl text-grey mx-auto px-2 py-2" x-data="{
-                categories: [
-                    {
-                        main: '여성복',
-                        sub: '상의',
-                        isOpen: true,
-                    },
-                    {
-                        main: '남성복',
-                        sub: '와이셔츠',
-                        isOpen: false,
-                    },
-                    {
-                        main: '키즈',
-                        sub: '티셔츠',
-                        isOpen: false,
-                    },
-                ]
-            }">
-                <h2 class="text-2xl font-bold">메뉴</h2>
+            <div class="container font-dohyeon text-3xl text-grey mx-auto px-2 py-2">
+                     
+                <h2 class="text-2xl font-bold">카테고리 선택</h2>
+
                 <div class="leading-loose text-2xl mt-6">
-                    <template x-for="(category, index) in categories" :key="category.main">
-                        <div>
-                            <button class="w-full py-3 flex justify-between items-center mt-4" :class="index !== categories.length - 1 && 'border-b border-gray-400'" @click="categories = categories.map(f => ({ ...f, isOpen: f.main !== category.main ? false : !f.isOpen}))">
-                            <!-- Specs has it that only one component can be open at a time and also you should be able to toggle the open state of the active component too -->
-                            <div x-text="category.main"></div>
-                            <svg x-show="!category.isOpen" class="fill-current" viewBox="0 0 24 24" width="24" height="24">
-                                <path class="heroicon-ui" d="M12 22a10 10 0 110-20 10 10 0 010 20zm0-2a8 8 0 100-16 8 8 0 000 16zm1-9h2a1 1 0 010 2h-2v2a1 1 0 01-2 0v-2H9a1 1 0 010-2h2V9a1 1 0 012 0v2z" />
-                            </svg>
-                            <svg x-show="category.isOpen" class="fill-current" viewBox="0 0 24 24" width="24" height="24">
-                                <path class="heroicon-ui" d="M12 22a10 10 0 110-20 10 10 0 010 20zm0-2a8 8 0 100-16 8 8 0 000 16zm4-8a1 1 0 01-1 1H9a1 1 0 010-2h6a1 1 0 011 1z" />
-                            </svg>
+                    @foreach ($main as $m)
+                        <div x-data="{ m: {{ $m }}, isOpen1: false }">
+                            <button class="w-full px-3 py-3 flex justify-between items-center mt-4 border-b border-gray-400 hover:bg-secondary hover:text-white" @click="isOpen1 = !isOpen1">
+                                
+                                <a href="/category/{{ $m->id }}"><div x-text="m.name"></div></a>
+
+                                <svg x-show="!isOpen1" class="fill-current" viewBox="0 0 24 24" width="24" height="24">
+                                    <path class="heroicon-ui" d="M12 22a10 10 0 110-20 10 10 0 010 20zm0-2a8 8 0 100-16 8 8 0 000 16zm1-9h2a1 1 0 010 2h-2v2a1 1 0 01-2 0v-2H9a1 1 0 010-2h2V9a1 1 0 012 0v2z" />
+                                </svg>
+                                <svg x-show="isOpen1" class="fill-current" viewBox="0 0 24 24" width="24" height="24">
+                                    <path class="heroicon-ui" d="M12 22a10 10 0 110-20 10 10 0 010 20zm0-2a8 8 0 100-16 8 8 0 000 16zm4-8a1 1 0 01-1 1H9a1 1 0 010-2h6a1 1 0 011 1z" />
+                                </svg>
                             </button>
 
-                            <div class="text-gray-700 text-xl mt-2" x-text="category.sub" x-show="category.isOpen"></div>
+                            @foreach ($sub1 as $s1)
+                                @if ($s1->parent1 == $m->id)
+                                <div x-data="{ s1: {{ $s1 }}, isOpen2: false }" x-show="isOpen1">
+                                    <button class="w-full pr-3 pl-6 py-3 flex justify-between items-center border-b border-gray-400 hover:bg-secondary hover:text-white" @click="isOpen2 = !isOpen2">
+
+                                        <a href="/category/{{ $s1->id }}"><div class="text-xl hover:text-white" x-text="s1.name"></div></a>
+
+                                        <svg x-show="!isOpen2" class="fill-current" viewBox="0 0 24 24" width="24" height="24">
+                                            <path class="heroicon-ui" d="M12 22a10 10 0 110-20 10 10 0 010 20zm0-2a8 8 0 100-16 8 8 0 000 16zm1-9h2a1 1 0 010 2h-2v2a1 1 0 01-2 0v-2H9a1 1 0 010-2h2V9a1 1 0 012 0v2z" />
+                                        </svg>
+                                        <svg x-show="isOpen2" class="fill-current" viewBox="0 0 24 24" width="24" height="24">
+                                            <path class="heroicon-ui" d="M12 22a10 10 0 110-20 10 10 0 010 20zm0-2a8 8 0 100-16 8 8 0 000 16zm4-8a1 1 0 01-1 1H9a1 1 0 010-2h6a1 1 0 011 1z" />
+                                        </svg>
+                                    </button>
+
+                                    @foreach ($sub2 as $s2)
+                                        @if ($s2->parent1 == $m->id && $s2->parent2 == $s1->id)
+                                        <div x-data="{ s2: {{ $s2 }}}" x-show="isOpen2" class="pr-3 pl-12 hover:bg-secondary hover:text-white">
+                                             <a href="/category/{{ $s2->id }}"><div class="text-lg mt-2 hover:text-white" x-text="s2.name"></div></a>
+                                        </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                                @endif
+                            @endforeach
+
                         </div>
-                    </template>
+                    @endforeach
                 </div>
             </div>
         </div>
