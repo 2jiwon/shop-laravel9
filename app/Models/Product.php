@@ -24,4 +24,13 @@ class Product extends Model
     public function categories() {
         return $this->hasMany(Category::class);
     }
+
+    /**
+     *  Orders
+     */
+    public function orders() {
+        return Order::all()->filter(function($order) {
+            return in_array($this->id, $order->products) ? $order : null;
+        });
+    }
 }
