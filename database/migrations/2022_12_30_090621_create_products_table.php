@@ -26,6 +26,8 @@ return new class extends Migration
             $table->char('is_selling', 1)->default('Y')->comment('판매여부');
             $table->char('is_displaying', 1)->default('Y')->comment('진열여부');
             $table->unsignedBigInteger('discount_id')->nullable()->comment('할인테이블 id');
+            $table->unsignedTinyInteger('order_cnt')->nullable()->comment('주문카운트');
+            $table->timestamp('latest_order')->nullable()->comment('최근 주문일시');
             $table->timestamps();
         });
     }
