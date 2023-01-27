@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Models\Category;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $main = Category::where('type', 'main')->get();
+        $sub1 = Category::where('type', 'sub1')->get();
+        $sub2 = Category::where('type', 'sub2')->get();
+
+        
+        view()->composer(
+            'layouts.navigation',
+            function($view) use ($main, $sub1, $sub2) {
+                $view->with('main', $main)->with('sub1', $sub1)->with('sub2', $sub2);
+            }
+        );
     }
 }
+
+
