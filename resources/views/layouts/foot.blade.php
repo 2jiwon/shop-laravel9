@@ -89,10 +89,8 @@
       crossorigin="anonymous"></script>
 
     <script src="/assets/theme/js/main.js"></script>
-    
-    <script src="/assets/theme/js/script.js"
-      data-site="NUAESTQS"
-      defer></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.25.0/axios.min.js"></script>
     
   </body>
 </html>
