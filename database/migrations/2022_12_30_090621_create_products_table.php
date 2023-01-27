@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 20)->comment('상품명');
+            $table->string('name', 100)->comment('상품명');
             $table->text('detail')->nullable()->comment('상세설명');
             $table->integer('stock_amount')->default(0)->comment('재고 수량');
             $table->integer('supply_price')->default(0)->comment('공급가');
