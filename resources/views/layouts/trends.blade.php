@@ -72,85 +72,25 @@
         <div class="splide__track">
         <div class="splide__list relative pt-12">
             
+        @foreach ($trends as $trend)
             <div class="splide__slide group relative pt-16 md:pt-0">
             <div class="sm:px-5 lg:px-4">
                 <div class="relative flex items-center justify-center rounded">
                 <div class="aspect-w-1 aspect-h-1 w-full">
-                    <img
-                    src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/backpack-2.png"
-                    alt="product image"
-                    class="object-cover"/>
-                </div>
-                <div
-                    class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
-                    <p
-                    class="text-v-green font-dohyeon font-bold text-sm uppercase tracking-wide">
-                    New
-                    </p>
-                </div>
-                <div
-                    class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                    <a
-                    href="/cart"
-                    class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                    <img
-                        src="{{ asset('assets/theme/icons/cart.svg') }}"
-                        class="h-6 w-6"
-                        alt="icon cart"/>
-                    </a>
-                    <a
-                    href="/product"
-                    class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                    <img
-                        src="{{ asset('assets/theme/icons/watch.svg') }}"
-                        class="h-6 w-6"
-                        alt="icon search"/>
-                    </a>
-                    <a
-                    href="/account/wishlist/"
-                    class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                    <img
-                        src="{{ asset('assets/theme/icons/wishlist.svg') }}"
-                        class="h-6 w-6"
-                        alt="icon heart"/>
-                    </a>
-                </div>
-                </div>
-                <a href="/product" class="flex items-center justify-between pt-6">
-                <div>
-                    <h3 class="font-dohyeon text-base text-secondary">
-                    Woodie Blake
-                    </h3>
-                    <div class="flex items-center">
-                    <div class="flex items-center">
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                    </div>
-                    <span class="ml-2 font-dohyeon text-sm text-secondary">45</span>
-                    </div>
-                </div>
-                <span class="font-dohyeonbold text-xl text-primary">$115.0</span>
-                </a>
-            </div>
-            </div>
-            
-            <div class="splide__slide group relative pt-16 md:pt-0">
-            <div class="sm:px-5 lg:px-4">
-                <div class="relative flex items-center justify-center rounded">
-                <div class="aspect-w-1 aspect-h-1 w-full">
-                    <img
-                    src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/purse-1.png"
-                    alt="product image"
-                    class="object-cover"/>
+                    @foreach ($trend->images as $img)
+                        @if ($img->type == 'main')
+                        <img
+                        src="{{ asset('storage/'.$img->filename) }}"
+                        alt="product image"
+                        class="object-cover"/>
+                        @endif
+                    @endforeach
                 </div>
                 <div
                     class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
                     <p
                     class="text-v-blue font-dohyeon font-bold text-sm uppercase tracking-wide">
-                    trend
+                    Trend
                     </p>
                 </div>
                 <div
@@ -181,10 +121,10 @@
                     </a>
                 </div>
                 </div>
-                <a href="/product" class="flex items-center justify-between pt-6">
+                <a href="/product/{{ $trend->id }}" class="flex items-center justify-between pt-6">
                 <div>
                     <h3 class="font-dohyeon text-base text-secondary">
-                    Beautiful Brown
+                   {{ $trend->name }}
                     </h3>
                     <div class="flex items-center">
                     <div class="flex items-center">
@@ -197,205 +137,12 @@
                     <span class="ml-2 font-dohyeon text-sm text-secondary">45</span>
                     </div>
                 </div>
-                <span class="font-dohyeonbold text-xl text-primary">$55.0</span>
+                <span class="font-dohyeonbold text-xl text-primary">{{ number_format($trend->selling_price) }}원</span>
                 </a>
             </div>
             </div>
-            
-            <div class="splide__slide group relative pt-16 md:pt-0">
-            <div class="sm:px-5 lg:px-4">
-                <div class="relative flex items-center justify-center rounded">
-                <div class="aspect-w-1 aspect-h-1 w-full">
-                    <img
-                    src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/watch-1.png"
-                    alt="product image"
-                    class="object-cover"/>
-                </div>
-                <div
-                    class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
-                    <p
-                    class="text-v-red font-dohyeon font-bold text-sm uppercase tracking-wide">
-                    Hot
-                    </p>
-                </div>
-                <div
-                    class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                    <a
-                    href="/cart"
-                    class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                    <img
-                        src="{{ asset('assets/theme/icons/cart.svg') }}"
-                        class="h-6 w-6"
-                        alt="icon cart"/>
-                    </a>
-                    <a
-                    href="/product"
-                    class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                    <img
-                        src="{{ asset('assets/theme/icons/watch.svg') }}"
-                        class="h-6 w-6"
-                        alt="icon search"/>
-                    </a>
-                    <a
-                    href="/account/wishlist/"
-                    class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                    <img
-                        src="{{ asset('assets/theme/icons/wishlist.svg') }}"
-                        class="h-6 w-6"
-                        alt="icon heart"/>
-                    </a>
-                </div>
-                </div>
-                <a href="/product" class="flex items-center justify-between pt-6">
-                <div>
-                    <h3 class="font-dohyeon text-base text-secondary">
-                    Submarine Watch
-                    </h3>
-                    <div class="flex items-center">
-                    <div class="flex items-center">
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                    </div>
-                    <span class="ml-2 font-dohyeon text-sm text-secondary">45</span>
-                    </div>
-                </div>
-                <span class="font-dohyeonbold text-xl text-primary">$120.0</span>
-                </a>
-            </div>
-            </div>   
-            
-            <div class="splide__slide group relative pt-16 md:pt-0">
-            <div class="sm:px-5 lg:px-4">
-                <div class="relative flex items-center justify-center rounded">
-                <div class="aspect-w-1 aspect-h-1 w-full">
-                    <img
-                    src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/shoes-4.png"
-                    alt="product image"
-                    class="object-cover"/>
-                </div>
-                <div
-                    class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
-                    <p
-                    class="text-secondary font-dohyeon font-bold text-sm uppercase tracking-wide">
-                    20%
-                    </p>
-                </div>
-                <div
-                    class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                    <a
-                    href="/cart"
-                    class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                    <img
-                        src="{{ asset('assets/theme/icons/cart.svg') }}"
-                        class="h-6 w-6"
-                        alt="icon cart"/>
-                    </a>
-                    <a
-                    href="/product"
-                    class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                    <img
-                        src="{{ asset('assets/theme/icons/watch.svg') }}"
-                        class="h-6 w-6"
-                        alt="icon search"/>
-                    </a>
-                    <a
-                    href="/account/wishlist/"
-                    class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                    <img
-                        src="{{ asset('assets/theme/icons/wishlist.svg') }}"
-                        class="h-6 w-6"
-                        alt="icon heart"/>
-                    </a>
-                </div>
-                </div>
-                <a href="/product" class="flex items-center justify-between pt-6">
-                <div>
-                    <h3 class="font-dohyeon text-base text-secondary">
-                    Siberian Boots
-                    </h3>
-                    <div class="flex items-center">
-                    <div class="flex items-center">
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                    </div>
-                    <span class="ml-2 font-dohyeon text-sm text-secondary">45</span>
-                    </div>
-                </div>
-                <span class="font-dohyeonbold text-xl text-primary">$67.0</span>
-                </a>
-            </div>
-            </div>
-            
-            <div class="splide__slide group relative pt-16 md:pt-0">
-            <div class="sm:px-5 lg:px-4">
-                <div class="relative flex items-center justify-center rounded">
-                <div class="aspect-w-1 aspect-h-1 w-full">
-                    <img
-                    src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/watch-3.png"
-                    alt="product image"
-                    class="object-cover"/>
-                </div>
-                <div
-                    class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
-                    <p
-                    class="text-v-red font-dohyeon font-bold text-sm uppercase tracking-wide">
-                    Hot
-                    </p>
-                </div>
-                <div
-                    class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                    <a
-                    href="/cart"
-                    class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                    <img
-                        src="{{ asset('assets/theme/icons/cart.svg') }}"
-                        class="h-6 w-6"
-                        alt="icon cart"/>
-                    </a>
-                    <a
-                    href="/product"
-                    class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                    <img
-                        src="{{ asset('assets/theme/icons/watch.svg') }}"
-                        class="h-6 w-6"
-                        alt="icon search"/>
-                    </a>
-                    <a
-                    href="/account/wishlist/"
-                    class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                    <img
-                        src="{{ asset('assets/theme/icons/wishlist.svg') }}"
-                        class="h-6 w-6"
-                        alt="icon heart"/>
-                    </a>
-                </div>
-                </div>
-                <a href="/product" class="flex items-center justify-between pt-6">
-                <div>
-                    <h3 class="font-dohyeon text-base text-secondary">
-                    Silver One
-                    </h3>
-                    <div class="flex items-center">
-                    <div class="flex items-center">
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                    </div>
-                    <span class="ml-2 font-dohyeon text-sm text-secondary">45</span>
-                    </div>
-                </div>
-                <span class="font-dohyeonbold text-xl text-primary">$137.0</span>
-                </a>
-            </div>
-            </div>
+        @endforeach
+           
             
         </div>
         </div>
