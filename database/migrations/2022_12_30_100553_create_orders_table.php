@@ -20,6 +20,8 @@ return new class extends Migration
             $table->unsignedBigInteger('payments_id');
             $table->integer('status')->default(1)->comment('0:취소, 1:주문완료, 2:상품준비중, 3:배송시작, 4:배송중, 5:배송완료, 6:구매확정');
             $table->string('products', 30)->comment('구매한 상품: json형식');
+            $table->string('quantities', 30)->comment('구매한 상품 갯수: json형식');
+            $table->unsignedBigInteger('total_amount')->comment('총 주문금액');
             $table->timestamps();
         });
     }
