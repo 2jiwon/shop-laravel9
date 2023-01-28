@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\{BannersController, CategoriesController, Layouts, ProfileController, ProductsController, UsersController};
+use App\Http\Controllers\{BannersController, CategoriesController, Layouts, OrdersController, PaymentsController, ProfileController, ProductsController, UsersController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,38 +24,61 @@ Route::get('/', Layouts::class);
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/account/dashboard', function () {
-        return view('account.dashboard');
-    })->name('account.dashboard');
-    Route::get('/account/orders', function () {
-        return view('account.orders');
-    })->name('account.orders');
-    Route::get('/account/cart', function () {
-        return view('account.cart');
-    })->name('account.cart');
-    Route::get('/account/wishlist', function () {
-        return view('account.wishlist');
-    })->name('account.wishlist');
-    Route::get('/account/reviews', function () {
-        return view('account.reviews');
-    })->name('account.reviews');
-    Route::get('/account/details', function () {
-        return view('account.details');
-    })->name('account.details');
+    Route::group(['prefix' => 'account'], function () {
+        Route::get('/dashboard', function () {
+            return view('account.dashboard');
+        })->name('account.dashboard');
+        Route::get('/orders', function () {
+            return view('account.orders');
+        })->name('account.orders');
+        Route::get('/cart', function () {
+            return view('account.cart');
+        })->name('account.cart');
+        Route::get('/wishlist', function () {
+            return view('account.wishlist');
+        })->name('account.wishlist');
+        Route::get('/reviews', function () {
+            return view('account.reviews');
+        })->name('account.reviews');
+        Route::get('/details', function () {
+            return view('account.details');
+        })->name('account.details');
+    });
 
-    Route::get('/cart', function () {
-        return view('cart');
+    Route::group(['prefix' => 'cart'], function () {
+        Route::get('/', function () {
+            return view('cart');
+        });
+        Route::get('/customer-info', function () {
+            return view('customer-info');
+        });
+        Route::get('/shipping-method', function () {
+            return view('shipping-method');
+        });
     });
-    Route::get('/cart/customer-info', function () {
-        return view('customer-info');
+
+    Route::group(['prefix' => 'order'], function () {
+        Route::get('/shipping/{id}', [OrdersController::class, 'create']);
+        Route::get('/{id}/{quantity}', [OrdersController::class, 'preCreate']);
+
+        Route::post('/store', [OrdersController::class, 'store'])->name('order.store');
+
     });
+    
+    Route::group(['prefix' => 'pay'], function () {
+        Route::get('/complete/{id}', [PaymentsController::class, 'create']);
+        Route::post('/store', [PaymentsController::class, 'store'])->name('pay.store');
+
+    });
+    
+    
 });
 
 
 
-Route::get('/product', function () {
-    return view('product');
-});
+Route::get('/product/{id}', [ProductsController::class, 'show']);
+
+
 Route::get('/faq', function () {
     return view('faq');
 });
