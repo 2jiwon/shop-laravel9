@@ -9,38 +9,27 @@
     <div class="-mx-5 flex flex-col justify-between pt-16 pb-24 lg:flex-row">
 
       <!-- 상품 이미지 -->
-      <div class="flex flex-col-reverse justify-between px-5 sm:flex-row-reverse lg:w-1/2 lg:flex-row"
-          x-data="{ selectedImage: '/assets/img/unlicensed/backpack-2.png' }">
-        
+      @foreach ($product->images as $image)
+        @if ($image->type == 'main')
+        <div class="flex flex-col-reverse justify-between px-5 sm:flex-row-reverse lg:w-1/2 lg:flex-row"
+             x-data="{ selectedImage: '{{ asset('storage/'.$image->filename) }}' }">
+        @endif
+      @endforeach  
+      
         <!-- 세로 상품 이미지 -->
         <div class="flex flex-row sm:flex-col sm:pl-5 md:pl-4 lg:pl-0 lg:pr-2 xl:pr-3">
-          <div class="relative mr-3 w-28 pb-5 sm:w-32 sm:pr-0 lg:w-24 xl:w-28">
-            <div class="relative flex w-full items-center justify-center rounded border border-grey bg-v-pink">
-              <img class="cursor-pointer object-cover"
-                @click="selectedImage = $event.target.src"
-                alt="product image"
-                src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/backpack-2.png"/>
-            </div>
-          </div>
           
+          @foreach ($product->images as $image)
           <div class="relative mr-3 w-28 pb-5 sm:w-32 sm:pr-0 lg:w-24 xl:w-28">
             <div class="relative flex w-full items-center justify-center rounded border border-grey bg-v-pink">
               <img class="cursor-pointer object-cover"
                 @click="selectedImage = $event.target.src"
                 alt="product image"
-                src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/backpack-03-1.png"/>
+                src="{{ asset('storage/'.$image->filename) }}"/>
             </div>
           </div>
-          
-          <div class="relative mr-3 w-28 pb-5 sm:w-32 sm:pr-0 lg:w-24 xl:w-28">
-            <div class="relative flex w-full items-center justify-center rounded border border-grey bg-v-pink">
-              <img class="cursor-pointer object-cover"
-                @click="selectedImage = $event.target.src"
-                alt="product image"
-                src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/backpack-03-2.png"/>
-            </div>
-          </div>
-        </div>
+          @endforeach
+        </div>         
 
         <!-- 상품 큰 이미지 -->
         <div class="relative w-full pb-5 sm:pb-0">
@@ -57,15 +46,15 @@
         <div class="mb-8 border-b border-grey-dark">
           <div class="flex items-center">
             <h2 class="font-butler text-3xl md:text-4xl lg:text-4.5xl">
-              Woodie Blake
+              {{ $product->name }}
             </h2>
-            <p class="ml-8 rounded-full bg-primary px-5 py-2 font-hk text-sm font-bold uppercase leading-none text-white">
+            <p class="ml-8 rounded-full bg-primary px-5 py-2 font-dohyeon text-sm font-bold uppercase leading-none text-white">
               20% off
             </p>
           </div>
           <div class="flex items-center pt-3">
-            <span class="font-hk text-2xl text-secondary">$110.0</span>
-            <span class="pl-5 font-hk text-xl text-grey-darker line-through">$35.0</span>
+            <span class="font-dohyeon text-2xl text-secondary">{{ number_format($product->selling_price) }} 원</span>
+            <span class="pl-5 font-dohyeon text-xl text-grey-darker line-through"></span>
           </div>
           <div class="flex items-center pt-3 pb-8">
             <div class="flex items-center">
@@ -75,19 +64,20 @@
               <i class="bx bxs-star text-primary"></i>
               <i class="bx bxs-star text-primary"></i>
             </div>
-            <span class="ml-2 font-hk text-sm text-secondary">(45)</span>
+            <span class="ml-2 font-dohyeon text-sm text-secondary">(45)</span>
           </div>
         </div>
         <div class="flex pb-5">
-          <p class="font-hk text-secondary">Availability:</p>
-          <p class="font-hkbold pl-3 text-v-green">
-            In Stock
+          <p class="font-dohyeon text-secondary">상태</p>
+          <p class="font-dohyeonbold pl-3 text-v-green">
+            구매 가능
           </p>
         </div>
-        <p class="pb-5 font-hk text-secondary">Versatile, comfortable, and chic! Three words that describe Blake by Elyssi.</p>
+
+        <!-- <p class="pb-5 font-dohyeon text-secondary"></p>
         <div class="flex justify-between pb-4">
           <div class="w-1/3 sm:w-1/5">
-            <p class="font-hk text-secondary">Color</p>
+            <p class="font-dohyeon text-secondary">Color</p>
           </div>
           <div class="flex w-2/3 items-center sm:w-5/6">
             <div class="mr-2 cursor-pointer rounded-full border-2 border-transparent bg-primary px-2 py-2 transition-colors hover:border-black"></div>
@@ -98,7 +88,7 @@
         </div>
         <div class="flex items-center justify-between pb-4">
           <div class="w-1/3 sm:w-1/5">
-            <p class="font-hk text-secondary">Size</p>
+            <p class="font-dohyeon text-secondary">Size</p>
           </div>
           <div class="w-2/3 sm:w-5/6">
             <select class="form-select w-2/3">
@@ -107,12 +97,14 @@
               <option value="2">Large</option>
             </select>
           </div>
-        </div>
-        <div class="flex items-center justify-between pb-8">
+        </div> -->
+
+      <div x-data="{ productQuantity: 1 }">
+        <div class="flex items-center justify-between pb-8" >
           <div class="w-1/3 sm:w-1/5">
-            <p class="font-hk text-secondary">Quantity</p>
+            <p class="font-dohyeon text-secondary">수량</p>
           </div>
-          <div class="flex w-2/3 sm:w-5/6" x-data="{ productQuantity: 1 }">
+          <div class="flex w-2/3 sm:w-5/6">
             <label
               for="quantity-form"
               class="relative block h-0 w-0 overflow-hidden">Quantity form</label>
@@ -136,17 +128,20 @@
           </div>
         </div>
         <div class="group flex pb-8">
-          <a href="/cart" class="btn btn-outline mr-4 md:mr-6">Add to cart</a>
-          <a href="/cart" class="btn btn-primary">BUY NOW</a>
+          <a x-bind:href="'/cart/{{ $product->id }}/' + productQuantity" class="btn btn-outline mr-4 md:mr-6">장바구니에 담기</a>
+          <a x-bind:href="'/order/{{ $product->id }}/' + productQuantity" class="btn btn-primary">바로 구매</a>
         </div>
-        <div class="flex pb-2">
-          <p class="font-hk text-secondary">SKU:</p>
-          <p class="font-hkbold pl-3 text-secondary">
-            KH12345
-          </p>
-        </div>
-        <p class="font-hk text-secondary">
-          <span class="pr-2">Categories:</span>Bag, Hand bag, Travel bag, Black
+      </div>
+
+        <p class="font-dohyeon text-secondary">
+          <span class="pr-2">카테고리: </span>
+          @foreach ($category as $index => $cate)
+              @if ($index == (count($category)-1))
+                {{ $cate }} 
+              @else
+                {{ $cate }} > 
+              @endif
+          @endforeach
         </p>
       </div>
       <!-- 상품 상단 기본 정보 End -->
@@ -160,25 +155,25 @@
       <!-- 탭  -->
       <div class="tabs flex flex-col sm:flex-row" role="tablist">
         <span @click="activeTab = 'description'"
-          class="tab-item cursor-pointer border-t-2 border-transparent bg-white px-10 py-5 text-center font-hk font-bold text-secondary transition-colors hover:bg-grey-light sm:text-left"
+          class="tab-item cursor-pointer border-t-2 border-transparent bg-white px-10 py-5 text-center font-dohyeon font-bold text-secondary transition-colors hover:bg-grey-light sm:text-left"
           :class="{ 'active': activeTab=== 'description' }">
           상품 상세
         </span>
         
         <span @click="activeTab = 'additional-information'"
-          class="tab-item cursor-pointer border-t-2 border-transparent bg-white px-10 py-5 text-center font-hk font-bold text-secondary transition-colors hover:bg-grey-light sm:text-left"
+          class="tab-item cursor-pointer border-t-2 border-transparent bg-white px-10 py-5 text-center font-dohyeon font-bold text-secondary transition-colors hover:bg-grey-light sm:text-left"
           :class="{ 'active': activeTab=== 'additional-information' }">
           추가 정보
         </span>
         
         <span @click="activeTab = 'reviews'"
-          class="tab-item cursor-pointer border-t-2 border-transparent bg-white px-10 py-5 text-center font-hk font-bold text-secondary transition-colors hover:bg-grey-light sm:text-left"
+          class="tab-item cursor-pointer border-t-2 border-transparent bg-white px-10 py-5 text-center font-dohyeon font-bold text-secondary transition-colors hover:bg-grey-light sm:text-left"
           :class="{ 'active': activeTab=== 'reviews' }">
           상품 후기
         </span>
 
         <span @click="activeTab = 'qna'"
-          class="tab-item cursor-pointer border-t-2 border-transparent bg-white px-10 py-5 text-center font-hk font-bold text-secondary transition-colors hover:bg-grey-light sm:text-left"
+          class="tab-item cursor-pointer border-t-2 border-transparent bg-white px-10 py-5 text-center font-dohyeon font-bold text-secondary transition-colors hover:bg-grey-light sm:text-left"
           :class="{ 'active': activeTab=== 'qna' }">
           상품 문의
         </span>
@@ -193,8 +188,8 @@
           class="tab-pane bg-grey-light py-10 transition-opacity md:py-16"
           role="tabpanel">
           <div class="mx-auto w-5/6 text-center sm:text-left">
-            <div class="font-hk text-base text-secondary">
-              Versatile, comfortable, and chic! Three words that describe Blake by Elyssi. This backpack purse is A durable leather backpack with two large compartments and 2 smaller compartments on the front and back of it so you can carry all your belongings.
+            <div class="font-dohyeon text-base text-secondary">
+              {{ $product->detail }}
             </div>
           </div>
         </div>
@@ -204,8 +199,9 @@
           class="tab-pane bg-grey-light py-10 transition-opacity md:py-16"
           role="tabpanel">
           <div class="mx-auto w-5/6">
-            <div class="font-hk text-base text-secondary">
-              On the main compartment has multiple pockets available for your tools, chargers, make up, keys, etc. <br/><br/>  Size::13.4”Lx 6.5”W x 15.4”H. <br/> Weight: 1.57pounds. <br/> Color: light brown.
+            <div class="font-dohyeon text-base text-secondary">
+              On the main compartment has multiple pockets available for your tools, chargers, make up, keys, etc. <br/><br/>  
+              Size::13.4”Lx 6.5”W x 15.4”H. <br/> Weight: 1.57pounds. <br/> Color: light brown.
             </div>
           </div>
         </div>
@@ -223,18 +219,18 @@
               <i class="bx bxs-star text-primary"></i>
               <i class="bx bxs-star text-primary"></i>
             </div>
-            <p class="font-hkbold pt-3 text-lg text-secondary">
+            <p class="font-dohyeonbold pt-3 text-lg text-secondary">
               Perfect for everyday use
             </p>
-            <p class="pt-4 font-hk text-secondary lg:w-5/6 xl:w-2/3">
+            <p class="pt-4 font-dohyeon text-secondary lg:w-5/6 xl:w-2/3">
               I loooveeeee this product!!! It feels so soft and smells like real leather!!! I ordered this fancy backpack looking for something that can be used at work and, at the same time, after work; and I found it.  Honestly.. Amazing!!
             </p>
             <div class="flex items-center justify-center pt-3 sm:justify-start">
-              <p class="font-hk text-sm text-grey-darkest">
+              <p class="font-dohyeon text-sm text-grey-darkest">
                 <span>By</span> Melanie Ashwood
               </p>
-              <span class="block px-4 font-hk text-sm text-grey-darkest">.</span>
-              <p class="font-hk text-sm text-grey-darkest">6 days ago</p>
+              <span class="block px-4 font-dohyeon text-sm text-grey-darkest">.</span>
+              <p class="font-dohyeon text-sm text-grey-darkest">6 days ago</p>
             </div>
           </div>
           
@@ -246,25 +242,25 @@
               <i class="bx bxs-star text-primary"></i>
               <i class="bx bxs-star text-primary"></i>
             </div>
-            <p class="font-hkbold pt-3 text-lg text-secondary">
+            <p class="font-dohyeonbold pt-3 text-lg text-secondary">
               Gift for my girlfriend
             </p>
-            <p class="pt-4 font-hk text-secondary lg:w-5/6 xl:w-2/3">
+            <p class="pt-4 font-dohyeon text-secondary lg:w-5/6 xl:w-2/3">
               I paid this thing thinking about my girlfriend’s birthday present, however I had my doubts cuz’ she is kind of picky. But Seriously, from now on, Elyssi is my best friend! She loved it!! She’s crazy about it!  DISCLAIMER: It is smaller than it appears. 
             </p>
             <div class="flex items-center justify-center pt-3 sm:justify-start">
-              <p class="font-hk text-sm text-grey-darkest">
+              <p class="font-dohyeon text-sm text-grey-darkest">
                 <span>By</span> Jake Houston
               </p>
-              <span class="block px-4 font-hk text-sm text-grey-darkest">.</span>
-              <p class="font-hk text-sm text-grey-darkest">4 days ago</p>
+              <span class="block px-4 font-dohyeon text-sm text-grey-darkest">.</span>
+              <p class="font-dohyeon text-sm text-grey-darkest">4 days ago</p>
             </div>
           </div>
           
           <form class="mx-auto w-5/6">
             <div class="grid grid-cols-1 gap-x-10 gap-y-5 pt-10 sm:grid-cols-2">
               <div class="w-full">
-                <label class="mb-2 block font-hk text-sm text-secondary" for="name">Name</label>
+                <label class="mb-2 block font-dohyeon text-sm text-secondary" for="name">Name</label>
                 <input
                   type="text"
                   placeholder="Enter your Name"
@@ -272,7 +268,7 @@
                   id="name"/>
               </div>
               <div class="w-full pt-10 sm:pt-0">
-                <label class="mb-2 block font-hk text-sm text-secondary" for="email">Email address</label>
+                <label class="mb-2 block font-dohyeon text-sm text-secondary" for="email">Email address</label>
                 <input
                   type="email"
                   placeholder="Enter your email"
@@ -282,7 +278,7 @@
             </div>
             <div class="grid grid-cols-1 gap-x-10 gap-y-5 pt-10 sm:grid-cols-2">
               <div class="w-full">
-                <label class="mb-2 block font-hk text-sm text-secondary" for="review_title">Review Title</label>
+                <label class="mb-2 block font-dohyeon text-sm text-secondary" for="review_title">Review Title</label>
                 <input
                   type="text"
                   placeholder="Enter your review title"
@@ -290,7 +286,7 @@
                   id="review_title"/>
               </div>
               <div class="w-full pt-10 sm:pt-0">
-                <label class="mb-2 block font-hk text-sm text-secondary">Rating</label>
+                <label class="mb-2 block font-dohyeon text-sm text-secondary">Rating</label>
                 <div class="flex pt-4">
                   <i class="bx bxs-star pr-1 text-xl text-grey-darker"></i>
                   <i class="bx bxs-star pr-1 text-xl text-grey-darker"></i>
@@ -301,7 +297,7 @@
               </div>
             </div>
             <div class="sm:w-12/25 pt-10">
-              <label for="message" class="mb-2 block font-hk text-sm text-secondary">Review Message</label>
+              <label for="message" class="mb-2 block font-dohyeon text-sm text-secondary">Review Message</label>
               <textarea
                 placeholder="Write your review here"
                 class="form-textarea h-28"
@@ -327,18 +323,18 @@
               <i class="bx bxs-star text-primary"></i>
               <i class="bx bxs-star text-primary"></i>
             </div>
-            <p class="font-hkbold pt-3 text-lg text-secondary">
+            <p class="font-dohyeonbold pt-3 text-lg text-secondary">
               Perfect for everyday use
             </p>
-            <p class="pt-4 font-hk text-secondary lg:w-5/6 xl:w-2/3">
+            <p class="pt-4 font-dohyeon text-secondary lg:w-5/6 xl:w-2/3">
               I loooveeeee this product!!! It feels so soft and smells like real leather!!! I ordered this fancy backpack looking for something that can be used at work and, at the same time, after work; and I found it.  Honestly.. Amazing!!
             </p>
             <div class="flex items-center justify-center pt-3 sm:justify-start">
-              <p class="font-hk text-sm text-grey-darkest">
+              <p class="font-dohyeon text-sm text-grey-darkest">
                 <span>By</span> Melanie Ashwood
               </p>
-              <span class="block px-4 font-hk text-sm text-grey-darkest">.</span>
-              <p class="font-hk text-sm text-grey-darkest">6 days ago</p>
+              <span class="block px-4 font-dohyeon text-sm text-grey-darkest">.</span>
+              <p class="font-dohyeon text-sm text-grey-darkest">6 days ago</p>
             </div>
           </div>
           
@@ -350,18 +346,18 @@
               <i class="bx bxs-star text-primary"></i>
               <i class="bx bxs-star text-primary"></i>
             </div>
-            <p class="font-hkbold pt-3 text-lg text-secondary">
+            <p class="font-dohyeonbold pt-3 text-lg text-secondary">
               Gift for my girlfriend
             </p>
-            <p class="pt-4 font-hk text-secondary lg:w-5/6 xl:w-2/3">
+            <p class="pt-4 font-dohyeon text-secondary lg:w-5/6 xl:w-2/3">
               I paid this thing thinking about my girlfriend’s birthday present, however I had my doubts cuz’ she is kind of picky. But Seriously, from now on, Elyssi is my best friend! She loved it!! She’s crazy about it!  DISCLAIMER: It is smaller than it appears. 
             </p>
             <div class="flex items-center justify-center pt-3 sm:justify-start">
-              <p class="font-hk text-sm text-grey-darkest">
+              <p class="font-dohyeon text-sm text-grey-darkest">
                 <span>By</span> Jake Houston
               </p>
-              <span class="block px-4 font-hk text-sm text-grey-darkest">.</span>
-              <p class="font-hk text-sm text-grey-darkest">4 days ago</p>
+              <span class="block px-4 font-dohyeon text-sm text-grey-darkest">.</span>
+              <p class="font-dohyeon text-sm text-grey-darkest">4 days ago</p>
             </div>
           </div>
           
@@ -381,8 +377,8 @@
         <h2 class="font-butler text-3xl text-secondary md:text-4xl lg:text-4.5xl">
           이 상품과 비슷한 상품
         </h2>
-        <p class="pt-2 pb-6 font-hk text-lg text-secondary-lighter sm:pb-8 md:text-xl lg:pb-0">
-          ~~를 찾으시나요?
+        <p class="pt-2 pb-6 font-dohyeon text-lg text-secondary-lighter sm:pb-8 md:text-xl lg:pb-0">
+          {{ \App\Models\Category::find($product->category)->name }}를 찾으시나요?
         </p>
       </div>
 
@@ -445,33 +441,38 @@
         <div class="splide__track">
           <div class="splide__list relative pt-12">
             
+          @foreach ($others as $other)
             <div class="splide__slide group relative pt-16 md:pt-0">
               <div class="sm:px-5 lg:px-4">
                 <div class="relative flex items-center justify-center rounded">
                   <div class="aspect-w-1 aspect-h-1 w-full">
-                    <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/backpack-2.png"
+                    @foreach ($other->images as $image)
+                      @if ($image->type == 'main')
+                    <img src="{{ asset('storage/'.$image->filename) }}"
                       alt="product image"
                       class="object-cover"/>
+                      @endif
+                    @endforeach
                   </div>
                   <div class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
-                    <p class="text-v-green font-hk font-bold text-sm uppercase tracking-wide">
+                    <p class="text-v-green font-dohyeon font-bold text-sm uppercase tracking-wide">
                       New
                     </p>
                   </div>
                   <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                    <a href="/cart"
+                    <a href="/cart/{{ $other->id }}"
                       class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
                       <img src="{{ asset('assets/theme/icons/cart.svg') }}"
                         class="h-6 w-6"
                         alt="icon cart"/>
                     </a>
-                    <a href="/product"
+                    <a href="/product/{{ $other->id }}"
                       class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
                       <img src="{{ asset('assets/theme/icons/watch.svg') }}"
                         class="h-6 w-6"
                         alt="icon search"/>
                     </a>
-                    <a href="/account/wishlist/"
+                    <a href="/account/wishlist/{{ $other->id }}"
                       class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
                       <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
                         class="h-6 w-6"
@@ -479,12 +480,12 @@
                     </a>
                   </div>
                 </div>
-                <a href="/product" class="flex items-center justify-between pt-6">
+                <a href="/product/{{ $other->id }}" class="flex items-center justify-between pt-6">
                   <div>
-                    <h3 class="font-hk text-base text-secondary">
-                      Woodie Blake
+                    <h3 class="font-dohyeon text-base text-secondary">
+                      {{ $other->name }}
                     </h3>
-                    <div class="flex items-center">
+                    <!-- <div class="flex items-center">
                       <div class="flex items-center">
                         <i class="bx bxs-star text-primary"></i>
                         <i class="bx bxs-star text-primary"></i>
@@ -492,178 +493,14 @@
                         <i class="bx bxs-star text-primary"></i>
                         <i class="bx bxs-star text-primary"></i>
                       </div>
-                      <span class="ml-2 font-hk text-sm text-secondary">45</span>
-                    </div>
+                      <span class="ml-2 font-dohyeon text-sm text-secondary">45</span>
+                    </div> -->
                   </div>
-                  <span class="font-hkbold text-xl text-primary">$115.0</span>
+                  <span class="flex justify-end font-dohyeon text-sm text-primary">{{ number_format($product->selling_price) }} 원</span>
                 </a>
               </div>
             </div>
-            
-            <div class="splide__slide group relative pt-16 md:pt-0">
-              <div class="sm:px-5 lg:px-4">
-                <div class="relative flex items-center justify-center rounded">
-                  <div class="aspect-w-1 aspect-h-1 w-full">
-                    <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/purse-1.png"
-                      alt="product image"
-                      class="object-cover"/>
-                  </div>
-                  <div class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
-                    <p class="text-v-blue font-hk font-bold text-sm uppercase tracking-wide">
-                      trend
-                    </p>
-                  </div>
-                  <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                    <a href="/cart"
-                      class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img src="{{ asset('assets/theme/icons/cart.svg') }}"
-                        class="h-6 w-6"
-                        alt="icon cart"/>
-                    </a>
-                    <a href="/product"
-                      class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img src="{{ asset('assets/theme/icons/watch.svg') }}"
-                        class="h-6 w-6"
-                        alt="icon search"/>
-                    </a>
-                    <a href="/account/wishlist/"
-                      class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
-                        class="h-6 w-6"
-                        alt="icon heart"/>
-                    </a>
-                  </div>
-                </div>
-                <a href="/product" class="flex items-center justify-between pt-6">
-                  <div>
-                    <h3 class="font-hk text-base text-secondary">
-                      Beautiful Brown
-                    </h3>
-                    <div class="flex items-center">
-                      <div class="flex items-center">
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                      </div>
-                      <span class="ml-2 font-hk text-sm text-secondary">45</span>
-                    </div>
-                  </div>
-                  <span class="font-hkbold text-xl text-primary">$55.0</span>
-                </a>
-              </div>
-            </div>
-            
-            <div class="splide__slide group relative pt-16 md:pt-0">
-              <div class="sm:px-5 lg:px-4">
-                <div class="relative flex items-center justify-center rounded">
-                  <div class="aspect-w-1 aspect-h-1 w-full">
-                    <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/sunglass-3.png"
-                      alt="product image"
-                      class="object-cover"/>
-                  </div>
-                  <div class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
-                    <p class="text-primary-light font-hk font-bold text-sm uppercase tracking-wide">
-                      20%
-                    </p>
-                  </div>
-                  <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                    <a href="/cart"
-                      class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img src="{{ asset('assets/theme/icons/cart.svg') }}"
-                        class="h-6 w-6"
-                        alt="icon cart"/>
-                    </a>
-                    <a href="/product"
-                      class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img src="{{ asset('assets/theme/icons/watch.svg') }}"
-                        class="h-6 w-6"
-                        alt="icon search"/>
-                    </a>
-                    <a href="/account/wishlist/"
-                      class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
-                        class="h-6 w-6"
-                        alt="icon heart"/>
-                    </a>
-                  </div>
-                </div>
-                <a href="/product" class="flex items-center justify-between pt-6">
-                  <div>
-                    <h3 class="font-hk text-base text-secondary">
-                      Coffee Cream
-                    </h3>
-                    <div class="flex items-center">
-                      <div class="flex items-center">
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                      </div>
-                      <span class="ml-2 font-hk text-sm text-secondary">45</span>
-                    </div>
-                  </div>
-                  <span class="font-hkbold text-xl text-primary">$65.0</span>
-                </a>
-              </div>
-            </div>
-            
-            <div class="splide__slide group relative pt-16 md:pt-0">
-              <div class="sm:px-5 lg:px-4">
-                <div class="relative flex items-center justify-center rounded">
-                  <div class="aspect-w-1 aspect-h-1 w-full">
-                    <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/watch-1.png"
-                      alt="product image"
-                      class="object-cover"/>
-                  </div>
-                  <div class="absolute top-0 right-0 m-4 rounded-full bg-white px-5 py-1">
-                    <p class="text-v-red font-hk font-bold text-sm uppercase tracking-wide">
-                      Hot
-                    </p>
-                  </div>
-                  <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                    <a href="/cart"
-                      class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img src="{{ asset('assets/theme/icons/cart.svg') }}"
-                        class="h-6 w-6"
-                        alt="icon cart"/>
-                    </a>
-                    <a href="/product"
-                      class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img src="{{ asset('assets/theme/icons/watch.svg') }}"
-                        class="h-6 w-6"
-                        alt="icon search"/>
-                    </a>
-                    <a href="/account/wishlist/"
-                      class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
-                      <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
-                        class="h-6 w-6"
-                        alt="icon heart"/>
-                    </a>
-                  </div>
-                </div>
-                <a href="/product" class="flex items-center justify-between pt-6">
-                  <div>
-                    <h3 class="font-hk text-base text-secondary">
-                      Submarine Watch
-                    </h3>
-                    <div class="flex items-center">
-                      <div class="flex items-center">
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                        <i class="bx bxs-star text-primary"></i>
-                      </div>
-                      <span class="ml-2 font-hk text-sm text-secondary">45</span>
-                    </div>
-                  </div>
-                  <span class="font-hkbold text-xl text-primary">$120.0</span>
-                </a>
-              </div>
-            </div>
+            @endforeach
             
           </div>
         </div>

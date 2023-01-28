@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\{Category, Product};
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -58,9 +58,15 @@ class ProductsController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
-    {
+    public function show($id)
+    {   
+        $product = Product::find($id);
 
+        $category = Product::getCategories($product);
+
+        $others = Product::where('category', $product->category)->get();
+
+        return view('product')->with('product', $product)->with('category', $category)->with('others', $others);
     }
 
     /**
