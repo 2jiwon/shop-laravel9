@@ -6,10 +6,10 @@
                 트렌드 상품
             </h2>
             <p class="pt-2 font-dohyeon text-lg md:text-xl text-secondary">
-                요즘 이게 제일 잘 팔려요!
+                회원들이 가장 많이 찾는 핫한 상품들 만나보세요!
             </p>
             </div>
-            <a href="/collection-grid" class="group flex items-center border-b border-primary pt-1 font-dohyeon text-xl text-primary transition-colors hover:border-secondary sm:pt-0">
+            <a href="/collection/trend/grid" class="group flex items-center border-b border-primary pt-1 font-dohyeon text-xl text-primary transition-colors hover:border-secondary sm:pt-0">
             더보기
             <i class="bx bx-chevron-right pl-3 pt-2 text-xl text-primary transition-colors group-hover:text-secondary"></i>
             </a>

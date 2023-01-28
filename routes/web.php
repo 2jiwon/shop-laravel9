@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\{BannersController, CategoriesController, Layouts, OrdersController, PaymentsController, ProfileController, ProductsController, UsersController};
+use App\Http\Controllers\{BannersController, CategoriesController, CollectionLayout, HomeLayout, OrdersController, PaymentsController, ProfileController, ProductsController, UsersController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('home');
 // });
 
-Route::get('/', Layouts::class);
+Route::get('/', HomeLayout::class);
 
 Route::middleware('auth')->group(function () {
 
@@ -80,6 +80,11 @@ Route::get('/product/{id}', [ProductsController::class, 'show']);
 Route::get('/category/{id}', [ProductsController::class, 'showLists'])->name('category.list');
 
 
+Route::get('/collection/{type}/{display}', CollectionLayout::class);
+
+
+
+
 
 Route::get('/faq', function () {
     return view('faq');
@@ -89,9 +94,6 @@ Route::get('/search', function () {
 });
 Route::get('/single', function () {
     return view('single');
-});
-Route::get('/collection-grid', function () {
-    return view('collection-grid');
 });
 Route::get('/collection-list', function () {
     return view('collection-list');
