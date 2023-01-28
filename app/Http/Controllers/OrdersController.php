@@ -50,7 +50,6 @@ class OrdersController extends Controller
         $data = [
             'user_id' => Auth::user()->id,
             'type' => 'sub',
-            'name' => '',
             'phone' => $request->phone_receiver,
             'zipcode' => $request->zip,
             'address1' => $request->address1,
@@ -61,7 +60,6 @@ class OrdersController extends Controller
         $data = [
             'user_id' => Auth::user()->id,
             'user_address_id' => $res->id,
-            'payments_id' => 1,
             'status' => 1,
             'products' => [$request->product_id],
             'quantities' => [$request->quantity],
