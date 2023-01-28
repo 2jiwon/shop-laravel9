@@ -12,6 +12,7 @@ class Order extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'products' => 'array'
+        'products' => 'array',
+        'quantities' => 'array',
     ];
 }
