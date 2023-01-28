@@ -1,8 +1,8 @@
 @include('layouts.head')
 
 <div class="container border-t border-grey-dark">
-  <div
-    class="flex flex-col items-center justify-between pt-10 pb-16 sm:pt-12 sm:pb-20 lg:flex-row lg:pb-24">
+  <form>
+  <div class="flex flex-col items-center justify-between pt-10 pb-16 sm:pt-12 sm:pb-20 lg:flex-row lg:pb-24">
     <div class="lg:w-2/3 lg:pr-16 xl:pr-20">
       <div class="flex flex-wrap items-center">
         <h1 class="font-hkbold pb-3 text-center text-2xl text-secondary sm:text-left">
@@ -36,7 +36,7 @@
     </a>
   <i class="bx bx-chevron-right text-sm text-transparent px-2"></i> -->
   
-</div>
+      </div>
 
       <div
         class="mt-10 rounded border border-grey-darker px-4 py-3 sm:px-5 md:mt-12">
@@ -81,41 +81,44 @@
         <p class="pt-2 font-hk text-secondary">
           모든 결제 정보는 안전하게 암호화되어 처리됩니다.
         </p>
-        <div class="mt-6 py-5 grid grid-cols-2 gap-5 rounded border border-grey-darker px-4 pt-3 sm:px-5">
-          <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
-            <input disabled id="pay_card" type="radio" value="" name="pay_card" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-            <label for="pay_card" class="py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-              신용카드 결제
-            </label>
-          </div>
-          <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
-            <input checked id="pay_bank" type="radio" value="" name="pay_bank" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-            <label for="pay_bank" class="py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-              무통장 입금 결제
-            </label>
-          </div>
-        </div>
 
+        <div x-data="{ bank:true }" x-init="$refs.pay_bank.click()">
+          <div class="mt-6 py-5 grid grid-cols-2 gap-5 rounded border border-grey-darker px-4 pt-3 sm:px-5">
+            <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
+              <input @click="bank=false" disabled id="pay_card" type="radio" value="card" name="pay_type" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+              <label for="pay_card" class="py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                신용카드 결제
+              </label>
+            </div>
+            <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
+              <!-- <input checked="checked" x-ref="pay_bank" id="pay_bank" type="radio" value="Y" name="pay_type" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"> -->
+              <input @click="bank=true" x-ref="pay_bank" id="pay_bank" type="radio" value="bank" name="pay_type" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+              <label for="pay_bank" class="py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                무통장 입금 결제
+              </label>
+            </div>
+          </div>
 
-        <div class="mt-6 rounded border border-grey-darker px-4 py-3 sm:px-5">
-          <p class="font-hkbold text-sm text-secondary">입금자 정보</p>
-          <div class="pt-4">
-            <div class="grid grid-cols-2 gap-5">
-              <!-- <div class="w-full">
-                <input
-                  type="number"
-                  placeholder="Card Number"
-                  class="form-input"
-                  id="card"/>
-              </div> -->
-              <div class="w-full">
-                <input
-                  type="text"
-                  placeholder="입금자명"
-                  class="form-input"
-                  name="remittor"/>
+          <div x-show="bank" class="mt-6 rounded border border-grey-darker px-4 py-3 sm:px-5">
+            <p class="font-hkbold text-sm text-secondary">입금자 정보</p>
+            <div class="pt-4">
+              <div class="grid grid-cols-2 gap-5">
+                <!-- <div class="w-full">
+                  <input
+                    type="number"
+                    placeholder="Card Number"
+                    class="form-input"
+                    id="card"/>
+                </div> -->
+                <div class="w-full">
+                  <input
+                    type="text"
+                    placeholder="입금자명"
+                    class="form-input"
+                    name="remittor"/>
+                </div>
+              
               </div>
-             
             </div>
           </div>
         </div>
@@ -176,34 +179,41 @@
         <div class="flex justify-between py-3">
           <span class="font-hkbold leading-none text-secondary">합계</span>
           <span class="font-hkbold leading-none text-secondary">{{ number_format(($product->selling_price * $order->quantities[0]) + $product->delivery_fee) }} 원</span>
+          <input type="hidden" name="total_amount" value="{{ ($product->selling_price * $order->quantities[0]) + $product->delivery_fee }}" />
         </div>
       </div>
 
     </div>
   </div>
+  </form>
 </div>
 
 <script>
+var order_id = {{ $order->id }};
 function paynow() {
-  alert("결제");
+   event.preventDefault();
+  const form = document.querySelector("form");
+  const formData = new FormData(form);
+  formData.append('order_id', order_id);
 
-  // const url = `{{ route('order.store') }}`;
-  // axios
-  // .post(url)
-  // .then((res) => {
-  //     console.log(res);
-  //     if (res.status === 200) {
-  //         alert("등록 완료");
-  //         // const target = document.querySelector('#toast-success');
-  //         // target.classList.remove('hidden');
-  //         // const msg = document.querySelector('#toast-message');
-  //         // msg.innerText = "message here";
-  //         // location.reload();
-  //     }
-  // })
-  // .catch((err) => {
-  //     console.log("에러 발생 " + err);
-  // });
+  const url = `{{ route('pay.store') }}`;
+  axios
+  .post(url, formData)
+  .then((res) => {
+      console.log(res);
+      if (res.status === 200) {
+          //alert("등록 완료");
+          // const target = document.querySelector('#toast-success');
+          // target.classList.remove('hidden');
+          // const msg = document.querySelector('#toast-message');
+          // msg.innerText = "message here";
+
+          location.href = "/pay/complete/" + res.data.pid;
+      }
+  })
+  .catch((err) => {
+      console.log("에러 발생 " + err);
+  });
 }
 </script>
 
