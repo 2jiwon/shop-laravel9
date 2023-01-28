@@ -61,6 +61,9 @@ class ProductsController extends Controller
     public function show($id)
     {   
         $product = Product::find($id);
+        $product->update([
+            'view_cnt' => $product->view_cnt+1
+        ]);
 
         $category = Product::getCategories($product->category);
 
@@ -80,7 +83,7 @@ class ProductsController extends Controller
         $products = Product::where('category', $id)->paginate(20);
         $category = Product::getCategories($id);
 
-        return view('collection-grid')->with('products', $products)->with('category', $category);
+        return view('category-grid')->with('products', $products)->with('category', $category);
     }
 
 

@@ -68,6 +68,7 @@ class MakeProducts extends Command
                 'category' => $data->category->id,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
+                'view_cnt' => floor(rand(3, 100))
             ]);
 
             /**
