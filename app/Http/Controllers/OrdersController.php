@@ -31,11 +31,12 @@ class OrdersController extends Controller
         return view('customer-info')->with('product', $product)->with('quantity', $quantity);
     }
 
-    public function create($id, $quantity)
+    public function create($id)
     {
-        $product = Product::find($id);
+        $order = Order::find($id);
+        $product = Product::find($order->products[0]);
 
-        return view('shipping-method')->with('product', $product)->with('quantity', $quantity);
+        return view('shipping-method')->with('order', $order)->with('product', $product);
     }
 
     /**
@@ -70,7 +71,7 @@ class OrdersController extends Controller
 
         if (empty($res)) return response()->json(['result' => 'fail']);
 
-        return response()->json(['result' => 'success']);
+        return response()->json(['result' => 'success', 'oid' => $res->id]);
     }
 
     /**

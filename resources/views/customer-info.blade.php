@@ -92,7 +92,6 @@
               <i class="bx bx-chevron-left -mb-1 pr-2 text-2xl text-secondary transition-colors group-hover:text-primary"></i>
               뒤로가기
             </a>
-            <!-- <a href="/order/shipping/{{ $product->id }}/{{ $quantity }}" class="btn btn-primary text-xl">계속</a> -->
             <button class="btn btn-primary text-xl" onClick="saveOrder()">계속</a>
           </div>
         </div>
@@ -275,7 +274,8 @@ function saveOrder() {
       console.log(res);
        if (res.status === 200) {
         alert("성공");
-        location.href = "/order/shipping/123/4";
+        location.href = "/order/shipping/" + res.data.oid;
+        // location.href = "/order/shipping/123";
       }
   })
   .catch((err) => {
