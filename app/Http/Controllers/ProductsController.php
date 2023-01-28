@@ -62,12 +62,27 @@ class ProductsController extends Controller
     {   
         $product = Product::find($id);
 
-        $category = Product::getCategories($product);
+        $category = Product::getCategories($product->category);
 
         $others = Product::where('category', $product->category)->get();
 
         return view('product')->with('product', $product)->with('category', $category)->with('others', $others);
     }
+
+    /**
+     * Display the group products.
+     *
+     * @param  \App\Models\Product  $product
+     * @return \Illuminate\Http\Response
+     */
+    public function showLists($id)
+    {   
+        $products = Product::where('category', $id)->paginate(20);
+        $category = Product::getCategories($id);
+
+        return view('collection-grid')->with('products', $products)->with('category', $category);
+    }
+
 
     /**
      * Show the form for editing the specified resource.

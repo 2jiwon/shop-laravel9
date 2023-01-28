@@ -74,9 +74,11 @@ Route::middleware('auth')->group(function () {
     
 });
 
-
-
+// 상품 상세 페이지
 Route::get('/product/{id}', [ProductsController::class, 'show']);
+// 카테고리별 페이지
+Route::get('/category/{id}', [ProductsController::class, 'showLists'])->name('category.list');
+
 
 
 Route::get('/faq', function () {
