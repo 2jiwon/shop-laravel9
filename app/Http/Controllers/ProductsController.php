@@ -78,12 +78,16 @@ class ProductsController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function showLists($id)
+    public function showLists($id, $display)
     {   
         $products = Product::where('category', $id)->paginate(20);
         $category = Product::getCategories($id);
 
-        return view('category-grid')->with('products', $products)->with('category', $category);
+        $view = "category-{$display}";
+
+        return view($view)->with('id', $id)
+                          ->with('products', $products)
+                          ->with('category', $category);
     }
 
 

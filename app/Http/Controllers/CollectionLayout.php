@@ -42,6 +42,14 @@ class CollectionLayout extends Controller
                 $title = "신상품";
                 $sub = "새로 들어왔어요!";
                 break;
+            case 'best':
+                /**
+                 *  베스트 가져오기
+                 */
+                $products = Product::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('order_cnt', 'desc')->paginate(20);
+                $title = "베스트";
+                $sub = "지금 제일 많이 팔리는 인기상품 만나보세요!";
+                break;
             default:
                 # code...
                 break;
