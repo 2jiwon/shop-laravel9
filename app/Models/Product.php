@@ -21,10 +21,10 @@ class Product extends Model
     /**
      *  Category를 type에 따라서 상위 Category까지 이름만 배열로 반환
      */
-    public static function getCategories($product) {
+    public static function getCategories($categoryId) {
         // return $this->hasMany(Category::class, 'id', 'category');
         $category = [];
-        $data = Category::find($product->category);
+        $data = Category::find($categoryId);
 
         foreach (Category::all() as $cate) {
             if ($data->type == 'main') {
