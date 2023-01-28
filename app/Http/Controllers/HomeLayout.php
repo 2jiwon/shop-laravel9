@@ -7,7 +7,7 @@ use App\Models\{Banner, Order, Product};
 
 use Illuminate\Database\Eloquent\Builder;
 
-class Layouts extends Controller
+class HomeLayout extends Controller
 {
     /**
      * Handle the incoming request.
@@ -33,9 +33,14 @@ class Layouts extends Controller
          */
         $trends = Product::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('order_cnt', 'desc')->limit(20)->get();
 
+        /**
+         *  신상품 가져오기
+         */
+        $news = Product::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('created_at', 'desc')->limit(20)->get();
 
         return view('home')
                 ->with('main_banners', $main_banners)->with('collection_banners', $collection_banners)
-                ->with('trends', $trends);
+                ->with('trends', $trends)
+                ->with('news', $news);
     }
 }
