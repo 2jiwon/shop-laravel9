@@ -83,7 +83,7 @@
                         <div x-data="{ m: {{ $m }}, isOpen1: false }">
                             <button class="w-full px-3 py-3 flex justify-between items-center mt-4 border-b border-gray-400 hover:bg-secondary hover:text-white" @click="isOpen1 = !isOpen1">
                                 
-                                <a href="/category/{{ $m->id }}"><div x-text="m.name"></div></a>
+                                <a href="/category/{{ $m->id }}/grid"><div x-text="m.name"></div></a>
 
                                 <svg x-show="!isOpen1" class="fill-current" viewBox="0 0 24 24" width="24" height="24">
                                     <path class="heroicon-ui" d="M12 22a10 10 0 110-20 10 10 0 010 20zm0-2a8 8 0 100-16 8 8 0 000 16zm1-9h2a1 1 0 010 2h-2v2a1 1 0 01-2 0v-2H9a1 1 0 010-2h2V9a1 1 0 012 0v2z" />
@@ -98,7 +98,7 @@
                                 <div x-data="{ s1: {{ $s1 }}, isOpen2: false }" x-show="isOpen1">
                                     <button class="w-full pr-3 pl-6 py-3 flex justify-between items-center border-b border-gray-400 hover:bg-secondary hover:text-white" @click="isOpen2 = !isOpen2">
 
-                                        <a href="/category/{{ $s1->id }}"><div class="text-xl hover:text-white" x-text="s1.name"></div></a>
+                                        <a href="/category/{{ $s1->id }}/grid"><div class="text-xl hover:text-white" x-text="s1.name"></div></a>
 
                                         <svg x-show="!isOpen2" class="fill-current" viewBox="0 0 24 24" width="24" height="24">
                                             <path class="heroicon-ui" d="M12 22a10 10 0 110-20 10 10 0 010 20zm0-2a8 8 0 100-16 8 8 0 000 16zm1-9h2a1 1 0 010 2h-2v2a1 1 0 01-2 0v-2H9a1 1 0 010-2h2V9a1 1 0 012 0v2z" />
@@ -111,7 +111,7 @@
                                     @foreach ($sub2 as $s2)
                                         @if ($s2->parent1 == $m->id && $s2->parent2 == $s1->id)
                                         <div x-data="{ s2: {{ $s2 }}}" x-show="isOpen2" class="pr-3 pl-12 hover:bg-secondary hover:text-white">
-                                             <a href="/category/{{ $s2->id }}"><div class="text-lg mt-2 hover:text-white" x-text="s2.name"></div></a>
+                                             <a href="/category/{{ $s2->id }}/grid"><div class="text-lg mt-2 hover:text-white" x-text="s2.name"></div></a>
                                         </div>
                                         @endif
                                     @endforeach
