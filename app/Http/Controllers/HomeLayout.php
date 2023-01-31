@@ -27,6 +27,7 @@ class HomeLayout extends Controller
          */
         $main_banners = Banner::where('type', 'main')->where('is_on', 'Y')->get();
         $collection_banners = Banner::where('type', 'collection')->where('is_on', 'Y')->get();
+        $event_banners = Banner::where('type', 'event')->where('is_on', 'Y')->get();
 
         /**
          *  트렌드 상품 가져오기
@@ -44,7 +45,7 @@ class HomeLayout extends Controller
         $bests = Product::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('order_cnt', 'desc')->limit(20)->get();
 
         return view('home')
-                ->with('main_banners', $main_banners)->with('collection_banners', $collection_banners)
+                ->with('main_banners', $main_banners)->with('collection_banners', $collection_banners)->with('event_banners', $event_banners)
                 ->with('trends', $trends)
                 ->with('bests', $bests)
                 ->with('news', $news);
