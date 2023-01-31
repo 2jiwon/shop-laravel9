@@ -56,7 +56,7 @@
                                     취소
                                 </x-admin.btn>
                                 &nbsp;&nbsp;
-                                <x-admin.btn type="button" type2="submit" click="register()">
+                                <x-admin.btn type="submit" type2="submit">
                                     등록하기
                                 </x-admin.btn>
                             </div>
@@ -93,7 +93,7 @@
                             <div class="mt-2">
                                 <img id="edit_image" class="w-20 h-20 border-2 border-solid border-slate-400" src="" alt="">
                                 <label class="block text-sm text-gray-600 dark:text-white" for="image">배너 이미지</label>
-                                <input class="block w-full px-5 py-1 text-gray-300 rounded border border-gray-300" name="image" type="file" required>
+                                <input class="block w-full px-5 py-1 text-gray-300 rounded border border-gray-300" name="image" type="file">
                             </div>
 
                             <div class="mt-2 flex justify-end" x-data="{ toggle2: true }">
@@ -111,7 +111,7 @@
                                     취소
                                 </x-admin.btn>
                                 &nbsp;&nbsp;
-                                <x-admin.btn type="button" type2="submit" click="edit()">
+                                <x-admin.btn type="submit" type2="submit">
                                     수정하기
                                 </x-admin.btn>
                             </div>
@@ -179,10 +179,10 @@ els = {
     'image' : 'src'
 };
 
-registerElement = "#registerForm";
+registerElementName = "#registerForm";
 registerUrl = `{{ route('banner.store') }}`;
 
-editElement = "#editForm";
+editElementName = "#editForm";
 editUrl = `{{ route('banner.update') }}`;
 </script>
 

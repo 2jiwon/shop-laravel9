@@ -35,6 +35,18 @@ function getData(id) {
             console.log("에러 발생 " + err);
         });
 }
+
+registerElement = document.querySelector(registerElementName);
+registerElement.addEventListener("submit", (e) => {
+    e.preventDefault();
+    register();
+});
+editElement = document.querySelector(editElementName);
+editElement.addEventListener("submit", (e) => {
+    e.preventDefault();
+    edit();
+});
+
 /** 등록하기 */
 function register() {
     send(registerElement, registerUrl);
@@ -45,24 +57,31 @@ function edit() {
 }
 /** form data post 전송 */
 function send(el, route) {
-    const form = document.querySelector(el);
-    event.preventDefault();
-
+    const form = el;
     const formData = new FormData(form);
+
     axios
         .post(route, formData)
         .then((res) => {
             // console.log(res);
             if (res.status === 200) {
                 //alert("등록 완료");
-                // const target = document.querySelector('#toast-success');
-                // target.classList.remove('hidden');
-                // const msg = document.querySelector('#toast-message');
-                // msg.innerText = "message here";
-                location.reload();
+                const target = document.querySelector('#toast-success');
+                target.classList.remove('hidden');
+                const msg = document.querySelector('#toast-message');
+                msg.innerText = "등록이 완료되었습니다.";
+                
+                setTimeout(() => { location.reload(); }, 1000);
             }
         })
         .catch((err) => {
             console.log("에러 발생 " + err);
+
+            const target = document.querySelector('#toast-danger');
+            target.classList.remove('hidden');
+            const msg = document.querySelector('#toast-message');
+            msg.innerText = "오류로 인해 저장하지 못했습니다. 관리자에게 문의하세요.";
+
+            setTimeout(() => { location.reload(); }, 1000);
         });
 }

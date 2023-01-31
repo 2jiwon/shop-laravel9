@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class BannersController extends Controller
 {
@@ -83,17 +85,27 @@ class BannersController extends Controller
      */
     public function update(Request $request)
     {
-        // $image = $request->file('image');
-        // $path = $image->storeAs('banners', Str::lower(Str::random(6)).".".$image->extension(), 'public');
-
         $target = Banner::find($request->id);
 
-        $target->update([
-            'type' => $request->type,
-            'title' => $request->title,
-            // 'image' => $path,
-            'is_on' => $request->is_on == '' ? 'N' : 'Y'
-        ]);
+        if (!empty($request->file('image'))) {
+            $image = $request->file('image');
+            $path = $image->storeAs('banners', Str::lower(Str::random(6)).".".$image->extension(), 'public');
+
+            Storage::disk('public')->delete($target->image);
+
+            $target->update([
+                'type' => $request->type,
+                'title' => $request->title,
+                'image' => $path,
+                'is_on' => $request->is_on == '' ? 'N' : 'Y'
+            ]);
+        } else {
+             $target->update([
+                'type' => $request->type,
+                'title' => $request->title,
+                'is_on' => $request->is_on == '' ? 'N' : 'Y'
+            ]);
+        }
 
         return response()->json(['result' => 'success']);
     }
