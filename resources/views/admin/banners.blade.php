@@ -6,21 +6,21 @@
     <!-- 배너 관리 -->
     <h1 class="text-3xl text-black pb-6">배너 관리</h1>
 
-    <!-- /* 수정 폼 표시를 위한 x-data */ -->
-    <div x-data="{ edit : false }">
+    <!-- /* 등록 폼, 수정 폼 표시를 위한 x-data */ -->
+    <div x-data="{ edit : false, register : false }">
 
-        <!-- /* 등록 폼 표시를 위한 x-data */ -->
-        <div x-data="{ clicked : false }">
+        <div>
             <div class="flex flex-wrap mt-3 mb-3 justify-end">
-            <button type="button" @click="clicked = !clicked" x-show="!edit" class="inline-block rounded-md bg-cyan-600 px-4 py-1.5 shadow-sm text-white hover:bg-cyan-700 hover:ring-cyan-700">
+                <button type="button" @click="register = !register" x-show="!edit" class="inline-block rounded-md bg-cyan-600 px-4 py-1.5 shadow-sm text-white hover:bg-cyan-700 hover:ring-cyan-700">
                 배너 등록
                 </button>
             </div>
 
-            <form enctype="multipart/form-data" x-show="clicked" id="registerForm">
+            <!-- 등록 form  -->
+            <form enctype="multipart/form-data" x-show="register" id="registerForm">
                 <div class="flex flex-wrap bg-white">
-                    <div class="w-full mt-12 lg:w-1/2 my-6 pr-0 lg:pr-2">
-                        <h1 class="text-xl pl-10">메인 슬라이더, 이벤트, 컬렉션에 사용할 배너를 등록합니다</h1>
+                    <div class="w-full mt-8 lg:w-1/2 my-6 pr-0 lg:pr-2">
+                        <h1 class="text-xl mx-10 p-3 bg-tone rounded-lg">메인 슬라이더, 이벤트, 컬렉션에 사용할 배너를 등록합니다</h1>
                         <div class="p-10 rounded">
                             <div class="">
                                 <label class="block text-sm text-gray-600" for="cate1">타입</label>
@@ -52,7 +52,7 @@
                             </div>
 
                             <div class="mt-6 flex justify-end">
-                                <x-admin.btn type="button" type2="cancel" click2="clicked=false">
+                                <x-admin.btn type="button" type2="cancel" click2="register=false">
                                     취소
                                 </x-admin.btn>
                                 &nbsp;&nbsp;
@@ -74,7 +74,8 @@
                 <input type="hidden" name="mode" value="edit">
                 <input type="hidden" name="id" id="edit_id">
                 <div class="flex flex-wrap bg-white">
-                    <div class="w-full mt-12 lg:w-1/2 my-6 pr-0 lg:pr-2">
+                    <div class="w-full mt-8 lg:w-1/2 my-6 pr-0 lg:pr-2">
+                         <h1 class="text-xl mx-10 p-3 bg-tone rounded-lg">등록한 배너를 수정합니다</h1>
                         <div class="p-10 rounded">
                             <div class="">
                                 <label class="block text-sm text-gray-600" for="cate1">타입</label>
@@ -143,7 +144,7 @@
                     </thead>
                     <tbody>
                         @foreach ($banners as $banner)
-                        <tr @click="edit=true;getData({{ $banner->id }})" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-amber-50 dark:hover:bg-gray-600 hover:cursor-pointer">
+                        <tr @click="register=false;edit=true;getData({{ $banner->id }})" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-amber-50 dark:hover:bg-gray-600 hover:cursor-pointer">
                             <td class="text-center py-3 px-2">{{ $banner->id }}</td>
                             <td class="text-center py-3 px-2">{{ $banner->type }}</td>
                             <td class="text-center py-3 px-2">{{ $banner->title }}</td>
