@@ -16,18 +16,6 @@
     <!-- custom css -->
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}"/>
 
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
-        .font-family-karla { font-family: karla; }
-        .bg-sidebar { background: #118ab2; }
-        .cta-btn { color: #118ab2; }
-        .upgrade-btn { background: #073b4c; }
-        .upgrade-btn:hover { background: #0038fd; }
-        .active-nav-link { background: #073b4c; }
-        .nav-item:hover { background: #073b4c; }
-        .account-link:hover { background: #118ab2; }
-    </style>
-
      <!-- Tinymce -->
      <script src="https://cdn.tiny.cloud/1/ttm2ripndo2cw7gbv5crh3gxgykustof3wq45gb3rsmx885j/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
         <script>
@@ -38,4 +26,4 @@
         });
         </script>
 </head>
-<body class="bg-gray-100 font-family-karla flex">
+<body class="bg-gray-100 flex">
