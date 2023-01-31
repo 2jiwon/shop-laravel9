@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('type', 10)->comment('main, collection, event');
             $table->string('title', 20)->comment('타이틀');
-            $table->string('filename', 50);
+            $table->string('image', 50);
             $table->char('is_on', 1)->default('Y')->comment('사용여부');
             $table->timestamps();
         });
