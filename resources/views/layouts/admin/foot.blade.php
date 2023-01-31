@@ -1,4 +1,6 @@
 <!-- AlpineJS -->
+    <script src="{{ asset('assets/js/admin.js') }}"></script>
+    
     @vite(['resources/js/app.js'])
     <!-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.25.0/axios.min.js"></script>

@@ -44,7 +44,7 @@ class BannersController extends Controller
         Banner::create([
             'type' => $request->type,
             'title' => $request->title,
-            'filename' => $path,
+            'image' => $path,
         ]);
 
         return response()->json(['result' => 'success']);
@@ -56,9 +56,11 @@ class BannersController extends Controller
      * @param  \App\Models\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function show(Banner $banner)
+    public function show($id)
     {
-        //
+        $banner = Banner::find($id);
+
+        return response()->json(['result' => 'success', 'banner' => $banner]);
     }
 
     /**
@@ -79,9 +81,21 @@ class BannersController extends Controller
      * @param  \App\Models\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Banner $banner)
+    public function update(Request $request)
     {
-        //
+        // $image = $request->file('image');
+        // $path = $image->storeAs('banners', Str::lower(Str::random(6)).".".$image->extension(), 'public');
+
+        $target = Banner::find($request->id);
+
+        $target->update([
+            'type' => $request->type,
+            'title' => $request->title,
+            // 'image' => $path,
+            'is_on' => $request->is_on == '' ? 'N' : 'Y'
+        ]);
+
+        return response()->json(['result' => 'success']);
     }
 
     /**

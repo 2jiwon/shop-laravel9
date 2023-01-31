@@ -141,7 +141,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/users', [UsersController::class, 'index'])->name('admin.users');
 
     Route::get('/banners', [BannersController::class, 'index'])->name('admin.banners');
+    Route::get('/banner/{id}', [BannersController::class, 'show'])->name('banner.show');
     Route::post('/banner/store', [BannersController::class, 'store'])->name('banner.store');
+    Route::post('/banner/update', [BannersController::class, 'update'])->name('banner.update');
 
 });
 
