@@ -47,6 +47,7 @@ class BannersController extends Controller
             'type' => $request->type,
             'title' => $request->title,
             'image' => $path,
+            'is_on' => $request->is_on == '' ? 'N' : 'Y'
         ]);
 
         return response()->json(['result' => 'success']);
