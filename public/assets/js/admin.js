@@ -14,7 +14,7 @@ function setData(result, elements) {
                 if (val == 'Y') _el.setAttribute(elements[key], true);
                 else _el.removeAttribute(elements[key]);
             } else {
-                _el.setAttribute(elements[key], val);
+                _el.value = val;
             }
         }
     });
