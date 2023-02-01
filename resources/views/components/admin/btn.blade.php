@@ -1,9 +1,9 @@
-@props(['type', 'type2', 'click', 'click2'])
+@props(['type', 'for', 'click', 'xclick'])
 
 @php
 $base_class = 'inline-flex items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs uppercase tracking-widest shadow-sm';
 
-switch ($type2) {
+switch ($for) {
     case 'submit':
         $v_class = ' bg-amber-400 hover:bg-amber-600 focus:bg-amber-600';
         break;
@@ -16,11 +16,11 @@ switch ($type2) {
 }
 
 $click  = empty($click)  ? [] : ['onclick' => $click];
-$click2 = empty($click2) ? [] : ['@click' => $click2];
+$xclick = empty($xclick) ? [] : ['@click' => $xclick];
 
 @endphp
 
-<button {{ $attributes->merge($click)->merge($click2)->merge(['type' => $type, 'class' => $base_class.$v_class]) }}>
+<button {{ $attributes->merge($click)->merge($xclick)->merge(['type' => $type, 'class' => $base_class.$v_class]) }}>
     {{ $slot }}
 </button>
 

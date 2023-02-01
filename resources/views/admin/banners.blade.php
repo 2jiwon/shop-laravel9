@@ -52,11 +52,11 @@
                             </div>
 
                             <div class="mt-6 flex justify-end">
-                                <x-admin.btn type="button" type2="cancel" click2="register=false">
+                                <x-admin.btn type="button" for="cancel" xclick="register=false">
                                     취소
                                 </x-admin.btn>
                                 &nbsp;&nbsp;
-                                <x-admin.btn type="submit" type2="submit">
+                                <x-admin.btn type="submit" for="submit">
                                     등록하기
                                 </x-admin.btn>
                             </div>
@@ -108,11 +108,11 @@
                             </div>
 
                             <div class="mt-6 flex justify-end">
-                                 <x-admin.btn type="button" type2="cancel" click2="edit=false">
+                                 <x-admin.btn type="button" for="cancel" xclick="edit=false">
                                     취소
                                 </x-admin.btn>
                                 &nbsp;&nbsp;
-                                <x-admin.btn type="submit" type2="submit">
+                                <x-admin.btn type="submit" for="submit">
                                     수정하기
                                 </x-admin.btn>
                             </div>
