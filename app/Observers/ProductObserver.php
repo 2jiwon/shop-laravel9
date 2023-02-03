@@ -25,7 +25,8 @@ class ProductObserver
         // 이미지 파일 처리
         $images = [];
         array_push($images, request()->file('image_main'));
-        array_push($images, request()->file('image_detail'));
+        array_push($images, request()->file('image_detail1'));
+        array_push($images, request()->file('image_detail2'));
 
         foreach ($images as $key => $image) {
             $path = $image->storeAs('uploads', Str::lower(Str::random(6)).".".$image->extension());
@@ -33,7 +34,7 @@ class ProductObserver
             ProductImage::create([
                 'product_id' => $product->id,
                 'type' => ($key == 0) ? 'main' : 'detail',
-                'filename' => $path,
+                'image' => $path,
             ]);
         }
     }

@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('product_images', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
-            $table->string('type', 10)->comment('main:대표, thum:썸네일, banner:배너, detail:상세');
-            $table->string('filename', 50);
+            $table->string('type', 10)->comment('main:대표, detail:상세');
+            $table->string('image', 50);
             $table->timestamps();
         });
     }
