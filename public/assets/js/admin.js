@@ -22,13 +22,14 @@ function setData(result, elements) {
 /** 
  * 데이터 받아와서 setData 실행
  */
-function getData(id) {
+function getData(model, id) {
     var url = getUrl + id;
     axios
         .get(url)
         .then((res) => {
+            console.log(res.data[model]);
             if (res.status === 200) {
-                setData(res.data.banner, els);
+                setData(res.data[model], els);
             }
         })
         .catch((err) => {
