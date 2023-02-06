@@ -129,7 +129,9 @@ Route::group(['prefix' => 'admin'], function () {
     })->name('admin.dashboard');
 
     Route::get('/products', [ProductsController::class, 'index'])->name('admin.products');
+    Route::get('/product/{id}', [ProductsController::class, 'edit'])->name('product.edit');
     Route::post('/product/store', [ProductsController::class, 'store'])->name('product.store');
+    Route::post('/product/update', [ProductsController::class, 'update'])->name('product.update');
 
     Route::get('/orders', function () {
         return view('admin.products');
