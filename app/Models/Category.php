@@ -11,4 +11,8 @@ class Category extends Model
 
     protected $guarded = [];
     public $timestamps = false;
+
+    public static function getAll() {
+        return (new static)::all();
+    }
 }
