@@ -80,7 +80,7 @@
                     @foreach ($trend->images as $img)
                         @if ($img->type == 'main')
                         <img
-                        src="{{ asset('storage/'.$img->filename) }}"
+                        src="{{ asset('storage/'.$img->image) }}"
                         alt="product image"
                         class="object-cover"/>
                         @endif
