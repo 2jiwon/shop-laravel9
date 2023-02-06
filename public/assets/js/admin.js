@@ -1,3 +1,8 @@
+function setCategory(result) {
+    // console.log(result);
+    document.querySelector('#xData')._x_dataStack[0].categoryInfo = result;
+    document.querySelector('#xData')._x_dataStack[0].cate();
+}
 /**
  * 수정 form에 반영
  */
@@ -5,7 +10,8 @@ function setData(result, elements) {
     Object.entries(result).forEach(entry => {
         const [key, val] = entry;
 
-        if (elements[key] !== undefined) {
+        /** category는 여기에서 설정하지 않음 */
+        if (elements[key] !== undefined && key !== 'category') {
             var _el = document.querySelector('#edit_' + key);
 
             if (elements[key] == 'src') {
@@ -13,6 +19,8 @@ function setData(result, elements) {
             } else if (elements[key] == 'checked') {
                 if (val == 'Y') _el.setAttribute(elements[key], true);
                 else _el.removeAttribute(elements[key]);
+            } else if (key == 'detail') {
+                tinymce.get('edit_detail').setContent(val);
             } else {
                 _el.value = val;
             }
@@ -27,8 +35,15 @@ function getData(model, id) {
     axios
         .get(url)
         .then((res) => {
-            console.log(res.data[model]);
+            // console.log(res.data[model]);
             if (res.status === 200) {
+                /**
+                 * 카테고리는 복잡해서 별도로 지정
+                 */
+                if (res.data['category']) {
+                    // console.log(res.data['category']);
+                    setCategory(res.data['category']);
+                }
                 setData(res.data[model], els);
             }
         })
