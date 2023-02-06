@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Category, Product};
+use App\Models\{Category, Product, ProductImage};
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ProductsController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * Admin > 상품관리 > 상품 목록 표시
      *
      * @return \Illuminate\Http\Response
      */
@@ -26,17 +28,30 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**
      * Store a newly created resource in storage.
+     * 새로운 상품 등록 처리
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
+        /**
+         *  cate_sub2 : 소 카테고리
+         *  cate_sub1 : 중 카테고리
+         *  cate_main : 대 카테고리 
+         * */ 
+        if (!empty($request->cate_sub2)) $request->category = $request->cate_sub2;
+        else {
+            if (!empty($request->cate_sub1)) $request->category = $request->cate_sub1;
+            else {
+                $request->category = $request->cate_main;
+            }
+        }
+
         Product::create([
             'name' => $request->name,
             'detail' => $request->detail,
@@ -44,7 +59,7 @@ class ProductsController extends Controller
             'supply_price' => $request->supply_price,
             'selling_price' => $request->selling_price,
             'delivery_fee' => $request->delivery_fee,
-            'category' => json_encode([$request->cate1, $request->cate2, $request->cate3]),
+            'category' => $request->category,
             'is_selling' => $request->is_selling ?? 'N',
             'is_displaying' => $request->is_displaying ?? 'N',
         ]);
@@ -54,6 +69,7 @@ class ProductsController extends Controller
 
     /**
      * Display the specified resource.
+     * 단일 상품 표시
      *
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
@@ -61,12 +77,14 @@ class ProductsController extends Controller
     public function show($id)
     {   
         $product = Product::find($id);
+        // 단일 상품 조회시마다 view_cnt를 증가시킴
         $product->update([
             'view_cnt' => $product->view_cnt+1
         ]);
 
         $category = Product::getCategories($product->category);
 
+        // 비슷한 상품 표시를 위한 데이터
         $others = Product::where('category', $product->category)->get();
 
         return view('product')->with('product', $product)->with('category', $category)->with('others', $others);
@@ -74,6 +92,7 @@ class ProductsController extends Controller
 
     /**
      * Display the group products.
+     * category 선택시 grid, list에 따라서 상품 목록 표시
      *
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
@@ -81,6 +100,7 @@ class ProductsController extends Controller
     public function showLists($id, $display)
     {   
         $products = Product::where('category', $id)->paginate(20);
+        // 선택한 카테고리를 표시하기 위한 데이터
         $category = Product::getCategories($id);
 
         $view = "category-{$display}";
@@ -93,23 +113,34 @@ class ProductsController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     * 수정 폼에 데이터를 표시하기 위한 부분
      *
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+        $product = Product::find($id);
+
+        $images = ProductImage::where('product_id', $id)->get();
+        foreach ($images as $image) {
+            $key = "image_".$image->type;
+            $product[$key] = $image->image;
+        }
+        $category = Category::find($product->category);
+
+        return response()->json(['result' => 'success', 'product' => $product, 'category' => $category]);
     }
 
     /**
      * Update the specified resource in storage.
+     * 업데이트 처리는 여기에서
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request)
     {
         //
     }
