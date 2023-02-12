@@ -130,7 +130,7 @@ class ProductsController extends Controller
         }
         $category = Category::find($product->category);
 
-        return response()->json(['result' => 'success', 'product' => $product, 'category' => $category]);
+        return response()->json(['result' => 'success', 'product' => $product, 'product.category' => $category]);
     }
 
     /**
