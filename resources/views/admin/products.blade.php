@@ -10,19 +10,7 @@
             <label class="block text-sm text-gray-600" for="name">상품명</label>
             <input class="w-full px-5 py-1 text-gray-300 rounded" name="name" type="text" placeholder="상품명을 입력" required>
         </div>
-        
-        <!-- <div class="mt-2" x-data="{ hasChild:false, id:0 }">
-            <label class="block text-sm text-gray-600" for="cate1">대 카테고리</label>
-            @php $categories = \App\Models\Category::getAll(); @endphp
-            <select name="cate_main" @change="hasChild=true,id=$refs.ct_main.value" class="block w-full p-2 text-sm text-gray-300 rounded dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" required>
-                @foreach ($categories as $category)
-                    @if ($category->type == 'main')
-                        <option value="{{ $category->id }}" x-ref="ct_main">{{ $category->name }}</option>
-                    @endif                        
-                @endforeach
-            </select>
-        </div> -->
-        
+ 
         @php $categories = \App\Models\Category::getAll(); @endphp
         <div x-data="{ 
             /**
