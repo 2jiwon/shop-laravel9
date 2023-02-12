@@ -447,8 +447,6 @@
 <!-- form 처리 -->
 @section('script')
     <script>
-    tinymce.triggerSave();
-
     getUrl = "/admin/product/";
     els = {
         'id': 'value',

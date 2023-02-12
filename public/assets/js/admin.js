@@ -73,6 +73,8 @@ function edit() {
 }
 /** form data post 전송 */
 function send(el, route) {
+    tinymce.triggerSave();
+
     const form = el;
     const formData = new FormData(form);
 
