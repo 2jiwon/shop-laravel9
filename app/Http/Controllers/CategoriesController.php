@@ -14,7 +14,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(20);
 
         $main = Category::where('type', 'main')->get();
         $sub1 = Category::where('type', 'sub1')->get();
@@ -53,8 +53,7 @@ class CategoriesController extends Controller
             'name' => $request->name,
             'type' => $request->type,
             'parent1' => $parent1,
-            'parent2' => $parent2,
-            'order' => 0
+            'parent2' => $parent2
         ]);
 
         return response()->json(['result' => 'success']);
@@ -77,9 +76,11 @@ class CategoriesController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $category = Category::find($id);
+
+        return response()->json(['result' => 'success', 'category' => $category]);
     }
 
     /**
@@ -89,9 +90,26 @@ class CategoriesController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request)
     {
-        //
+        $parent1 = $parent2 = NULL;
+
+        if ($request->type == 'sub1') {
+            $parent1 = $request->main;
+        } else if ($request->type == 'sub2') {
+            $parent1 = $request->main;
+            $parent2 = $request->sub1;
+        }
+
+        $target = Category::find($request->id);
+        $target->update([
+            'name' => $request->name,
+            'type' => $request->type,
+            'parent1' => $parent1,
+            'parent2' => $parent2
+        ]);
+        
+        return response()->json(['result' => 'success']);
     }
 
     /**

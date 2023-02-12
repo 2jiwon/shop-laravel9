@@ -138,7 +138,9 @@ Route::group(['prefix' => 'admin'], function () {
     })->name('admin.orders');
 
     Route::get('/categories', [CategoriesController::class, 'index'])->name('admin.categories');
+    Route::get('/category/{id}', [CategoriesController::class, 'edit'])->name('category.edit');
     Route::post('/category/store', [CategoriesController::class, 'store'])->name('category.store');
+    Route::post('/category/update', [CategoriesController::class, 'update'])->name('category.update');
 
     Route::get('/users', [UsersController::class, 'index'])->name('admin.users');
 

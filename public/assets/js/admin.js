@@ -7,12 +7,18 @@ function setCategory(result) {
  * 수정 form에 반영
  */
 function setData(result, elements) {
+    // console.log(result, elements);
+
     Object.entries(result).forEach(entry => {
         const [key, val] = entry;
 
+        // console.log(key + " : " + val);
+        // console.log(elements[key]);
+
         /** category는 여기에서 설정하지 않음 */
-        if (elements[key] !== undefined && key !== 'category') {
+        if (elements[key] !== undefined && key !== 'category' && key !== 'parent2') {
             var _el = document.querySelector('#edit_' + key);
+            // console.log(_el);
 
             if (elements[key] == 'src') {
                 _el.setAttribute(elements[key], "/storage/" + val);
@@ -40,9 +46,9 @@ function getData(model, id) {
                 /**
                  * 카테고리는 복잡해서 별도로 지정
                  */
-                if (res.data['category']) {
+                if (res.data['product.category']) {
                     // console.log(res.data['category']);
-                    setCategory(res.data['category']);
+                    setCategory(res.data['product.category']);
                 }
                 setData(res.data[model], els);
             }
