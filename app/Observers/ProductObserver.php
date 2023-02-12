@@ -45,9 +45,23 @@ class ProductObserver
      * @param  \App\Models\Product  $product
      * @return void
      */
-    public function updated(Product $product)
+    public static function updated(Product $product)
     {
-        //
+        // 이미지 파일 처리
+        $keys = ['image_main', 'image_detail1', 'image_detail2'];
+        foreach ($keys as $k) {
+            $image = request()->file($k);
+            
+            if (!empty($image)) {
+                $path = $image->storeAs('uploads', Str::lower(Str::random(6)).".".$image->extension(), 'public');
+
+                $target = ProductImage::where('product_id', $product->id)->where('type', substr($k, 6));
+                $target->update([
+                        'type' => substr($k, 6),
+                        'image' => $path,
+                    ]);
+            }
+        }
     }
 
     /**

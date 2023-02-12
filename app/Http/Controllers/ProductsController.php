@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\{Category, Product, ProductImage};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use App\Observers\ProductObserver;
 
 class ProductsController extends Controller
 {
@@ -134,7 +135,7 @@ class ProductsController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * 업데이트 처리는 여기에서
+     * 수정 > 업데이트 처리는 여기에서
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Product  $product
@@ -142,7 +143,37 @@ class ProductsController extends Controller
      */
     public function update(Request $request)
     {
-        //
+        /**
+         *  cate_sub2 : 소 카테고리
+         *  cate_sub1 : 중 카테고리
+         *  cate_main : 대 카테고리 
+         * */ 
+        if (!empty($request->cate_sub2)) $request->category = $request->cate_sub2;
+        else {
+            if (!empty($request->cate_sub1)) $request->category = $request->cate_sub1;
+            else {
+                $request->category = $request->cate_main;
+            }
+        }
+
+        $target = Product::find($request->id);
+        $target->name = $request->name;
+        $target->detail = $request->detail;
+        $target->stock_amount = $request->stock_amount;
+        $target->supply_price = $request->supply_price;
+        $target->selling_price = $request->selling_price;
+        $target->delivery_fee = $request->delivery_fee;
+        $target->category = $request->category;
+        $target->is_selling = $request->is_selling ?? 'N';
+        $target->is_displaying = $request->is_displaying ?? 'N';
+        $target->save();
+
+        /** 상품의 다른 컬럼들은 변경사항이 없고 이미지만 변경될 때 처리 */
+        if (!$target->wasChanged() && !empty($request->file())) {
+            ProductObserver::updated($target);
+        }
+
+        return response()->json(['result' => 'success']);
     }
 
     /**
