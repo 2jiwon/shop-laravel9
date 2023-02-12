@@ -23,17 +23,16 @@ class ProductObserver
     public function created(Product $product)
     {
         // 이미지 파일 처리
-        $images = [];
-        array_push($images, request()->file('image_main'));
-        array_push($images, request()->file('image_detail1'));
-        array_push($images, request()->file('image_detail2'));
+        $images['main'] = request()->file('image_main');
+        $images['detail1'] = request()->file('image_detail1');
+        $images['detail2'] = request()->file('image_detail2');
 
         foreach ($images as $key => $image) {
-            $path = $image->storeAs('uploads', Str::lower(Str::random(6)).".".$image->extension());
+            $path = $image->storeAs('uploads', Str::lower(Str::random(6)).".".$image->extension(), 'public');
 
             ProductImage::create([
                 'product_id' => $product->id,
-                'type' => ($key == 0) ? 'main' : 'detail',
+                'type' => $key,
                 'image' => $path,
             ]);
         }
