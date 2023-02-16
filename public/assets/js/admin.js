@@ -14,21 +14,36 @@ function setData(result, elements) {
 
         // console.log(key + " : " + val);
         // console.log(elements[key]);
+        
+        if (elements[key] !== undefined && typeof elements[key] !== 'object') {
+            /** category는 여기에서 설정하지 않음 */
+            if (key !== 'category' && key !== 'parent2') {
+                let _el = document.querySelector('#edit_' + key);
+                // console.log(_el);
 
-        /** category는 여기에서 설정하지 않음 */
-        if (elements[key] !== undefined && key !== 'category' && key !== 'parent2') {
-            var _el = document.querySelector('#edit_' + key);
-            // console.log(_el);
+                if (elements[key] == 'src') {
+                    _el.setAttribute(elements[key], "/storage/" + val);
+                } else if (elements[key] == 'checked') {
+                    if (val == 'Y') _el.setAttribute(elements[key], true);
+                    else _el.removeAttribute(elements[key]);
+                } else if (key == 'detail') {
+                    tinymce.get('edit_detail').setContent(val);
+                } else {
+                    _el.value = val;
+                }
+            }
+        }
+        /**
+         * nested object 라면 여기에서 처리
+         */
+        if (elements[key] instanceof Object) {
+            for (let k in elements[key]) {
+                // console.log("k : " + k);
+                // console.log("key : " + key);
+                // console.log(val[k]);
 
-            if (elements[key] == 'src') {
-                _el.setAttribute(elements[key], "/storage/" + val);
-            } else if (elements[key] == 'checked') {
-                if (val == 'Y') _el.setAttribute(elements[key], true);
-                else _el.removeAttribute(elements[key]);
-            } else if (key == 'detail') {
-                tinymce.get('edit_detail').setContent(val);
-            } else {
-                _el.value = val;
+                let _el = document.querySelector('#edit_' + k);
+                _el.value = val[k];
             }
         }
     });
