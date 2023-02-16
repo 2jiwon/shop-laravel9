@@ -133,9 +133,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/product/store', [ProductsController::class, 'store'])->name('product.store');
     Route::post('/product/update', [ProductsController::class, 'update'])->name('product.update');
 
-    Route::get('/orders', function () {
-        return view('admin.products');
-    })->name('admin.orders');
+    Route::get('/orders', [OrdersController::class, 'index'])->name('admin.orders');
+    Route::get('/order/{id}', [OrdersController::class, 'edit'])->name('order.edit');
+    Route::post('/order/update', [OrdersController::class, 'update'])->name('order.update');
 
     Route::get('/categories', [CategoriesController::class, 'index'])->name('admin.categories');
     Route::get('/category/{id}', [CategoriesController::class, 'edit'])->name('category.edit');

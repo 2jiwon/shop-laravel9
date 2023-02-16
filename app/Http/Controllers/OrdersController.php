@@ -16,7 +16,9 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::paginate(15);
+
+        return view('admin.orders')->with('orders', $orders);
     }
 
     /**
@@ -89,9 +91,11 @@ class OrdersController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit($id)
     {
-        //
+        $order = Order::with(['user', 'user_address'])->find($id);
+
+        return response()->json(['result' => 'success', 'order' => $order]);
     }
 
     /**
