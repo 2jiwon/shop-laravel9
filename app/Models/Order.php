@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\User;
+use App\Models\UserAddress;
 
 class Order extends Model
 {
@@ -18,8 +19,24 @@ class Order extends Model
         'quantities' => 'array',
     ];
 
+    public static $status = [
+        '취소',
+        '진행중',
+        '주문완료',
+        '상품준비중',
+        '배송시작',
+        '배송중',
+        '배송완료',
+        '구매확정'
+    ];
+
     public function user()
     {
         return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    public function user_address()
+    {
+        return $this->hasOne(UserAddress::class, 'id', 'user_address_id');
     }
 }
