@@ -17,18 +17,18 @@
         
         <div class="mt-5">
             <label class="block text-sm text-gray-600" for="user_uid">주문자 ID</label>
-            <input type="text" class="w-full px-5 py-1 text-gray-300 rounded" name="user_uid" id="edit_uid" required>
+            <input type="text" class="w-full px-5 py-1 text-gray-300 rounded" name="uid" id="edit_uid" required>
         </div>
         
         <div class="mt-5">
             <label class="block text-sm text-gray-600" for="user_phone">연락처</label>
-            <input type="text" class="w-full px-5 py-1 text-gray-300 rounded" name="user_phone" id="edit_phone" required>
+            <input type="text" class="w-full px-5 py-1 text-gray-300 rounded" name="phone" id="edit_phone" required>
         </div>
 
         <div class="mt-5">
             <label class="block text-sm text-gray-600" for="user_address">배송지</label>
-            <input type="text" class="w-full px-5 py-1 text-gray-300 rounded" name="user_address" id="edit_address1" required>
-            <input type="text" class="w-full px-5 py-1 text-gray-300 rounded" name="user_address" id="edit_address2" required>
+            <input type="text" class="w-full px-5 py-1 text-gray-300 rounded" name="address1" id="edit_address1" required>
+            <input type="text" class="w-full px-5 py-1 text-gray-300 rounded" name="address2" id="edit_address2" required>
         </div>
 
         <div class="mt-5 flex justify-end">

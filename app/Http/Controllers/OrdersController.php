@@ -105,9 +105,15 @@ class OrdersController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request)
     {
-        //
+        $target = Order::find($request->id);
+        
+        $target->status = $request->status;
+        $target->total_amount = $request->total_amount;
+        $target->save();
+
+        return response()->json(['result' => 'success']);
     }
 
     /**
