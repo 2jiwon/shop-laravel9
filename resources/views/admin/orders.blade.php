@@ -8,7 +8,11 @@
     <div class="p-10 rounded">
         <div class="">
             <label class="block text-sm text-gray-600" for="status">주문상태</label>
-            <input type="text" class="w-full px-5 py-1 text-gray-300 rounded" name="status" id="edit_status" required>
+            <select name="status" id="edit_status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            @foreach (\App\Models\Order::$status as $key => $val)
+                <option value="{{ $key }}">{{ $val }}</option>
+            @endforeach
+            </select>
         </div>
         
         <div class="mt-5">
@@ -24,11 +28,12 @@
         <div class="mt-5">
             <label class="block text-sm text-gray-600" for="user_address">배송지</label>
             <input type="text" class="w-full px-5 py-1 text-gray-300 rounded" name="user_address" id="edit_address1" required>
+            <input type="text" class="w-full px-5 py-1 text-gray-300 rounded" name="user_address" id="edit_address2" required>
         </div>
 
         <div class="mt-5 flex justify-end">
             <label class="block mr-2 text-sm text-gray-600" for="total_amount">주문금액 (원)</label>
-            <input class="w-1/2 px-5 py-1 text-gray-300 rounded" id="edit_total_amount" name="total_amount" type="number">
+            <input type="number" class="w-1/2 px-5 py-1 text-gray-300 rounded" id="edit_total_amount" name="total_amount">
         </div>
 
         <div class="mt-6 flex justify-end">
@@ -89,7 +94,8 @@ els = {
     },
     "user_address" : {
         "phone" : "value",
-        "address1" : "value"
+        "address1" : "value",
+        "address2" : "value"
     },
     "total_amount" : "value"
 };

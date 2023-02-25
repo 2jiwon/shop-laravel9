@@ -34,7 +34,7 @@ function setData(result, elements) {
             }
         }
         /**
-         * nested object 라면 여기에서 처리
+         * nested object 경우 여기에서 처리
          */
         if (elements[key] instanceof Object) {
             for (let k in elements[key]) {
