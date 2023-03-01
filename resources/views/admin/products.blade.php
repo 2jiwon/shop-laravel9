@@ -309,7 +309,6 @@
             </div>
         </div>
 
-
         <div class="mt-2">
             <img id="edit_image_main" class="w-20 h-20 border-2 border-solid border-slate-400" src="" alt="">
             <label class="block text-sm text-gray-600 dark:text-white" for="image_main">상품 이미지(대표)</label>
