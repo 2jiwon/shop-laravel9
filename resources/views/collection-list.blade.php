@@ -67,7 +67,7 @@
               @foreach ($product->images as $image)
                 @if ($image->type == 'main')
               <div class="h-68 w-full bg-cover bg-center bg-no-repeat"
-                style="background-image:url({{ asset('storage/'.$image->filename) }})"></div>
+                style="background-image:url({{ asset('storage/'.$image->image) }})"></div>
                 @endif
               @endforeach 
               <span class="absolute top-0 right-0 bg-white px-5 py-1 mt-4 mr-4 rounded-full font-hk font-bold  text-v-green text-sm uppercase tracking-wide">

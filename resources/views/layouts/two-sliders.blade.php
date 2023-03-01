@@ -14,7 +14,7 @@
                       <div class="aspect-w-1 aspect-h-1">
                         @foreach ($new->images as $image)
                           @if ($image->type == 'main')
-                        <img src="{{ asset('storage/'.$image->filename) }}"
+                        <img src="{{ asset('storage/'.$image->image) }}"
                           alt="{{ $new->name }}"
                           class="object-cover"/>
                           @endif
@@ -139,7 +139,7 @@
                       <div class="aspect-w-1 aspect-h-1">
                         @foreach ($best->images as $image)
                           @if ($image->type == 'main')
-                          <img src="{{ asset('storage/'.$image->filename) }}"
+                          <img src="{{ asset('storage/'.$image->image) }}"
                             alt="{{ $best->name }}"
                             class="object-cover"/>
                           @endif
