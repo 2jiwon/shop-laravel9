@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-use App\Models\User;
-use App\Models\UserAddress;
+use App\Models\{HasManyJson, Product, User, UserAddress};
 
 class Order extends Model
 {
@@ -38,5 +37,14 @@ class Order extends Model
     public function user_address()
     {
         return $this->hasOne(UserAddress::class, 'id', 'user_address_id');
+    }
+
+    public function product()
+    {
+        $foreignKey = 'id';
+        $instance = new Product();
+        $localKey = 'products';
+
+        return new HasManyJson($instance->newQuery(), $this, $instance->getTable().'.'.$foreignKey, $localKey);
     }
 }
