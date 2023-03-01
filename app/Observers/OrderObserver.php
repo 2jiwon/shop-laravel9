@@ -25,7 +25,7 @@ class OrderObserver
      * @param  \App\Models\Order  $order
      * @return void
      */
-    public function updated(Order $order)
+    public static function updated(Order $order)
     {
         $target_address = UserAddress::find($order->user_address_id);
         $target_address->update([

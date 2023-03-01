@@ -6,6 +6,7 @@ use App\Models\{Order, Product, UserAddress};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use App\Observers\OrderObserver;
 
 class OrdersController extends Controller
 {
@@ -93,9 +94,10 @@ class OrdersController extends Controller
      */
     public function edit($id)
     {
-        $order = Order::with(['user', 'user_address'])->find($id);
+        $order = Order::with(['product', 'user', 'user_address'])->find($id);
 
-        return response()->json(['result' => 'success', 'order' => $order]);
+        // return response()->json(['result' => 'success', 'order' => $order]);
+        return view('admin.orderedit')->with('order', $order);
     }
 
     /**
@@ -111,7 +113,13 @@ class OrdersController extends Controller
         
         $target->status = $request->status;
         $target->total_amount = $request->total_amount;
+        $target->quantities = $request->quantities;
         $target->save();
+
+        /** Order의 다른 컬럼들은 변경사항이 없고 관계성으로 연결된 모델이 변경될 때 */
+        if (!$target->wasChanged()) {
+            OrderObserver::updated($target);
+        }
 
         return response()->json(['result' => 'success']);
     }
