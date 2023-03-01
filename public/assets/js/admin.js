@@ -11,7 +11,6 @@ function setData(result, elements) {
 
     Object.entries(result).forEach(entry => {
         const [key, val] = entry;
-
         // console.log(key + " : " + val);
         // console.log(elements[key]);
         
@@ -38,14 +37,24 @@ function setData(result, elements) {
          */
         if (elements[key] instanceof Object) {
             for (let k in elements[key]) {
-                // console.log("k : " + k);
                 // console.log("key : " + key);
-                // console.log(val[k]);
-
                 let _el = document.querySelector('#edit_' + k);
-                _el.value = val[k];
+
+                if (val instanceof Object && typeof val[k] == 'undefined') {
+                    // console.log("k : " + k);
+                    // console.log("val : " + val[0][k]);
+                    // console.log("val[k] : " + val[k]);
+                    // console.log("type : " + typeof val);
+                    Object.entries(val).forEach(v => {
+                        const [i, j] = v;
+                        // console.log("j[k] : " + j[k]);
+                        _el.value = j[k];
+                    });
+                } else {
+                    _el.value = val[k];
+                }
             }
-        }
+        }        
     });
 }
 /** 
@@ -73,16 +82,21 @@ function getData(model, id) {
         });
 }
 
-registerElement = document.querySelector(registerElementName);
-registerElement.addEventListener("submit", (e) => {
-    e.preventDefault();
-    register();
-});
-editElement = document.querySelector(editElementName);
-editElement.addEventListener("submit", (e) => {
-    e.preventDefault();
-    edit();
-});
+if (typeof registerElementName !== "undefined") {
+    registerElement = document.querySelector(registerElementName);
+    registerElement.addEventListener("submit", (e) => {
+        e.preventDefault();
+        register();
+    });
+}
+
+if (typeof editElementName !== "undefined") {
+    editElement = document.querySelector(editElementName);
+    editElement.addEventListener("submit", (e) => {
+        e.preventDefault();
+        edit();
+    });
+}
 
 /** 등록하기 */
 function register() {
@@ -95,6 +109,8 @@ function edit() {
 /** form data post 전송 */
 function send(el, route) {
     tinymce.triggerSave();
+
+    console.log("here");
 
     const form = el;
     const formData = new FormData(form);
