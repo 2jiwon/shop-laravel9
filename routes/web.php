@@ -136,6 +136,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/orders', [OrdersController::class, 'index'])->name('admin.orders');
     Route::get('/order/{id}', [OrdersController::class, 'edit'])->name('order.edit');
     Route::post('/order/update', [OrdersController::class, 'update'])->name('order.update');
+    Route::post('/order/updateStatus', [OrdersController::class, 'updateStatus'])->name('order.update.status');
 
     Route::get('/categories', [CategoriesController::class, 'index'])->name('admin.categories');
     Route::get('/category/{id}', [CategoriesController::class, 'edit'])->name('category.edit');

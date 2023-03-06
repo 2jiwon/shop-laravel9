@@ -124,6 +124,16 @@ class OrdersController extends Controller
         return response()->json(['result' => 'success']);
     }
 
+    public function updateStatus(Request $request)
+    {
+        $target = Order::find($request->id);
+        
+        $target->status = $request->status;
+        $target->saveQuietly();
+
+        return response()->json(['result' => 'success']);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
