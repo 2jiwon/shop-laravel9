@@ -23,8 +23,14 @@ function setData(result, elements) {
                 if (elements[key] == 'src') {
                     _el.setAttribute(elements[key], "/storage/" + val);
                 } else if (elements[key] == 'checked') {
-                    if (val == 'Y') _el.setAttribute(elements[key], true);
-                    else _el.removeAttribute(elements[key]);
+                    if (val == 'Y') {
+                        // _el.setAttribute(elements[key], true);
+                        _el._x_model.set(true);
+                    }
+                    else {
+                        // _el.removeAttribute(elements[key]);
+                        _el._x_model.set(false);
+                    }
                 } else if (key == 'detail') {
                     tinymce.get('edit_detail').setContent(val);
                 } else {
@@ -109,8 +115,6 @@ function edit() {
 /** form data post 전송 */
 function send(el, route) {
     tinymce.triggerSave();
-
-    console.log("here");
 
     const form = el;
     const formData = new FormData(form);
