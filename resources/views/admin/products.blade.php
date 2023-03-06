@@ -354,20 +354,18 @@
         <div class="mt-2 flex justify-end" x-data="{ toggle: true }">
             <label class="block mr-3 text-sm text-gray-600">판매여부</label>
             <label class="relative inline-flex items-center cursor-pointer">
-                <input name="is_selling" type="checkbox" id="edit_is_selling" value="Y" class="sr-only peer" @click="toggle === true ? toggle = false : toggle = true" checked>
+                <input name="is_selling" type="checkbox" id="edit_is_selling" value="Y" class="sr-only peer" x-model="toggle">
                 <div class="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-amber-400"></div>
-                <span x-show="toggle" class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">판매중</span>
-                <span x-show="!toggle" class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">판매중지</span>
+                <span x-text="toggle ? '판매중' : '판매중지'" class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">판매중</span>
             </label>
         </div>
 
         <div class="mt-2 flex justify-end" x-data="{ toggle: true }">
             <label class="block mr-3 text-sm text-gray-600">진열여부</label>
             <label class="relative inline-flex items-center cursor-pointer">
-                <input name="is_displaying" type="checkbox" id="edit_is_displaying" value="Y" class="sr-only peer" @click="toggle === true ? toggle = false : toggle = true" checked>
+                <input name="is_displaying" type="checkbox" id="edit_is_displaying" value="Y" class="sr-only peer" x-model="toggle">
                 <div class="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-amber-400"></div>
-                <span x-show="toggle" class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">진열중</span>
-                <span x-show="!toggle" class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">진열중지</span>
+                <span x-text="toggle ? '진열중' : '진열중지'" class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">진열중</span>
             </label>
         </div>
 

@@ -74,10 +74,9 @@
         <div class="mt-2 flex justify-end" x-data="{ toggle2: true }">
             <label class="block mr-3 text-sm text-gray-600">사용여부</label>
             <label class="relative inline-flex items-center cursor-pointer">
-                <input name="is_on" id="edit_is_on" type="checkbox" value="Y" class="sr-only peer" @click="toggle2 === true ? toggle2 = false : toggle2 = true">
+                <input name="is_on" id="edit_is_on" type="checkbox" value="Y" class="sr-only peer" x-model="toggle2">
                 <div class="w-11 h-6 bg-gray-200 rounded-full peer  peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-amber-400"></div>
-                <span x-show="toggle2" class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">사용함</span>
-                <span x-show="!toggle2" class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">사용안함</span>
+                <span x-text="toggle2 ? '사용함' : '사용안함'" class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">사용함</span>
             </label>
         </div>
 

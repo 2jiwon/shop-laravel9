@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -37,7 +39,16 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create([
+            'uid' => $request->uid,
+            'password' => Hash::make($request->password),
+            'remember_token' => Str::random(60),
+            'email' => $request->email,
+            'nickname' => $request->nickname,
+            'phone' => $request->phone
+        ]);
+
+        return response()->json(['result' => 'success']);
     }
 
     /**
@@ -46,9 +57,11 @@ class UsersController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($id)
     {
-        //
+        $user = User::find($id);
+
+        return response()->json(['result' => 'success', 'user' => $user]);
     }
 
     /**
@@ -71,7 +84,27 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $target = User::find($request->id);
+
+        if (!empty($request->password)) {
+            $target->update([
+                'uid' => $request->uid,
+                'password' => Hash::make($request->password),
+                'remember_token' => Str::random(60),
+                'email' => $request->email,
+                'nickname' => $request->nickname,
+                'phone' => $request->phone,
+                'is_deleted' => $request->is_deleted == '' ? 'N' : 'Y'
+            ]);
+        } else {
+            $target->update([
+                'uid' => $request->uid,
+                'email' => $request->email,
+                'nickname' => $request->nickname,
+                'phone' => $request->phone,
+                'is_deleted' => $request->is_deleted == '' ? 'N' : 'Y'
+            ]);
+        }
     }
 
     /**
