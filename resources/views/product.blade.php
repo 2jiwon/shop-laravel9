@@ -12,7 +12,7 @@
       @foreach ($product->images as $image)
         @if ($image->type == 'main')
         <div class="flex flex-col-reverse justify-between px-5 sm:flex-row-reverse lg:w-1/2 lg:flex-row"
-             x-data="{ selectedImage: '{{ asset('storage/'.$image->filename) }}' }">
+             x-data="{ selectedImage: '{{ asset('storage/'.$image->image) }}' }">
         @endif
       @endforeach  
       
@@ -25,7 +25,7 @@
               <img class="cursor-pointer object-cover"
                 @click="selectedImage = $event.target.src"
                 alt="product image"
-                src="{{ asset('storage/'.$image->filename) }}"/>
+                src="{{ asset('storage/'.$image->image) }}"/>
             </div>
           </div>
           @endforeach
@@ -69,9 +69,11 @@
         </div>
         <div class="flex pb-5">
           <p class="font-dohyeon text-secondary">상태</p>
-          <p class="font-dohyeonbold pl-3 text-v-green">
-            구매 가능
-          </p>
+          @if ($product->is_selling == 'Y')
+            <p class="font-dohyeonbold pl-3 text-v-green">구매 가능</p>
+          @else
+            <p class="font-dohyeonbold pl-3 text-v-red">구매 불가</p>
+          @endif
         </div>
 
         <!-- <p class="pb-5 font-dohyeon text-secondary"></p>
@@ -108,12 +110,19 @@
             <label
               for="quantity-form"
               class="relative block h-0 w-0 overflow-hidden">Quantity form</label>
+            @if ($product->is_selling == 'N')
+            <input
+              type="number"
+              class="form-quantity form-input w-16 rounded-r-none py-0 px-2 text-center"
+              disabled />
+            @else
             <input
               type="number"
               id="quantity-form"
               class="form-quantity form-input w-16 rounded-r-none py-0 px-2 text-center"
               x-model="productQuantity"
               min="1"/>
+            @endif
             <div class="flex flex-col">
               <span class="flex-1 cursor-pointer rounded-tr border border-l-0 border-grey-darker bg-white px-1"
                 @click="productQuantity++">
@@ -128,8 +137,10 @@
           </div>
         </div>
         <div class="group flex pb-8">
+          @unless ($product->is_selling == 'N' || $product->stock_amount == 0)
           <a x-bind:href="'/cart/{{ $product->id }}/' + productQuantity" class="btn btn-outline mr-4 md:mr-6">장바구니에 담기</a>
           <a x-bind:href="'/order/{{ $product->id }}/' + productQuantity" class="btn btn-primary">바로 구매</a>
+          @endunless
         </div>
       </div>
 
@@ -448,7 +459,7 @@
                   <div class="aspect-w-1 aspect-h-1 w-full">
                     @foreach ($other->images as $image)
                       @if ($image->type == 'main')
-                    <img src="{{ asset('storage/'.$image->filename) }}"
+                    <img src="{{ asset('storage/'.$image->image) }}"
                       alt="product image"
                       class="object-cover"/>
                       @endif
