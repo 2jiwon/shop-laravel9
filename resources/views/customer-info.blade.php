@@ -112,7 +112,7 @@
                 <div class="flex h-20 items-center justify-center rounded">
                 @foreach ($product->images as $image)
                   @if ($image->type == 'main')
-                    <img src="{{ asset('storage/'.$image->filename) }}"
+                    <img src="{{ asset('storage/'.$image->image) }}"
                           alt="{{ $product->name }}"
                           class="h-16 w-12 object-cover object-center"/>
                   @endif
@@ -264,23 +264,31 @@ function execDaumPostCode() {
 var product_id = {{ $product->id }};
 function saveOrder() {
   event.preventDefault();
-  const form = document.querySelector("form");
-  const formData = new FormData(form);
-  formData.append('product_id', product_id);
 
-  const url = `{{ route('order.store') }}`;
-  axios.post(url, formData)
-  .then((res) => {
-      console.log(res);
-       if (res.status === 200) {
-        alert("성공");
-        location.href = "/order/shipping/" + res.data.oid;
-        // location.href = "/order/shipping/123";
-      }
-  })
-  .catch((err) => {
-    console.log("에러 발생 " + err);
-  });
+  const form = document.querySelector("form");
+  let isFormValid = form.checkValidity();
+
+  if (!isFormValid) {
+    form.reportValidity();
+  } else {
+    const formData = new FormData(form);
+    formData.append('product_id', product_id);
+
+    const url = `{{ route('order.store') }}`;
+    axios.post(url, formData)
+    .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          alert("성공");
+          location.href = "/order/shipping/" + res.data.oid;
+          // location.href = "/order/shipping/123";
+        }
+    })
+    .catch((err) => {
+      console.log("에러 발생 " + err);
+    });
+  }
+  
 }
 
 </script>
