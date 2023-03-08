@@ -123,6 +123,7 @@ require __DIR__.'/auth.php';
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/login', [AdminController::class, 'getLogin'])->name('admin.login');
     Route::post('/login', [AdminController::class, 'setLogin'])->name('admin.login.post');
+    Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
 

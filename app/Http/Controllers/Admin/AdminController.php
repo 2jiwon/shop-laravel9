@@ -10,10 +10,30 @@ use App\Models\{Order, User};
 
 class AdminController extends Controller
 {
+    /**
+     *  Display a listing of the resource.
+     */
+    public function index()
+    {
+        $orders = Order::latest()->paginate(10);
+        $users = User::latest()->paginate(10);
+
+        return view('admin.dashboard', [
+            'orders' => $orders,
+            'users' => $users
+        ]);
+    }
+
+    /**
+     *  Display Admin login
+     */
     public function getLogin(){
         return view('admin.login');
     }
  
+    /**
+     *  Handle Admin login
+     */
     public function setLogin(Request $request)
     {
         $this->validate($request, [
@@ -31,14 +51,18 @@ class AdminController extends Controller
         }
     }
 
-    public function index()
+    /**
+     * Handle Admin logout
+     */
+    public function logout(Request $request)
     {
-        $orders = Order::latest()->paginate(10);
-        $users = User::latest()->paginate(10);
+        auth()->guard('admin')->logout();
 
-        return view('admin.dashboard', [
-            'orders' => $orders,
-            'users' => $users
-        ]);
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/admin');
     }
+
 }
