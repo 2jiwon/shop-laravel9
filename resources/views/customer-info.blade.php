@@ -38,7 +38,7 @@
             <label for="phone_receiver" class="mt-2 block font-hk text-secondary">수령자 연락처</label>
             <input
               type="text"
-              name="phone_receiver"
+              name="phone"
               placeholder="수령자 연락처"
               class="form-input mt-3"
               id="phone_receiver" 
@@ -63,6 +63,7 @@
           </h4>
           <div class="flex items-center pt-4">
             <input type="checkbox" class="form-checkbox" id="same_phone_info" @click="getLatestAddress()" />
+            <input type="hidden" name="address_exists" value="false" />
             <p class="pl-3 font-hk text-sm text-secondary">
               최근 배송지 불러오기
             </p>
@@ -72,7 +73,7 @@
             <div class="flex justify-between">
               <div class="">
                 <label for="zip" class="mb-2 block font-hk text-secondary">우편번호</label>
-                <input type="text" class="form-input" name="zip" required />
+                <input type="text" class="form-input" name="zipcode" required />
               </div>
             </div>
 
@@ -96,7 +97,7 @@
           </div>
 
           <div class="flex flex-col items-center justify-between pt-8 sm:flex-row sm:pt-12">
-            <a href=""
+            <a href="javascript:history.back();"
               class="group mb-3 flex items-center font-hk text-sm text-secondary transition-all hover:text-primary group-hover:font-bold sm:mb-0">
               <i class="bx bx-chevron-left -mb-1 pr-2 text-2xl text-secondary transition-colors group-hover:text-primary"></i>
               뒤로가기
@@ -224,7 +225,7 @@ function execDaumPostCode() {
               }
 
               // 우편번호와 주소 정보를 해당 필드에 넣는다.
-              document.querySelector("input[name=zip]").value = data.zonecode;
+              document.querySelector("input[name=zipcode]").value = data.zonecode;
               document.getElementById("address1").value = addr;
               // 커서를 상세주소 필드로 이동한다.
               document.querySelector("input[name=address2]").focus();
@@ -254,7 +255,7 @@ function execDaumPostCode() {
           width: width, //생성자에 크기 값을 명시적으로 지정해야 합니다.
           height: height,
           oncomplete: function(data) { //선택시 입력값 세팅
-              document.querySelector("input[name=zip]").value = data.zonecode;
+              document.querySelector("input[name=zipcode]").value = data.zonecode;
               document.getElementById("address1").value = data.address; // 주소 넣기
               document.querySelector("input[name=address2]").focus(); //상세입력 포커싱
           }
@@ -277,9 +278,10 @@ function getLatestAddress(){
         console.log(res);
         if (res.status === 200) {
           // alert("get address success");
-          document.querySelector("input[name=zip]").value = res.data.address.zipcode;
+          document.querySelector("input[name=zipcode]").value = res.data.address.zipcode;
           document.getElementById("address1").value = res.data.address.address1;
           document.querySelector("input[name=address2]").value = res.data.address.address2;
+          document.querySelector("input[name=address_exists]").value = true;
         }
     })
     .catch((err) => {

@@ -50,16 +50,41 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        $data = [
-            'user_id' => Auth::user()->id,
-            'type' => 'sub',
-            'phone' => $request->phone_receiver,
-            'zipcode' => $request->zip,
-            'address1' => $request->address1,
-            'address2' => $request->address2
-        ];
-        $res = UserAddress::create($data);
+        /**
+         *  최근 배송지를 불러온게 아니면 새로 저장
+         */
+        if (!$request->address_exists) {
+            $data = [
+                'user_id' => Auth::user()->id,
+                'type' => 'sub',
+                'phone' => $request->phone,
+                'zipcode' => $request->zip,
+                'address1' => $request->address1,
+                'address2' => $request->address2
+            ];
+            $res = UserAddress::create($data);
+        } else {
+            /**
+             * 최근 배송지를 불러온 경우는 기존 데이터와 비교해서 업데이트하거나 그냥 가져옴
+             */
+            $data = UserAddress::where('user_id', Auth::user()->id)->latest()->first();
+            $new = [];
 
+            $arr = ['phone', 'zipcode', 'address1', 'address2'];
+            foreach ($arr as $val) {
+                if ($request->$val !== $data->getOriginal($val)) {
+                    $new[$val] = $request->$val;
+                }
+            }
+            if (!empty($new)) {
+                $data->update($new);
+                $res = $data;
+            }
+        }  
+
+        /**
+         * 주문 상태 1(진행중) 으로 해서 주문 정보를 새로 작성
+         */
         $data = [
             'user_id' => Auth::user()->id,
             'user_address_id' => $res->id,
