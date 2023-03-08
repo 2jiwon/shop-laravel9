@@ -14,6 +14,7 @@
                             <tr>
                                 <th class="text-left py-3 px-4 uppercase font-semibold text-sm">No</th>
                                 <th class="text-left py-3 px-4 uppercase font-semibold text-sm">주문번호</th>
+                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm">주문상태</th>
                                 <th class="text-left py-3 px-4 uppercase font-semibold text-sm">회원 ID</th>
                                 <th class="text-left py-3 px-4 uppercase font-semibold text-sm">주문일시</th>
                             </tr>
@@ -23,6 +24,7 @@
                             <tr class="cursor-pointer" onClick="location.href='/admin/orders'">
                                 <td class="text-left py-3 px-4">{{ $j }}</td>
                                 <td class="text-left py-3 px-4">{{ $orders[$i]->id }}</td>
+                                <td class="text-left py-3 px-4">{{ \App\Models\Order::$status[$orders[$i]->status] }}</td>
                                 <td class="text-left py-3 px-4">{{ $orders[$i]->user->uid }}</td>
                                 <td class="text-left py-3 px-4">{{ $orders[$i]->created_at }}</td>
                             </tr>
