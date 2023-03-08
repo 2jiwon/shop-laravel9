@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
+use App\Models\{Order, User};
+
 class AdminController extends Controller
 {
     public function getLogin(){
@@ -27,5 +29,16 @@ class AdminController extends Controller
         }else {
             return back()->with('error','Whoops! invalid email and password.');
         }
+    }
+
+    public function index()
+    {
+        $orders = Order::latest()->paginate(10);
+        $users = User::latest()->paginate(10);
+
+        return view('admin.dashboard', [
+            'orders' => $orders,
+            'users' => $users
+        ]);
     }
 }

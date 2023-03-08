@@ -19,12 +19,14 @@
                             </tr>
                         </thead>
                         <tbody class="text-gray-700">
-                            <tr>
-                                <td class="text-left py-3 px-4">1</td>
-                                <td class="text-left py-3 px-4">aa</td>
-                                <td class="text-left py-3 px-4">aa</td>
-                                <td class="text-left py-3 px-4">ddd</td>
+                            @for ($i = 0, $j = count($orders); $i < count($orders); $i++, $j--)
+                            <tr class="cursor-pointer" onClick="location.href='/admin/orders'">
+                                <td class="text-left py-3 px-4">{{ $j }}</td>
+                                <td class="text-left py-3 px-4">{{ $orders[$i]->id }}</td>
+                                <td class="text-left py-3 px-4">{{ $orders[$i]->user->uid }}</td>
+                                <td class="text-left py-3 px-4">{{ $orders[$i]->created_at }}</td>
                             </tr>
+                            @endfor
                         </tbody>
                     </table>
                 </div>
@@ -48,19 +50,16 @@
                         </tr>
                     </thead>
                     <tbody class="text-gray-700">
-                        <tr>
-                            <td class="text-left py-3 px-4">1</td>
-                            <td class="text-left py-3 px-4">Lian</td>
-                            <td class="text-left py-3 px-4">Smith</td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td>
+                        @for ($i = 0, $j = count($users); $i < count($users); $i++, $j--)
+                        <tr class="cursor-pointer" onClick="location.href='/admin/users'">
+                            <td class="text-left py-3 px-4">{{ $j }}</td>
+                            <td class="text-left py-3 px-4">{{ $users[$i]->uid }}</td>
+                            <td class="text-left py-3 px-4">{{ $users[$i]->nickname }}</td>
+                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:{{ $users[$i]->phone }}">{{ $users[$i]->phone }}</a></td>
+                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:{{ $users[$i]->email }}">{{ $users[$i]->email }}</a></td>
+                            <td class="text-left py-3 px-4">{{ $users[$i]->created_at }}</td>
                         </tr>
-                        <tr class="bg-gray-200">
-                            <!-- <td class="w-1/3 text-left py-3 px-4">Emma</td>
-                            <td class="w-1/3 text-left py-3 px-4">Johnson</td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="tel:622322662">622322662</a></td>
-                            <td class="text-left py-3 px-4"><a class="hover:text-blue-500" href="mailto:jonsmith@mail.com">jonsmith@mail.com</a></td> -->
-                        </tr>
+                        @endfor
                     </tbody>
                 </table>
             </div>
