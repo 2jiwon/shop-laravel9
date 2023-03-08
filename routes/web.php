@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\{BannersController, CategoriesController, CollectionLayout, HomeLayout, OrdersController, PaymentsController, ProfileController, ProductsController, UsersController};
+use App\Http\Controllers\{BannersController, CategoriesController, CollectionLayout, HomeLayout, OrdersController, PaymentsController, ProfileController, ProductsController, UsersController, UserAddressesController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -68,8 +68,9 @@ Route::middleware('auth')->group(function () {
     Route::group(['prefix' => 'pay'], function () {
         Route::get('/complete/{id}', [PaymentsController::class, 'create']);
         Route::post('/store', [PaymentsController::class, 'store'])->name('pay.store');
-
     });
+
+    Route::get('/address', [UserAddressesController::class, 'show'])->name('user.address.show');
     
     
 });

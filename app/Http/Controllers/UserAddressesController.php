@@ -44,9 +44,11 @@ class UserAddressesController extends Controller
      * @param  \App\Models\UserAddress  $userAddress
      * @return \Illuminate\Http\Response
      */
-    public function show(UserAddress $userAddress)
+    public function show(Request $request)
     {
-        //
+        $address = UserAddress::where('user_id', $request->user_id)->latest()->first();
+        
+        return response()->json(['result' => 'success', 'address' => $address]);
     }
 
     /**

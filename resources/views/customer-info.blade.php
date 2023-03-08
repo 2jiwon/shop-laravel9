@@ -24,6 +24,7 @@
           </div>
 
           <div class="pt-4 md:pt-5">
+            <label for="phone_user" class="mb-2 block font-hk text-secondary">주문자 연락처</label>
             <input
               type="text"
               name="phone_user"
@@ -33,7 +34,8 @@
               value="{{ Auth::user()->phone }}"
               x-ref="phone_user"
               required />
-            
+
+            <label for="phone_receiver" class="mt-2 block font-hk text-secondary">수령자 연락처</label>
             <input
               type="text"
               name="phone_receiver"
@@ -59,6 +61,13 @@
           <h4 class="text-center font-hk text-xl font-medium text-secondary sm:text-left md:text-2xl">
             배송지
           </h4>
+          <div class="flex items-center pt-4">
+            <input type="checkbox" class="form-checkbox" id="same_phone_info" @click="getLatestAddress()" />
+            <p class="pl-3 font-hk text-sm text-secondary">
+              최근 배송지 불러오기
+            </p>
+          </div>
+
           <div class="pt-4 md:pt-5">
             <div class="flex justify-between">
               <div class="">
@@ -257,6 +266,26 @@ function execDaumPostCode() {
       });
     }        
 }
+/**
+ * 최근 배송지 불러오기
+ */
+function getLatestAddress(){
+  const url = `{{ route('user.address.show') }}`;
+  let user_id = `{{ Auth::user()->id }}`;
+    axios.get(url + '?user_id=' + user_id)
+    .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          // alert("get address success");
+          document.querySelector("input[name=zip]").value = res.data.address.zipcode;
+          document.getElementById("address1").value = res.data.address.address1;
+          document.querySelector("input[name=address2]").value = res.data.address.address2;
+        }
+    })
+    .catch((err) => {
+      console.log("에러 발생 " + err);
+    });
+}
 
 /**
  *  기본 주문 정보 저장
@@ -288,7 +317,6 @@ function saveOrder() {
       console.log("에러 발생 " + err);
     });
   }
-  
 }
 
 </script>
