@@ -115,7 +115,8 @@
                     type="text"
                     placeholder="입금자명"
                     class="form-input"
-                    name="remittor"/>
+                    name="remittor"
+                    required />
                 </div>
               
               </div>
@@ -151,7 +152,7 @@
               <div class="flex h-20 items-center justify-center rounded">
                 @foreach ($product->images as $image)
                   @if ($image->type == 'main')
-                    <img src="{{ asset('storage/'.$image->filename) }}"
+                    <img src="{{ asset('storage/'.$image->image) }}"
                   alt="Beautiful Brown image"
                   class="h-16 w-12 object-cover object-center"/>
                    @endif
