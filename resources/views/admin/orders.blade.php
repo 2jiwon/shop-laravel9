@@ -35,23 +35,23 @@
                             <td class="text-center py-3 px-2">{{ $order->id }}</td>
                             <td class="text-center py-3 px-2">
                                 {{ \App\Models\Order::$status[$order->status] }}
-                                @if ($order->status > 0)
+                                @if ($order->status > 0 && $order->status < 7)
                                 <br /><br />
-                                <x-admin.button key="0" onClick="changeStatus(0)">
+                                <x-admin.button key="0" onClick="changeStatus({{ $order->id }}, 0)">
                                     {{ \App\Models\Order::$status[0] }}
                                 </x-admin.button>
                                     @if (($order->status - 1) > 0)
-                                    <x-admin.button key="{{ $order->status - 1}}" onClick="changeStatus({{ $order->status - 1}})">
+                                    <x-admin.button key="{{ $order->status - 1}}" onClick="changeStatus({{ $order->id }}, {{ $order->status - 1}})">
                                         {{ \App\Models\Order::$status[$order->status - 1] }}
                                     </x-admin.button>
                                     @endif
                                     @if (($order->status + 1) <= 7)
-                                    <x-admin.button key="{{ $order->status + 1}}" onClick="changeStatus({{ $order->status + 1}})">
+                                    <x-admin.button key="{{ $order->status + 1}}" onClick="changeStatus({{ $order->id }}, {{ $order->status + 1}})">
                                         {{ \App\Models\Order::$status[$order->status + 1] }}
                                     </x-admin.button>
                                     @endif
                                     @if (($order->status + 2) <= 7)
-                                    <x-admin.button key="{{ $order->status + 2}}" onClick="changeStatus({{ $order->status + 2}})">
+                                    <x-admin.button key="{{ $order->status + 2}}" onClick="changeStatus({{ $order->id }}, {{ $order->status + 2}})">
                                         {{ \App\Models\Order::$status[$order->status + 2] }}
                                     </x-admin.button>
                                     @endif
@@ -83,12 +83,12 @@
     /**
      * 목록에서 상태 변경시
      */
-    function changeStatus(key) {
+    function changeStatus(id, key) {
         // click해서 수정으로 넘어가지 않게
         event.stopPropagation();
         
         let data = {
-            'id' : {{ $order->id }},
+            'id' : id,
             'status' : key
         };
         axios
