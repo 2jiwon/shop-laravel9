@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\Models\{Order, User, UserAddress};
+use App\Models\{Order, Product, User, UserAddress};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -33,6 +33,13 @@ class OrderObserver
             'address1' => request()->address1,
             'address2' => request()->address2
         ]);
+
+        // 상품준비중이 되면 상품 수량을 하나 감소시킴
+        if ($order->status == 3) {
+            foreach ($order->products as $product) {
+                Product::where('id', $product)->decrement('stock_amount');
+            }
+        }
     }
 
     /**

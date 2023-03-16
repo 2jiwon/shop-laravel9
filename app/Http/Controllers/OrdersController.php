@@ -154,7 +154,8 @@ class OrdersController extends Controller
         $target = Order::find($request->id);
         
         $target->status = $request->status;
-        $target->saveQuietly();
+        if ($request->status !== 3) $target->saveQuietly();
+        else $target->save();
 
         return response()->json(['result' => 'success']);
     }
