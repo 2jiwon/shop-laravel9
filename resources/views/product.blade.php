@@ -138,7 +138,7 @@
         </div>
         <div class="group flex pb-8">
           @unless ($product->is_selling == 'N' || $product->stock_amount == 0)
-          <a x-bind:href="'/cart/{{ $product->id }}/' + productQuantity" class="btn btn-outline mr-4 md:mr-6">장바구니에 담기</a>
+          <button type="button" @click="addCart({{ $product->id }}, productQuantity)" class="btn btn-outline mr-4 md:mr-6">장바구니에 담기</button>
           <a x-bind:href="'/order/{{ $product->id }}/' + productQuantity" class="btn btn-primary">바로 구매</a>
           @endunless
         </div>
@@ -526,5 +526,6 @@
   <!-- container End  -->
 
 </div>
+
 
 @include('layouts.foot')

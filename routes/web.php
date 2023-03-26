@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\{BannersController, CategoriesController, CollectionLayout, HomeLayout, OrdersController, PaymentsController, ProfileController, ProductsController, UsersController, UserAddressesController};
+use App\Http\Controllers\{BannersController, CartController, CategoriesController, CollectionLayout, 
+    HomeLayout, OrdersController, PaymentsController, ProfileController, ProductsController, 
+    UsersController, UserAddressesController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,9 +48,6 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::group(['prefix' => 'cart'], function () {
-        Route::get('/', function () {
-            return view('cart');
-        });
         Route::get('/customer-info', function () {
             return view('customer-info');
         });
@@ -71,8 +70,6 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('/address', [UserAddressesController::class, 'show'])->name('user.address.show');
-    
-    
 });
 
 // 상품 상세 페이지
@@ -80,10 +77,13 @@ Route::get('/product/{id}', [ProductsController::class, 'show']);
 // 카테고리별 페이지
 Route::get('/category/{id}/{display}', [ProductsController::class, 'showLists'])->name('category.show');
 
-
 Route::get('/collection/{type}/{display}', CollectionLayout::class);
 
-
+// 장바구니
+Route::group(['prefix' => 'cart'], function () {
+    Route::get('/', [CartController::class, 'show']);
+    Route::post('/add', [CartController::class, 'check']);
+});
 
 
 
