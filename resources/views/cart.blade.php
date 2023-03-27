@@ -12,7 +12,7 @@
 
         <div class="pt-8">
 
-          @if (empty($cart))
+          @if (empty($cartList))
           <div class="mb-0 hidden flex-row items-center justify-center border-b border-grey-dark py-3 md:flex">
             <p>비어있어요.</p>
           </div>
@@ -33,11 +33,16 @@
           </div>
         
           <!-- PC용 -->
-        @foreach ($cart as $ca)
+        @foreach ($cartList as $cart)
           @php
-            $product = \App\Models\Product::find($ca[0]);
+            $product = \App\Models\Product::find($cart[0]);
           @endphp
-          <div class="mb-0 hidden flex-row items-center justify-between border-b border-grey-dark py-3 md:flex">
+          <div class="mb-0 hidden flex-row items-center justify-between border-b border-grey-dark py-3 md:flex" 
+               x-data="{ 
+                productQuantity: {{ $cart[1] }}, 
+                price : {{ $product->selling_price }},
+                qxprice : (this.productQuantity * this.price)
+              }">
             <i class="bx bx-x mr-6 cursor-pointer text-2xl text-grey-darkest sm:text-3xl"></i>
             <div class="flex w-1/2 flex-row items-center border-b-0 border-grey-dark pt-0 pb-0 text-left lg:w-3/5 xl:w-1/2">
               <div class="relative mx-0 w-20 pr-0">
@@ -52,10 +57,10 @@
             </div>
             <div class="w-full border-b-0 border-grey-dark pb-0 text-center sm:w-1/5 xl:w-1/4">
               <div class="mx-auto mr-8 xl:mr-4">
-                <div class="flex justify-center" x-data="{ productQuantity: 1 }">
+                <div class="flex justify-center">
                   <input class="form-quantity form-input w-16 rounded-r-none py-0 px-2 text-center"
                          type="number" id="quantity-form-desktop"
-                         x-model="productQuantity" min="1"/>
+                         x-model="productQuantity" min="1" />
                   <div class="flex flex-col">
                     <span class="flex-1 cursor-pointer rounded-tr border border-l-0 border-grey-darker bg-white px-1"
                           @click="productQuantity++">
@@ -70,7 +75,7 @@
               </div>
             </div>
             <div class="w-1/4 pr-10 pb-4 text-right lg:w-1/5 xl:w-1/4 xl:pr-10">
-              <span class="font-hk text-secondary">{{ number_format($product->selling_price) }} 원</span>
+              <span class="font-hk text-secondary" x-model="qxprice"> 원</span>
             </div>
           </div>
           <!-- PC용 End -->
@@ -88,7 +93,7 @@
             <div class="pl-4">
               <span class="mt-2 font-hk text-base font-bold text-secondary">{{ $product->name }}</span>
               <span class="block font-hk text-secondary">{{ number_format($product->selling_price) }} 원</span>
-              <div class="mt-2 flex w-2/3 sm:w-5/6" x-data="{ productQuantity: 1 }">
+              <div class="mt-2 flex w-2/3 sm:w-5/6" x-data="{ productQuantity: {{ $cart[1] }} }">
                 <input class="form-quantity form-input w-12 rounded-r-none py-1 px-2 text-center"
                   type="number"
                   id="quantity-form-mobile"
@@ -112,7 +117,7 @@
         </div>
       
       <div class="flex flex-col pt-8 sm:flex-row sm:items-center sm:justify-between sm:pt-12">
-        <a href="/collection-list" class="btn btn-outline text-xl">쇼핑 계속하기</a>
+        <a href="javascript:history.back();" class="btn btn-outline text-xl">쇼핑 계속하기</a>
         <a href="/" class="btn btn-primary mt-5 sm:mt-0 text-xl">수정</a>
       </div>
     </div>

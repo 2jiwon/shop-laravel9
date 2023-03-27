@@ -30,6 +30,7 @@ class CartController extends Controller
             }
         } else {
             \Log::debug("not loggin");
+            \Log::debug($request->cookie('cart'));
 
             if (!empty($request->cookie('cart'))) {
                 \Log::debug("not empty1");
@@ -45,7 +46,7 @@ class CartController extends Controller
 
         \Log::debug($this->CART);
 
-        return view('cart');
+        return view('cart')->with('cartList', $this->CART);
     }
 
     /**
