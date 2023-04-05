@@ -471,7 +471,7 @@
                     </p>
                   </div>
                   <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                    <a href="/cart/{{ $other->id }}"
+                    <a href="javascript:addCart({{ $other->id }}, 1)"
                       class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
                       <img src="{{ asset('assets/theme/icons/cart.svg') }}"
                         class="h-6 w-6"
