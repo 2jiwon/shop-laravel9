@@ -9,6 +9,14 @@
           장바구니
         </h1>
 
+        @if (empty($cartList))
+          <div class="mb-0 hidden flex-row items-center justify-center border-b border-grey-dark py-3 md:flex">
+            <p>비어있어요.</p>
+          </div>
+        @else
+
+        
+        <!-- PC용 -->
         <div class="hidden sm:block">
           <div class="flex justify-between pb-3">
             <div class="w-1/2 pl-8 pb-2 sm:pl-12 lg:w-3/5 xl:w-1/2">
@@ -25,24 +33,32 @@
             </div>
           </div>
         </div>
-        
-        <div class="mb-3 flex flex-col items-center justify-between rounded bg-white px-4 py-5 shadow sm:flex-row sm:py-4">
+        <!-- PC용 End -->
+
+        @foreach ($cartList as $cart)
+          @php
+            $product = \App\Models\Product::find($cart[0]);
+          @endphp
+        <!-- 모바일용 -->
+        <div class="mb-3 flex flex-col items-center justify-between rounded bg-white px-4 py-5 shadow sm:flex-row sm:py-4"
+             x-data="{ 
+                productQuantity: {{ $cart[1] }}, 
+                price : {{ $product->selling_price }}
+              }">
           <div class="flex w-full flex-col border-b border-grey-dark pb-4 text-center sm:w-1/3 sm:border-b-0 sm:pb-0 sm:text-left md:w-2/5 md:flex-row md:items-center">
             <span class="font-hkbold block pb-2 text-center text-sm uppercase text-secondary sm:hidden">상품명</span>
               <div class="relative mx-auto w-20 sm:mx-0 sm:mr-3 sm:pr-0">
                 <div class="aspect-w-1 aspect-h-1 w-full">
-                  <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/shoes-3.png"
-                  alt="product image"
-                  class="object-cover"/>
+                  <img src="{{ asset('storage/'.$product->images->pluck('image')->first()) }}" class="object-cover" alt="product image" />
                 </div>
               </div>
-              <span class="mt-2 ml-4 font-hk text-base text-secondary">Classic Beige</span>
+              <span class="mt-2 ml-4 font-hk text-base text-secondary">{{ $product->name }}</span>
             </div>
             <div class="w-full border-b border-grey-dark pb-4 text-center sm:w-1/5 sm:border-b-0 sm:pb-0">
               <div class="mx-auto mr-8 xl:mr-4 my-4">
-                <div class="flex justify-center" x-data="{ productQuantity: 1 }">
+                <div class="flex justify-center">
                   <input class="form-quantity form-input w-16 rounded-r-none py-0 px-2 text-center"
-                    type="number" id="quantity-form-desktop"
+                    type="number" id="quantity-form"
                     x-model="productQuantity" min="1"/>
                   <div class="flex flex-col">
                     <span class="flex-1 cursor-pointer rounded-tr border border-l-0 border-grey-darker bg-white px-1"
@@ -56,17 +72,17 @@
               </div>
             </div>
             <div class="w-1/4 my-4 pr-10 pb-4 text-center lg:w-1/5 xl:w-1/4 xl:pr-10">
-              <span class="font-hk text-secondary">$1045</span>
+              <p class="font-hk text-secondary"><span x-text="(productQuantity * price).toLocaleString()"></span> 원</p>
             </div>
-            <i class="bx bx-x mr-6 cursor-pointer text-2xl text-grey-darkest sm:text-3xl"></i>
+            <i class="bx bx-x mr-6 cursor-pointer text-2xl text-grey-darkest sm:text-3xl" onclick="deleteFromCart({{ $product->id }});"></i>
           </div>
-
-
+         @endforeach
+      @endif
 
         </div>
       
-      <div class="flex flex-col pt-8 sm:flex-row sm:items-center sm:justify-between sm:pt-12">
-        <a href="/collection-list" class="btn btn-outline text-xl">쇼핑 계속하기</a>
+      <div class="flex flex-col pt-8 sm:flex-row sm:items-center sm:justify-end sm:pt-12">
+        <!-- <a href="/collection-list" class="btn btn-outline text-xl">쇼핑 계속하기</a> -->
         <a href="/" class="btn btn-primary mt-5 sm:mt-0 text-xl">수정</a>
       </div>
     </div>
@@ -74,4 +90,17 @@
     </div>
     <!-- 메인 컨텐츠 End -->
     
+<script>
+function deleteFromCart(id) {
+  let route = `{{ route('account.cart.delete') }}`;
+  let data = { 'id' : id };
+
+  axios.post(route, data)
+        .then((res) => {
+           if (res.status == 200) {
+            location.reload();
+           }
+        });
+}
+</script>
 @include('layouts.account.foot')

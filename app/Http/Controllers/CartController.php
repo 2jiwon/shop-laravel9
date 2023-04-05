@@ -49,6 +49,15 @@ class CartController extends Controller
         return view('cart')->with('cartList', $this->CART);
     }
 
+    public function accountShow(Request $request)
+    {
+        $this->getCart($request);
+
+        \Log::debug($this->CART);
+
+        return view('account.cart')->with('cartList', $this->CART);
+    }
+
     /**
      *  동일한 상품을 담은 경우를 체크해서 error를 보냄
      *  다시 체크해서 추가하는 경우 force = true로 넘어옴
@@ -109,6 +118,28 @@ class CartController extends Controller
             // return response()->view('cart')->cookie('cart', json_encode($cart), 120);
             // <-- 라라벨에서 쓰라 cookie를 써서 저장하면 시간이 완전 이상하게 저장됨, deleted라고 나오면서 저장 자체가 안되는것 같음
             // <-- php에서 쓰는대로 해도 시간이 이상하게 저장되나 그래도 값은 저장이 됨..
+        }
+
+        return response()->json(['result' => 'success']);
+    }
+
+    /**
+     * 사용자 메뉴 > 장바구니 > 품목 삭제시
+     */
+    public function accountDelete(Request $request)
+    {
+        $this->getCart($request);
+
+        for ($i=0; $i < count($this->CART); $i++) {
+          if ($this->CART[$i][0] == $request->id) {
+            array_splice($this->CART, $i, 1);
+          }
+        }
+
+        if (Auth::check()) {
+            $user = User::find(Auth::id());
+            $user->cart = $this->CART;
+            $user->save();
         }
 
         return response()->json(['result' => 'success']);

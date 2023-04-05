@@ -33,9 +33,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/orders', function () {
             return view('account.orders');
         })->name('account.orders');
-        Route::get('/cart', function () {
-            return view('account.cart');
-        })->name('account.cart');
+
+        Route::get('/cart', [CartController::class, 'accountShow'])->name('account.cart');
+        Route::post('/cart/delete', [CartController::class, 'accountDelete'])->name('account.cart.delete');
+        
         Route::get('/wishlist', function () {
             return view('account.wishlist');
         })->name('account.wishlist');
