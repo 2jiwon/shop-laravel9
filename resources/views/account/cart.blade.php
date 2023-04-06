@@ -35,6 +35,7 @@
         </div>
         <!-- PC용 End -->
 
+      <form>
         @foreach ($cartList as $cart)
           @php
             $product = \App\Models\Product::find($cart[0]);
@@ -54,12 +55,16 @@
               </div>
               <span class="mt-2 ml-4 font-hk text-base text-secondary">{{ $product->name }}</span>
             </div>
+            <input type="hidden" name="id[]" value="{{ $product->id }}">
             <div class="w-full border-b border-grey-dark pb-4 text-center sm:w-1/5 sm:border-b-0 sm:pb-0">
               <div class="mx-auto mr-8 xl:mr-4 my-4">
                 <div class="flex justify-center">
                   <input class="form-quantity form-input w-16 rounded-r-none py-0 px-2 text-center"
-                    type="number" id="quantity-form"
-                    x-model="productQuantity" min="1"/>
+                        type="number" 
+                        id="quantity-form"
+                        name="quantity[]"
+                        x-model="productQuantity" 
+                        min="1"/>
                   <div class="flex flex-col">
                     <span class="flex-1 cursor-pointer rounded-tr border border-l-0 border-grey-darker bg-white px-1"
                       @click="productQuantity++">
@@ -76,15 +81,15 @@
             </div>
             <i class="bx bx-x mr-6 cursor-pointer text-2xl text-grey-darkest sm:text-3xl" onclick="deleteFromCart({{ $product->id }});"></i>
           </div>
-         @endforeach
-      @endif
-
+          @endforeach
         </div>
-      
-      <div class="flex flex-col pt-8 sm:flex-row sm:items-center sm:justify-end sm:pt-12">
-        <!-- <a href="/collection-list" class="btn btn-outline text-xl">쇼핑 계속하기</a> -->
-        <a href="/" class="btn btn-primary mt-5 sm:mt-0 text-xl">수정</a>
-      </div>
+        
+        @endif
+        <div class="flex flex-col pt-8 sm:flex-row sm:items-center sm:justify-end sm:pt-12">
+          <!-- <a href="/collection-list" class="btn btn-outline text-xl">쇼핑 계속하기</a> -->
+          <input type="button" onclick="editCart()" class="btn btn-primary mt-5 sm:mt-0 text-xl" value="수정">
+        </div>
+      </form>
     </div>
   
     </div>
@@ -100,6 +105,28 @@ function deleteFromCart(id) {
            if (res.status == 200) {
             location.reload();
            }
+        });
+}
+/**
+ * 품목 수정
+ */
+function editCart() {
+  const form = document.querySelector("form");
+  const formData = new FormData(form);
+
+  console.log(...formData);
+
+  const url = `{{ route('cart.edit') }}`;
+  axios.post(url, formData)
+        .then((res) => {
+          console.log(res);
+          if (res.status === 200) {
+            alert("수정되었어요.");
+            location.reload();
+          }
+        })
+        .catch((err) => {
+          console.log("에러 발생 " + err);
         });
 }
 </script>

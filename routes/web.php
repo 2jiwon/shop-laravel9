@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
         })->name('account.orders');
 
         Route::get('/cart', [CartController::class, 'accountShow'])->name('account.cart');
-        Route::post('/cart/delete', [CartController::class, 'accountDelete'])->name('account.cart.delete');
+        Route::post('/cart/delete', [CartController::class, 'delete'])->name('account.cart.delete');
         
         Route::get('/wishlist', function () {
             return view('account.wishlist');
@@ -84,6 +84,8 @@ Route::get('/collection/{type}/{display}', CollectionLayout::class);
 Route::group(['prefix' => 'cart'], function () {
     Route::get('/', [CartController::class, 'show']);
     Route::post('/add', [CartController::class, 'check']);
+    Route::put('/delete/{id}', [CartController::class, 'delete']);
+    Route::post('/edit', [CartController::class, 'edit'])->name('cart.edit');
 });
 
 

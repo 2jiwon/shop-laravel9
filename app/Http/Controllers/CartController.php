@@ -20,7 +20,25 @@ class CartController extends Controller
             if (!empty($user->cart)) {
                 \Log::debug("user cart not empty");
 
-                $this->CART = json_decode($user->cart, true);
+                // 사용자 카트와 쿠키에 있는 카트가 둘다 비어있지 않은 경우 합치고 쿠키를 비우기
+                if (!empty($request->cookie('cart'))) {
+                    $cookieCart = json_decode($request->cookie('cart'), true);
+                    $userCart = json_decode($user->cart, true);
+
+                    $this->CART = array_merge($userCart, $cookieCart);
+
+                    for ($i = 0; $i < count($this->CART); $i++) {
+                        for ($j = $i + 1; $j < count($this->CART); $j++) {
+                            if ($this->CART[$i][0] == $this->CART[$j][0]) {
+                                $this->CART[$i] = [ $this->CART[$i][0], $this->CART[$i][1] + $this->CART[$j][1]];
+                                array_splice($this->CART, $j, 1);
+                            }
+                        }
+                    }
+                    \Cookie::queue(\Cookie::forget('cart'));
+                } else {
+                    $this->CART = json_decode($user->cart, true);
+                }
             } else {
                 \Log::debug("user cart empty");
 
@@ -29,11 +47,11 @@ class CartController extends Controller
                 }
             }
         } else {
-            \Log::debug("not loggin");
+            \Log::debug("not logged in");
             \Log::debug($request->cookie('cart'));
 
             if (!empty($request->cookie('cart'))) {
-                \Log::debug("not empty1");
+                \Log::debug("cookie cart not empty");
 
                 $this->CART = json_decode($request->cookie('cart'), true);
             }
@@ -46,6 +64,8 @@ class CartController extends Controller
 
         \Log::debug($this->CART);
 
+        $this->checkAndSave();
+
         return view('cart')->with('cartList', $this->CART);
     }
 
@@ -54,6 +74,8 @@ class CartController extends Controller
         $this->getCart($request);
 
         \Log::debug($this->CART);
+
+        $this->checkAndSave();
 
         return view('account.cart')->with('cartList', $this->CART);
     }
@@ -103,11 +125,8 @@ class CartController extends Controller
         if (Auth::check()) {
 
             if (!empty($request->cookie('cart'))) {
-                // setcookie('cart', "", 0, "/");
                 \Cookie::queue(\Cookie::forget('cart'));
             }
-            // 쿠키 제거하는 방법 둘다 동작을 안함
-
             $user = User::find(Auth::id());
             $user->cart = $this->CART;
             $user->save();
@@ -115,18 +134,35 @@ class CartController extends Controller
         } else {
             // 로그인 상태가 아니면 쿠키에 저장
             setcookie('cart', json_encode($this->CART), time() + (60 * 60 * 2), "/");
-            // return response()->view('cart')->cookie('cart', json_encode($cart), 120);
-            // <-- 라라벨에서 쓰라 cookie를 써서 저장하면 시간이 완전 이상하게 저장됨, deleted라고 나오면서 저장 자체가 안되는것 같음
-            // <-- php에서 쓰는대로 해도 시간이 이상하게 저장되나 그래도 값은 저장이 됨..
         }
 
         return response()->json(['result' => 'success']);
     }
 
     /**
-     * 사용자 메뉴 > 장바구니 > 품목 삭제시
+     * 수량 수정시
      */
-    public function accountDelete(Request $request)
+    public function edit(Request $request)
+    {
+        \Log::debug($request->id);
+
+        $this->getCart($request);
+
+        for ($i=0; $i < count($this->CART); $i++) {
+          if ($this->CART[$i][0] == $request->id[$i]) {
+            $this->CART[$i][1] = $request->quantity[$i];
+          }
+        }
+
+        $this->checkAndSave();
+
+        return response()->json(['result' => 'success']);
+    }
+
+    /**
+     * 품목 삭제시
+     */
+    public function delete(Request $request)
     {
         $this->getCart($request);
 
@@ -136,12 +172,19 @@ class CartController extends Controller
           }
         }
 
+        $this->checkAndSave();
+
+        return response()->json(['result' => 'success']);
+    }
+
+    public function checkAndSave()
+    {
         if (Auth::check()) {
             $user = User::find(Auth::id());
             $user->cart = $this->CART;
             $user->save();
+        } else {
+            setcookie('cart', json_encode($this->CART), time() + (60 * 60 * 2), "/");
         }
-
-        return response()->json(['result' => 'success']);
     }
 }
