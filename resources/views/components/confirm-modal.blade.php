@@ -1,4 +1,4 @@
-@props(['type', 'for', 'click'])
+@props(['type', 'for', 'click', 'callback'])
 
 @php
 $h3 = "";
@@ -36,7 +36,7 @@ switch ($for) {
 
 @endphp
 
-<div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center" id="{{ $for }}Modal">
+<div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center" id="{{ $type.$for }}Modal">
   <div class="relative w-auto my-6 mx-auto max-w-3xl">
     <!--content-->
     <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
@@ -54,11 +54,11 @@ switch ($for) {
         <button class="btn btn-primary px-6 py-3 mr-4 md:mr-6" type="button" onclick="{{ $click }}">
           {{ $btn1 }}
         </button>
-        <button class="btn btn-outline px-6 py-3" type="button" onclick="toggle('{{ $for }}Modal')">
-          쇼핑 계속하기
+        <button class="btn btn-outline px-6 py-3" type="button" onclick="toggle('{{ $type }}','{{ $for }}Modal', null, null, {{ $callback ?? null }})">
+          {{ $btn2 }}
         </button>
       </div>
     </div>
   </div>
 </div>
-<div class="hidden bg-opacity-25 fixed inset-0 z-40 bg-black" id="{{ $for }}Modal-backdrop"></div>
+<div class="hidden bg-opacity-25 fixed inset-0 z-40 bg-black" id="{{ $type.$for }}Modal-backdrop"></div>

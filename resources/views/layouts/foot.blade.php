@@ -86,10 +86,14 @@
     </div>
     
    
-<!-- Modal -->
+<!-- Modal for 장바구니 -->
 <x-confirm-modal for="success" type="cart" click="location.href='/cart';"></x-confirm-modal>
 <x-confirm-modal for="ask" type="cart" click="addToForce('cart');"></x-confirm-modal>
+<!-- Modal End -->
 
+<!-- Modal for 위시리스트 -->
+<x-confirm-modal for="success" type="wishlist" click="location.href='/wishlist';" callback="checkWishlist()"></x-confirm-modal>
+<x-confirm-modal for="ask" type="wishlist" click="addToForce('wishlist');" callback="checkWishlist()"></x-confirm-modal>
 <!-- Modal End -->
 
 

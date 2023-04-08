@@ -6,16 +6,24 @@ function addTo(target, productId, quantity, force=false) {
     };
     if (force) {
         data.force = true;
-        toggle('askModal');
+        toggle(target, 'askModal');
     }
     axios.post(route, data)
         .then((res) => {
-            console.log(res);
+            // console.log(res);
             if (res.status == 200) {
-                toggle('successModal');
+                toggle(target, 'successModal');
             }
             if (res.status == 202) {
-                toggle('askModal', data, target + 'Data');
+                toggle(target, 'askModal', data, target + 'Data');
+            }
+        }).catch((err) => {
+            // console.log(err.message);
+            if (err.message.search("401")) {
+                alert("로그인을 해주세요.");
+                setTimeout(() => {
+                    location.href="/login";
+                }, 100);
             }
         });
 }
@@ -29,13 +37,13 @@ function addToForce(target) {
     }
 }
 
-function toggle(modalId, data = null, dataId = null) {
-    let modal = document.getElementById(modalId);
-    let modal_backdrop = document.getElementById(modalId + '-backdrop');
+function toggle(target, modalId, data=null, dataId=null, callback=null) {
+    let modal = document.getElementById(target + modalId);
+    let modal_backdrop = document.getElementById(target + modalId + '-backdrop');
 
     if (data !== null && dataId !== null) {
-        console.log(data);
-        console.log(dataId);
+        // console.log(data);
+        // console.log(dataId);
         let _data = document.getElementById(dataId);
         _data.value = JSON.stringify(data);
     }
@@ -44,4 +52,6 @@ function toggle(modalId, data = null, dataId = null) {
     modal_backdrop.classList.toggle("hidden");
     modal.classList.toggle("flex");
     modal_backdrop.classList.toggle("flex");
+
+    if (callback !== null) callback;
 }
