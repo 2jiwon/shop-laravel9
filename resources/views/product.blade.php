@@ -37,6 +37,7 @@
             <img class="object-cover" alt="product image" :src="selectedImage"/>
             
           </div>
+          <!-- 위시리스트 -->
           <div class="absolute inset-0 flex items-end justify-end mb-5 mr-5">
             <div x-cloak x-data="{
                 isListed : false,
@@ -50,6 +51,7 @@
               </button>
             </div>
           </div>
+          <!-- 위시리스트 End -->
         </div>
 
       </div>
@@ -485,7 +487,7 @@
                     </p>
                   </div>
                   <div class="absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-                    <a href="javascript:addTo('cart',{{ $other->id }}, 1)"
+                    <a href="javascript:addTo('cart',{{ $other->id }}, 1);"
                       class="mr-3 flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
                       <img src="{{ asset('assets/theme/icons/cart.svg') }}"
                         class="h-6 w-6"
@@ -497,7 +499,7 @@
                         class="h-6 w-6"
                         alt="icon search"/>
                     </a>
-                    <a href="/account/wishlist/{{ $other->id }}"
+                    <a href="javascript:addTo('wishlist',{{ $other->id }}, 1);"
                       class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
                       <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
                         class="h-6 w-6"

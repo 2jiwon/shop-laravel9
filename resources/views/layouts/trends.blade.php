@@ -104,7 +104,7 @@
                         alt="icon search"/>
                     </a>
                     <a
-                    href="/account/wishlist/{{ $trend->id }}"
+                    href="javascript:addTo('wishlist',{{ $trend->id }}, 1);"
                     class="flex items-center rounded-full bg-white p-3 transition-all hover:bg-secondary">
                     <img
                         src="{{ asset('assets/theme/icons/wishlist.svg') }}"

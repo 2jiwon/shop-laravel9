@@ -89,7 +89,7 @@
                 class="h-6 w-6"
                 alt="icon search"/>
             </a>
-            <a href="/account/wishlist/{{ $product->id }}"
+            <a href="javascript:addTo('wishlist',{{ $product->id }}, 1);"
               class="flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
               <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
                 class="h-6 w-6"
