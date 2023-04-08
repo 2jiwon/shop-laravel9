@@ -43,7 +43,7 @@
                 isListed : false,
               }">
               <div x-ref="wishStatus" x-model="isListed"></div>
-              <button type="button" x-show="isListed" onclick="deleteThis({{ $product->id }})">
+              <button type="button" x-show="isListed" onclick="deleteFromWishlist({{ $product->id }})">
                 <img src="{{ asset('assets/theme/icons/heart-filled.svg') }}" class="h-10 w-10">
               </button>
               <button type="button" x-show="!isListed" onclick="addTo('wishlist', {{ $product->id }}, 1, false);">
@@ -546,35 +546,10 @@
 <script>
 let wishStatus = document.querySelector('[x-ref="wishStatus"]');
 document.addEventListener('DOMContentLoaded', function() {
-  checkWishlist();
+  const id = `{{ $product->id }}`;
+  checkWishlist(id);
 });
 
-function checkWishlist() {
-  let route = `{{ route('check.wishlist') }}`;
-  const id = `{{ $product->id }}`;
-  let data = {
-    'id' : id
-  }
-  axios.post(route, data)
-        .then((res) => {
-            console.log(res);
-            if (res.status == 200) {
-                wishStatus._x_model.set(true);
-            }
-        });
-}
-
-function deleteThis(id) {
-  let route = "/wishlist/delete/" + id;
-  let data = { 'id' : id };
-
-  axios.put(route, data)
-        .then((res) => {
-           if (res.status == 200) {
-            location.reload();
-           }
-        });
-}
 </script>
 
 @include('layouts.foot')

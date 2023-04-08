@@ -55,3 +55,31 @@ function toggle(target, modalId, data=null, dataId=null, callback=null) {
 
     if (callback !== null) callback;
 }
+
+
+function checkWishlist(id) {
+    let route = "/wishlist/check";
+    let data = {
+        'id': id
+    }
+    axios.post(route, data)
+        .then((res) => {
+            console.log(res);
+            if (res.status == 200) {
+                wishStatus._x_model.set(true);
+            }
+        });
+}
+
+
+function deleteFromWishlist(id) {
+    let route = "/wishlist/delete/" + id;
+    let data = { 'id': id };
+
+    axios.put(route, data)
+        .then((res) => {
+            if (res.status == 200) {
+                location.reload();
+            }
+        });
+}
