@@ -9,7 +9,7 @@ switch ($for) {
         break;
     case 'cancel':
         $v_class = ' bg-gray-300 hover:bg-gray-400 focus:bg-gray-400';
-
+        break;
     default:
         # code...
         break;

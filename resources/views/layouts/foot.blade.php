@@ -86,113 +86,14 @@
     </div>
     
    
-    
-
-    
 <!-- Modal -->
-<div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center" id="successModal">
-  <div class="relative w-auto my-6 mx-auto max-w-3xl">
-    <!--content-->
-    <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-      <!--body-->
-      <div class="relative p-6 flex-auto">
-         <h3 class="font-semibold">
-         장바구니에 상품이 담겼어요.
-        </h3>
-      </div>
-      <!--footer-->
-      <div class="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-        <a href="/cart" class="btn btn-primary px-6 py-3 mr-4 md:mr-6">
-          장바구니로 이동
-        </a>
-        <button class="btn btn-outline px-6 py-3" type="button" onclick="toggle('successModal')">
-          쇼핑 계속하기
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="hidden bg-opacity-25 fixed inset-0 z-40 bg-black" id="successModal-backdrop"></div>
-<!-- Modal End -->
+<x-confirm-modal for="success" type="cart" click="location.href='/cart';"></x-confirm-modal>
+<x-confirm-modal for="ask" type="cart" click="addCartForce();"></x-confirm-modal>
 
-<!-- Modal -->
-<div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center" id="askModal">
-  <div class="relative w-auto my-6 mx-auto max-w-3xl">
-    <!--content-->
-    <div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-      <!--body-->
-      <div class="relative p-6 flex-auto">
-         <h3 class="font-semibold">
-         장바구니에 동일한 상품이 있습니다. 추가로 담으시겠습니까?
-          </h3>
-          <input type="hidden" id="cartData" value="">
-      </div>
-      <!--footer-->
-      <div class="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-        <button class="btn btn-primary px-6 py-3 mr-4 md:mr-6" type="button" onclick="addCartForce();">
-          추가하기
-        </button>
-        <button class="btn btn-outline px-6 py-3" type="button" onclick="toggle('askModal')">
-          취소
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="hidden bg-opacity-25 fixed inset-0 z-40 bg-black" id="askModal-backdrop"></div>
 <!-- Modal End -->
 
 
-<script type="text/javascript">
-function addCartForce() {
-  let _data = document.getElementById('cartData').value;
-  // console.log("추가하기" + _data);
-  if (_data) {
-    _data = JSON.parse(_data);
-    addCart(_data.id, _data.quantity, true);
-  }
-}
-
-function addCart(productId, quantity, force=false) {
-  let route = "/cart/add";
-  let data = {
-    'id' : productId,
-    'quantity' : quantity
-  };
-
-  if (force) {
-    data.force = true;
-    toggle('askModal');
-  }
-
-  axios.post(route, data)
-        .then((res) => {
-          console.log(res);
-          if (res.status == 200) {
-            toggle('successModal');
-          }
-          if (res.status == 202) {
-            toggle('askModal', data);
-          }
-      });
-}
-
-function toggle(modalId, data=null) {
-  let modal = document.getElementById(modalId);
-  let modal_backdrop = document.getElementById(modalId + '-backdrop');
-  
-  if (data !== null) {
-    // console.log(data);
-    let _data = document.getElementById('cartData');
-    _data.value = JSON.stringify(data);
-  }
-
-  modal.classList.toggle("hidden");
-  modal_backdrop.classList.toggle("hidden");
-  modal.classList.toggle("flex");
-  modal_backdrop.classList.toggle("flex");
-}
-</script>
+    <script src="/assets/js/common.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/js/splide.min.js" crossorigin="anonymous"></script>
 
