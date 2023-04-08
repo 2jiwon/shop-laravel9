@@ -4,6 +4,7 @@
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
+        <!-- <input type="hidden" name="preurl" value="{{ url()->previous() }}"> -->
 
         <!-- Uid -->
         <div>
