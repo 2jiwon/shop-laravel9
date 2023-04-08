@@ -21,7 +21,7 @@
             </div>
 
             <!-- 등록 form  -->
-            <form enctype="multipart/form-data" x-show="register" id="registerForm">
+            <form enctype="multipart/form-data" x-cloak x-show="register" id="registerForm">
                 <div class="flex flex-wrap bg-white">
                     <div class="w-full mt-8 lg:w-1/2 my-6 pr-0 lg:pr-2">
                         <h1 class="text-xl mx-10 p-3 bg-tone rounded-lg">@yield('descriptionForRegister')</h1>
@@ -39,7 +39,7 @@
         </div>
 
         <!-- 수정 form -->
-        <div x-show="edit">
+        <div x-cloak x-show="edit">
             <form enctype="multipart/form-data" x-show="edit" id="editForm">
                 <input type="hidden" name="mode" value="edit">
                 <input type="hidden" name="id" id="edit_id">
