@@ -88,7 +88,7 @@
    
 <!-- Modal -->
 <x-confirm-modal for="success" type="cart" click="location.href='/cart';"></x-confirm-modal>
-<x-confirm-modal for="ask" type="cart" click="addCartForce();"></x-confirm-modal>
+<x-confirm-modal for="ask" type="cart" click="addToForce('cart');"></x-confirm-modal>
 
 <!-- Modal End -->
 
