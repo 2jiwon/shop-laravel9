@@ -6,7 +6,7 @@
   <div class="container" x-data x-init="collectionSliders">
 
     <!-- 상단 슬라이더 -->
-    <div class="hero-slider relative" x-data x-init="new Splide('.hero-slider', { type: 'loop', arrows: false, pagination: true, autoplay: true, interval: 5000, perMove: 1}).mount()">
+    <div class="hero-slider relative" x-cloak x-data x-init="new Splide('.hero-slider', { type: 'loop', arrows: false, pagination: true, autoplay: true, interval: 5000, perMove: 1}).mount()">
       <div class="splide__track">
         <ul class="splide__list">
           @foreach ($main_banners as $m_banner)
