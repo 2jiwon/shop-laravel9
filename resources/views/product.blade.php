@@ -35,6 +35,20 @@
         <div class="relative w-full pb-5 sm:pb-0">
           <div class="aspect-w-1 aspect-h-1 relative flex items-center justify-center rounded border border-grey bg-v-pink">
             <img class="object-cover" alt="product image" :src="selectedImage"/>
+            
+          </div>
+          <div class="absolute inset-0 flex items-end justify-end mb-5 mr-5">
+            <div x-cloak x-data="{
+                isListed : false,
+              }">
+              <div x-ref="wishStatus" x-model="isListed"></div>
+              <button type="button" x-show="isListed" onclick="deleteThis({{ $product->id }})">
+                <img src="{{ asset('assets/theme/icons/heart-filled.svg') }}" class="h-10 w-10">
+              </button>
+              <button type="button" x-show="!isListed" onclick="addTo('wishlist', {{ $product->id }}, 1, false);">
+                <img src="{{ asset('assets/theme/icons/heart.svg') }}" class="h-10 w-10">
+              </button>
+            </div>
           </div>
         </div>
 
@@ -527,5 +541,38 @@
 
 </div>
 
+<script>
+let wishStatus = document.querySelector('[x-ref="wishStatus"]');
+document.addEventListener('DOMContentLoaded', function() {
+  checkWishlist();
+});
+
+function checkWishlist() {
+  let route = `{{ route('check.wishlist') }}`;
+  const id = `{{ $product->id }}`;
+  let data = {
+    'id' : id
+  }
+  axios.post(route, data)
+        .then((res) => {
+            console.log(res);
+            if (res.status == 200) {
+                wishStatus._x_model.set(true);
+            }
+        });
+}
+
+function deleteThis(id) {
+  let route = "/wishlist/delete/" + id;
+  let data = { 'id' : id };
+
+  axios.put(route, data)
+        .then((res) => {
+           if (res.status == 200) {
+            location.reload();
+           }
+        });
+}
+</script>
 
 @include('layouts.foot')

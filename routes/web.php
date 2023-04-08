@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\{BannersController, CartController, CategoriesController, CollectionLayout, 
     HomeLayout, OrdersController, PaymentsController, ProfileController, ProductsController, 
-    UsersController, UserAddressesController};
+    UsersController, UserAddressesController, WishlistController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,9 +37,14 @@ Route::middleware('auth')->group(function () {
         Route::get('/cart', [CartController::class, 'accountShow'])->name('account.cart');
         Route::post('/cart/delete', [CartController::class, 'delete'])->name('account.cart.delete');
         
-        Route::get('/wishlist', function () {
-            return view('account.wishlist');
-        })->name('account.wishlist');
+        Route::get('/wishlist', [WishlistController::class, 'show'])->name('account.wishlist');
+        Route::post('/wishlist/add', [WishlistController::class, 'check']);
+        Route::put('/wishlist/delete/{id}', [WishlistController::class, 'delete']);
+        Route::post('/wishlist/edit', [WishlistController::class, 'edit'])->name('cart.edit');
+
+
+
+
         Route::get('/reviews', function () {
             return view('account.reviews');
         })->name('account.reviews');
@@ -56,6 +61,12 @@ Route::middleware('auth')->group(function () {
             return view('shipping-method');
         });
     });
+
+    // 위시리스트
+    Route::get('/wishlist', [WishlistController::class, 'show']);
+    Route::post('/wishlist/add', [WishlistController::class, 'check']);
+    Route::put('/wishlist/delete/{id}', [WishlistController::class, 'delete']);
+
 
     Route::group(['prefix' => 'order'], function () {
         Route::get('/shipping/{id}', [OrdersController::class, 'create']);
@@ -87,7 +98,8 @@ Route::group(['prefix' => 'cart'], function () {
     Route::put('/delete/{id}', [CartController::class, 'delete']);
     Route::post('/edit', [CartController::class, 'edit'])->name('cart.edit');
 });
-
+// 위시리스트 체크
+Route::post('/wishlist/check', [WishlistController::class, 'simpleCheck'])->name('check.wishlist');
 
 
 Route::get('/faq', function () {
