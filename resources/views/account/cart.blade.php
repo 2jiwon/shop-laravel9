@@ -113,13 +113,11 @@ function deleteFromCart(id) {
 function editCart() {
   const form = document.querySelector("form");
   const formData = new FormData(form);
-
-  console.log(...formData);
-
   const url = `{{ route('cart.edit') }}`;
+
   axios.post(url, formData)
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           if (res.status === 200) {
             alert("수정되었어요.");
             location.reload();
