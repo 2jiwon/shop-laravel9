@@ -29,10 +29,7 @@ Route::middleware('auth')->group(function () {
 
     Route::group(['prefix' => 'account'], function () {
         Route::get('/dashboard', [AccountController::class, 'showLastOne'])->name('account.dashboard');
-
-        Route::get('/orders', function () {
-            return view('account.orders');
-        })->name('account.orders');
+        Route::get('/orders', [AccountController::class, 'showHistory'])->name('account.orders');
 
         Route::get('/cart', [CartController::class, 'accountShow'])->name('account.cart');
         Route::post('/cart/delete', [CartController::class, 'delete'])->name('account.cart.delete');
@@ -43,14 +40,13 @@ Route::middleware('auth')->group(function () {
         Route::post('/wishlist/edit', [WishlistController::class, 'edit'])->name('cart.edit');
 
 
-
-
         Route::get('/reviews', function () {
             return view('account.reviews');
         })->name('account.reviews');
-        Route::get('/details', function () {
-            return view('account.details');
-        })->name('account.details');
+
+
+        Route::get('/myinfo', [AccountController::class, 'showMyInfo'])->name('account.details');
+        Route::post('/update', [AccountController::class, 'edit'])->name('account.update');
     });
 
     Route::group(['prefix' => 'cart'], function () {
