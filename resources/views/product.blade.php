@@ -59,117 +59,134 @@
 
       <!-- 상품 상단 기본 정보 -->
       <div class="px-5 pt-8 lg:w-1/2 lg:pt-0">
-        <div class="mb-8 border-b border-grey-dark">
-          <div class="flex items-center">
-            <h2 class="font-butler text-3xl md:text-4xl lg:text-4.5xl">
-              {{ $product->name }}
-            </h2>
-            <p class="ml-8 rounded-full bg-primary px-5 py-2 font-dohyeon text-sm font-bold uppercase leading-none text-white">
-              20% off
-            </p>
-          </div>
-          <div class="flex items-center pt-3">
-            <span class="font-dohyeon text-2xl text-secondary">{{ number_format($product->selling_price) }} 원</span>
-            <span class="pl-5 font-dohyeon text-xl text-grey-darker line-through"></span>
-          </div>
-          <div class="flex items-center pt-3 pb-8">
+        <form action="{{ route('order.next') }}" method="POST">
+          @csrf
+          <div class="mb-8 border-b border-grey-dark">
             <div class="flex items-center">
-              <i class="bx bxs-star text-primary"></i>
-              <i class="bx bxs-star text-primary"></i>
-              <i class="bx bxs-star text-primary"></i>
-              <i class="bx bxs-star text-primary"></i>
-              <i class="bx bxs-star text-primary"></i>
+              <h2 class="font-butler text-3xl md:text-4xl lg:text-4.5xl">
+                {{ $product->name }}
+              </h2>
+              <input type="hidden" name="id[]" value="{{ $product->id }}">
+              <p class="ml-8 rounded-full bg-primary px-5 py-2 font-dohyeon text-sm font-bold uppercase leading-none text-white">
+                20% off
+              </p>
             </div>
-            <span class="ml-2 font-dohyeon text-sm text-secondary">(45)</span>
+            <div class="flex items-center pt-3">
+              <span class="font-dohyeon text-2xl text-secondary">{{ number_format($product->selling_price) }} 원</span>
+              <input type="hidden" name="total_price" value="{{ $product->selling_price }}">
+              <span class="pl-5 font-dohyeon text-xl text-grey-darker line-through"></span>
+            </div>
+            <div class="flex items-center pt-3 pb-8">
+              <div class="flex items-center">
+                <i class="bx bxs-star text-primary"></i>
+                <i class="bx bxs-star text-primary"></i>
+                <i class="bx bxs-star text-primary"></i>
+                <i class="bx bxs-star text-primary"></i>
+                <i class="bx bxs-star text-primary"></i>
+              </div>
+              <span class="ml-2 font-dohyeon text-sm text-secondary">(45)</span>
+            </div>
           </div>
-        </div>
-        <div class="flex pb-5">
-          <p class="font-dohyeon text-secondary">상태</p>
-          @if ($product->is_selling == 'Y')
-            <p class="font-dohyeonbold pl-3 text-v-green">구매 가능</p>
-          @else
-            <p class="font-dohyeonbold pl-3 text-v-red">구매 불가</p>
-          @endif
-        </div>
-
-        <!-- <p class="pb-5 font-dohyeon text-secondary"></p>
-        <div class="flex justify-between pb-4">
-          <div class="w-1/3 sm:w-1/5">
-            <p class="font-dohyeon text-secondary">Color</p>
-          </div>
-          <div class="flex w-2/3 items-center sm:w-5/6">
-            <div class="mr-2 cursor-pointer rounded-full border-2 border-transparent bg-primary px-2 py-2 transition-colors hover:border-black"></div>
-            <div class="mr-2 cursor-pointer rounded-full border-2 border-transparent bg-secondary-light px-2 py-2 transition-colors hover:border-black"></div>
-            <div class="mr-2 cursor-pointer rounded-full border-2 border-transparent bg-v-green px-2 py-2 transition-colors hover:border-black"></div>
-            <div class="cursor-pointer rounded-full border-2 border-transparent bg-v-blue px-2 py-2 transition-colors hover:border-black"></div>
-          </div>
-        </div>
-        <div class="flex items-center justify-between pb-4">
-          <div class="w-1/3 sm:w-1/5">
-            <p class="font-dohyeon text-secondary">Size</p>
-          </div>
-          <div class="w-2/3 sm:w-5/6">
-            <select class="form-select w-2/3">
-              <option value="0">Small</option>
-              <option value="1">Medium</option>
-              <option value="2">Large</option>
-            </select>
-          </div>
-        </div> -->
-
-      <div x-data="{ productQuantity: 1 }">
-        <div class="flex items-center justify-between pb-8" >
-          <div class="w-1/3 sm:w-1/5">
-            <p class="font-dohyeon text-secondary">수량</p>
-          </div>
-          <div class="flex w-2/3 sm:w-5/6">
-            <label
-              for="quantity-form"
-              class="relative block h-0 w-0 overflow-hidden">Quantity form</label>
-            @if ($product->is_selling == 'N')
-            <input
-              type="number"
-              class="form-quantity form-input w-16 rounded-r-none py-0 px-2 text-center"
-              disabled />
+          <div class="flex pb-5">
+            <p class="font-dohyeon text-secondary">상태</p>
+            @if ($product->is_selling == 'Y')
+              <p class="font-dohyeonbold pl-3 text-v-green">구매 가능</p>
             @else
-            <input
-              type="number"
-              id="quantity-form"
-              class="form-quantity form-input w-16 rounded-r-none py-0 px-2 text-center"
-              x-model="productQuantity"
-              min="1"/>
+              <p class="font-dohyeonbold pl-3 text-v-red">구매 불가</p>
             @endif
-            <div class="flex flex-col">
-              <span class="flex-1 cursor-pointer rounded-tr border border-l-0 border-grey-darker bg-white px-1"
-                @click="productQuantity++">
-                <i class="bx bxs-up-arrow pointer-events-none text-xs text-primary"></i>
-              </span>
-              <span class="flex-1 cursor-pointer rounded-br border border-t-0 border-l-0 border-grey-darker bg-white px-1"
-                @click="productQuantity> 1 ? productQuantity-- : productQuantity=1"
-              >
-                <i class="bx bxs-down-arrow pointer-events-none text-xs text-primary"></i>
-              </span>
+          </div>
+
+          <div class="flex pb-5">
+            <p class="font-dohyeon text-secondary">배송비</p>
+            @if ($product->delivery_fee > 0)
+              <p class="font-dohyeonbold pl-3 text-v-green">{{ number_format($product->delivery_fee) }} 원</p>
+            @else
+              <p class="font-dohyeonbold pl-3 text-v-red">무료</p>
+            @endif
+            <input type="hidden" name="delivery_fee" value="{{ $product->delivery_fee }}">
+          </div>
+
+          <!-- <p class="pb-5 font-dohyeon text-secondary"></p>
+          <div class="flex justify-between pb-4">
+            <div class="w-1/3 sm:w-1/5">
+              <p class="font-dohyeon text-secondary">Color</p>
+            </div>
+            <div class="flex w-2/3 items-center sm:w-5/6">
+              <div class="mr-2 cursor-pointer rounded-full border-2 border-transparent bg-primary px-2 py-2 transition-colors hover:border-black"></div>
+              <div class="mr-2 cursor-pointer rounded-full border-2 border-transparent bg-secondary-light px-2 py-2 transition-colors hover:border-black"></div>
+              <div class="mr-2 cursor-pointer rounded-full border-2 border-transparent bg-v-green px-2 py-2 transition-colors hover:border-black"></div>
+              <div class="cursor-pointer rounded-full border-2 border-transparent bg-v-blue px-2 py-2 transition-colors hover:border-black"></div>
             </div>
           </div>
-        </div>
-        <div class="group flex pb-8">
-          @unless ($product->is_selling == 'N' || $product->stock_amount == 0)
-          <button type="button" @click="addTo('cart',{{ $product->id }}, productQuantity)" class="btn btn-outline mr-4 md:mr-6">장바구니에 담기</button>
-          <a x-bind:href="'/order/{{ $product->id }}/' + productQuantity" class="btn btn-primary">바로 구매</a>
-          @endunless
-        </div>
-      </div>
+          <div class="flex items-center justify-between pb-4">
+            <div class="w-1/3 sm:w-1/5">
+              <p class="font-dohyeon text-secondary">Size</p>
+            </div>
+            <div class="w-2/3 sm:w-5/6">
+              <select class="form-select w-2/3">
+                <option value="0">Small</option>
+                <option value="1">Medium</option>
+                <option value="2">Large</option>
+              </select>
+            </div>
+          </div> -->
 
-        <p class="font-dohyeon text-secondary">
-          <span class="pr-2">카테고리: </span>
-          @foreach ($category as $index => $cate)
-              @if ($index == (count($category)-1))
-                {{ $cate }} 
-              @else
-                {{ $cate }} > 
-              @endif
-          @endforeach
-        </p>
+          <div x-data="{ productQuantity: 1 }">
+            <div class="flex items-center justify-between pb-8" >
+              <div class="w-1/3 sm:w-1/5">
+                <p class="font-dohyeon text-secondary">수량</p>
+              </div>
+              <div class="flex w-2/3 sm:w-5/6">
+                <label
+                  for="quantity-form"
+                  class="relative block h-0 w-0 overflow-hidden">Quantity form</label>
+                @if ($product->is_selling == 'N')
+                <input
+                  type="number"
+                  class="form-quantity form-input w-16 rounded-r-none py-0 px-2 text-center"
+                  disabled />
+                @else
+                <input
+                  type="number"
+                  id="quantity-form"
+                  name="quantity"
+                  class="form-quantity form-input w-16 rounded-r-none py-0 px-2 text-center"
+                  x-model="productQuantity"
+                  min="1"/>
+                @endif
+                <div class="flex flex-col">
+                  <span class="flex-1 cursor-pointer rounded-tr border border-l-0 border-grey-darker bg-white px-1"
+                    @click="productQuantity++">
+                    <i class="bx bxs-up-arrow pointer-events-none text-xs text-primary"></i>
+                  </span>
+                  <span class="flex-1 cursor-pointer rounded-br border border-t-0 border-l-0 border-grey-darker bg-white px-1"
+                    @click="productQuantity> 1 ? productQuantity-- : productQuantity=1"
+                  >
+                    <i class="bx bxs-down-arrow pointer-events-none text-xs text-primary"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="group flex pb-8">
+              @unless ($product->is_selling == 'N' || $product->stock_amount == 0)
+              <button type="button" @click="addTo('cart',{{ $product->id }}, productQuantity)" class="btn btn-outline mr-4 md:mr-6">장바구니에 담기</button>
+              <!-- <a x-bind:href="'/order/{{ $product->id }}/' + productQuantity" class="btn btn-primary">바로 구매</a> -->
+              <button type="submit" class="btn btn-primary">바로 구매</button>
+              @endunless
+            </div>
+          </div>
+
+          <p class="font-dohyeon text-secondary">
+            <span class="pr-2">카테고리: </span>
+            @foreach ($category as $index => $cate)
+                @if ($index == (count($category)-1))
+                  {{ $cate }} 
+                @else
+                  {{ $cate }} > 
+                @endif
+            @endforeach
+          </p>
+        </form>
       </div>
       <!-- 상품 상단 기본 정보 End -->
 
@@ -549,7 +566,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const id = `{{ $product->id }}`;
   checkWishlist(id);
 });
-
 </script>
 
 @include('layouts.foot')

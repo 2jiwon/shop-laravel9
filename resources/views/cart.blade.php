@@ -2,15 +2,16 @@
 
 <div>
 
-<div class="container border-t border-grey-dark pt-10 sm:pt-12">
+  <div class="container border-t border-grey-dark pt-10 sm:pt-12">
 
-  <div class="flex flex-col-reverse justify-between pb-16 sm:pb-20 lg:flex-row lg:pb-24">
-    <div class="lg:w-3/5 mt-10 lg:mt-0">
-        <h1 class="font-hkbold pb-3 text-center text-2xl text-secondary sm:text-left">
-          장바구니
-        </h1>
+    <form action="{{ route('order.next') }}" method="POST">
+      @csrf
+      <div class="flex flex-col-reverse justify-between pb-16 sm:pb-20 lg:flex-row lg:pb-24">
+        <div class="lg:w-3/5 mt-10 lg:mt-0">
+          <h1 class="font-hkbold pb-3 text-center text-2xl text-secondary sm:text-left">
+            장바구니
+          </h1>
 
-        <form>
           <div class="pt-8">
 
             @if (empty($cartList))
@@ -124,51 +125,55 @@
             <a href="javascript:history.back();" class="btn btn-outline text-xl">쇼핑 계속하기</a>
             <input type="button" onclick="editCart()" class="btn btn-primary mt-5 sm:mt-0 text-xl" value="수정">
           </div>
-      </form>
-
-    </div>
+        </div>
     
-    <div class="mt-auto mb-0 sm:w-2/3 md:w-full lg:mx-0 lg:mb-0 lg:w-1/3">
-      <div class="bg-grey-light py-8 px-8">
-        <h4 class="font-hkbold pb-3 text-center text-2xl text-secondary sm:text-left">
-          계산하기
-        </h4>
-        
-        <!-- <div class="pt-4">
-          <p class="font-hkbold pt-1 pb-4 text-secondary">쿠폰</p>
-          <div class="flex justify-between">
-            <label for="discount_code" class="relative block h-0 w-0 overflow-hidden">할인코드 입력</label>
-            <input class="form-input w-3/5 xl:w-2/3"
-              type="text"
-              placeholder="Discount code"
-              id="discount_code"/>
-            <button class="btn btn-outline btn-sm ml-4 w-2/5 lg:ml-2 xl:ml-4 xl:w-1/3" aria-label="Apply button">
-              확인
-            </button>
-          </div>
-        </div> -->
-        <div class="mb-12 pt-4">
-          <p class="font-hkbold pt-1 pb-2 text-secondary">합계</p>
-          <div class="flex justify-between border-b border-grey-darker pb-1">
-            <span class="font-hk text-secondary">주문금액</span>
-            <span class="font-hk text-secondary" id="totalPrice"></span>
-          </div>
-          <!-- <div class="flex justify-between border-b border-grey-darker pt-2 pb-1">
-            <span class="font-hk text-secondary">할인</span>
-            <span class="font-hk text-secondary">-$36</span>
-          </div> -->
-          <div class="flex justify-between border-b border-grey-darker pt-2 pb-1">
-            <span class="font-hk text-secondary">배송비</span>
-            <span class="font-hk text-secondary"></span>
-          </div>
-          <div class="flex justify-between pt-3">
-            <span class="font-hkbold text-secondary">총 합계</span>
-            <span class="font-hkbold text-secondary"></span>
+        <div class="mt-auto mb-0 sm:w-2/3 md:w-full lg:mx-0 lg:mb-0 lg:w-1/3">
+          <div class="bg-grey-light py-8 px-8">
+            <h4 class="font-hkbold pb-3 text-center text-2xl text-secondary sm:text-left">
+              계산하기
+            </h4>
+            
+            <!-- <div class="pt-4">
+              <p class="font-hkbold pt-1 pb-4 text-secondary">쿠폰</p>
+              <div class="flex justify-between">
+                <label for="discount_code" class="relative block h-0 w-0 overflow-hidden">할인코드 입력</label>
+                <input class="form-input w-3/5 xl:w-2/3"
+                  type="text"
+                  placeholder="Discount code"
+                  id="discount_code"/>
+                <button class="btn btn-outline btn-sm ml-4 w-2/5 lg:ml-2 xl:ml-4 xl:w-1/3" aria-label="Apply button">
+                  확인
+                </button>
+              </div>
+            </div> -->
+            <div class="mb-12 pt-4">
+              <p class="font-hkbold pt-1 pb-2 text-secondary">합계</p>
+              <div class="flex justify-between border-b border-grey-darker pb-1">
+                <span class="font-hk text-secondary">주문금액</span>
+                <span class="font-hk text-secondary" id="totalPrice"></span>
+                <input type="hidden" name="total_price" id="totalPriceInput" value="">
+              </div>
+              <!-- <div class="flex justify-between border-b border-grey-darker pt-2 pb-1">
+                <span class="font-hk text-secondary">할인</span>
+                <span class="font-hk text-secondary">-$36</span>
+              </div> -->
+              <div class="flex justify-between border-b border-grey-darker pt-2 pb-1">
+                <span class="font-hk text-secondary">배송비</span>
+                <span class="font-hk text-secondary" id="deliveryFee"></span>
+                <input type="hidden" name="delivery_fee" id="deliveryFeeInput" value="">
+              </div>
+              <div class="flex justify-between pt-3">
+                <span class="font-hkbold text-secondary">총 합계</span>
+                <span class="font-hkbold text-secondary" id="totalPayment"></span>
+                <input type="hidden" name="total_payment" id="totalPaymentInput" value="">
+              </div>
+            </div>
+            <!-- <button type="button" class="btn btn-primary text-2xl w-full" onclick="order();">주문하기</button> -->
+            <button type="submit" class="btn btn-primary text-2xl w-full">주문하기</button>
           </div>
         </div>
-        <a href="/cart/customer-info" class="btn btn-primary text-2xl w-full">주문하기</a>
-      </div>
-    </div>
+
+     </form>
   </div>
 </div>
 
@@ -176,27 +181,43 @@
 /**
  * 주문금액 계산 부분
  */
+let totalPrice = 0;
+let deliveryFee = 0;
 document.addEventListener('DOMContentLoaded', () => {
   checkTotalPrice();
+  checkDeliveryFee();
 
-  let quantityInputs = document.querySelectorAll("#quantity-form-desktop + div > .cursor-pointer");
+  const quantityInputs = document.querySelectorAll("#quantity-form-desktop + div > .cursor-pointer");
   quantityInputs.forEach(qInputs => {
     // console.log(qInputs);
     qInputs.addEventListener('click', checkTotalPrice);
   });
+
+  setTimeout(() => {
+    console.log(totalPrice);
+    console.log(deliveryFee);
+    const totalPaymentElement = document.querySelector("#totalPayment");
+    const totalPaymentInput = document.querySelector("#totalPaymentInput");
+    let finalPrice = totalPrice + deliveryFee;
+    totalPaymentInput.value = finalPrice;
+    totalPaymentElement.innerText = finalPrice.toLocaleString() + " 원";
+  }, 200);
+  
 });
 
-
 function checkTotalPrice() {
-  let els = document.querySelectorAll("#price");
-  let temp = 0;
-  els.forEach(el => {
-    temp += Number(el.firstChild.innerText.split(",").join(""));
+  let priceElements = document.querySelectorAll("#price");
+  let sum = 0;
+  priceElements.forEach(el => {
+    sum += Number(el.firstChild.innerText.split(",").join(""));
   });
 
   // console.log(temp);
-  let el = document.querySelector("#totalPrice");
-  el.innerText = temp.toLocaleString() + " 원";
+  totalPrice = sum;
+  let totalPriceElement = document.querySelector("#totalPrice");
+  let totalPriceInput = document.querySelector("#totalPriceInput");
+  totalPriceInput.value = sum;
+  totalPriceElement.innerText = sum.toLocaleString() + " 원";
 }
 /**
  * 품목 삭제
@@ -228,6 +249,26 @@ function editCart() {
           if (res.status === 200) {
             alert("수정되었어요.");
             location.reload();
+          }
+        })
+        .catch((err) => {
+          console.log("에러 발생 " + err);
+        });
+}
+/**
+ * 배송비 계산
+ */
+function checkDeliveryFee() {
+  const url = `{{ route('cart.delivery-fee') }}`;
+  axios.get(url)
+        .then((res) => {
+          console.log(res);
+          if (res.status === 200) {
+            let deliveryFeeElement = document.querySelector("#deliveryFee");
+            let deliveryFeeInput = document.querySelector("#deliveryFeeInput");
+            deliveryFeeInput.value = res.data.result;
+            deliveryFeeElement.innerText = res.data.result.toLocaleString() + " 원";
+            deliveryFee = res.data.result;
           }
         })
         .catch((err) => {

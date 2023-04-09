@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\User;
+use App\Models\{User, Product};
 use Log;
 use Cookie;
 
@@ -79,6 +79,25 @@ class CartController extends Controller
 
         return view('account.cart')->with('cartList', $this->CART);
     }
+
+    /**
+     * 배송비 계산
+     *  일단은 품목의 배송비 항목중 가장 높은 것으로 가져오기
+     */
+    public function checkDeliveryFee(Request $request)
+    {
+        $this->getCart($request);
+
+        $arr = [];
+        foreach ($this->CART as $cart) {
+            $temp = Product::where('id', $cart[0])->value('delivery_fee');
+            array_push($arr, $temp);
+        }
+
+        rsort($arr);
+        return response()->json(['result' => $arr[0]]);
+    }
+
 
     /**
      *  동일한 상품을 담은 경우를 체크해서 error를 보냄
