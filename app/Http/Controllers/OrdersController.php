@@ -27,19 +27,50 @@ class OrdersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function preCreate($id, $quantity)
+    public function preCreate(Request $request)
     {
-        $product = Product::find($id);
+        $products = [];
+        foreach ($request->id as $id) {
+            $pd = Product::find($id);
+            array_push($products, $pd);
+        }
 
-        return view('customer-info')->with('product', $product)->with('quantity', $quantity);
+        $quantities = [];
+        $total_quantities = 0;
+        if (is_array($request->quantity)) {
+            foreach ($request->quantity as $q) {
+                $total_quantities += $q;
+                array_push($quantities, $q);
+            }
+        } else {
+            $total_quantities = $request->quantity;
+            array_push($quantities, $request->quantity);
+        }
+
+        $payments['total_price'] = $request->total_price;
+        $payments['delivery_fee'] = $request->delivery_fee;
+        $payments['total_payment'] = !empty($request->total_payment) ? $request->total_payment : ($request->total_price + $request->delivery_fee);
+
+        // \Log::debug($products);
+        // \Log::debug($quantities);
+
+        return view('customer-info')
+                ->with('products', $products)
+                ->with('quantities', $quantities)
+                ->with('total_quantities', $total_quantities)
+                ->with('payments', $payments);
     }
 
     public function create($id)
     {
         $order = Order::find($id);
-        $product = Product::find($order->products[0]);
+        $products = [];
+        foreach ($order->products as $p) {
+            $pd = Product::with('images')->where('id', $p)->first();
+            array_push($products, $pd);
+        }
 
-        return view('shipping-method')->with('order', $order)->with('product', $product);
+        return view('shipping-method')->with('order', $order)->with('products', $products);
     }
 
     /**
@@ -76,10 +107,14 @@ class OrdersController extends Controller
                     $new[$val] = $request->$val;
                 }
             }
+            // \Log::debug($new);
+
             if (!empty($new)) {
                 $data->update($new);
-                $res = $data;
             }
+            $res = $data;
+
+            // \Log::debug($res);
         }  
 
         /**
@@ -89,8 +124,10 @@ class OrdersController extends Controller
             'user_id' => Auth::user()->id,
             'user_address_id' => $res->id,
             'status' => 1,
-            'products' => [$request->product_id],
-            'quantities' => [$request->quantity],
+            'products' => $request->product_id,
+            'quantities' => $request->quantities,
+            'total_price' => $request->total_price,
+            'delivery_fee' => $request->delivery_fee,
             'total_amount' => $request->total_amount
         ];
         $res = Order::create($data);

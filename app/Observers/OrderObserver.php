@@ -28,12 +28,16 @@ class OrderObserver
     public static function updated(Order $order)
     {
         $target_address = UserAddress::find($order->user_address_id);
-        $target_address->update([
-            'phone' => request()->phone,
-            'address1' => request()->address1,
-            'address2' => request()->address2
-        ]);
-
+        $arr = ['phone', 'zipcode', 'address1', 'address2'];
+        $new = [];
+        foreach ($arr as $val) {
+            if (!empty($request->$val)) {
+                $new[$val] = $request->$val;
+            }
+        }
+        if (!empty($new)) {
+            $target_address->update($new);
+        }
         // 상품준비중이 되면 상품 수량을 하나 감소시킴
         if ($order->status == 3) {
             foreach ($order->products as $product) {
