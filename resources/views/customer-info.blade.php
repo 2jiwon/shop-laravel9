@@ -2,7 +2,9 @@
 
 <div class="container border-t border-grey-dark pt-10 sm:pt-12">
 
+  <!-- <form action="{{ route('order.store') }}" method="POST"> -->
   <form>
+    @csrf
     <div class="flex flex-col-reverse justify-between pb-16 sm:pb-20 lg:flex-row lg:pb-24">
 
       <div class="lg:w-3/5 mt-10 lg:mt-0">
@@ -103,6 +105,7 @@
               뒤로가기
             </a>
             <button class="btn btn-primary text-xl" onClick="saveOrder()">계속</a>
+            <!-- <button type="submit" class="btn btn-primary text-xl">계속</button> -->
           </div>
         </div>
       </div>
@@ -117,6 +120,8 @@
             상품
           </p>
           <div class="mt-5 mb-8">
+            @foreach ($products as $product)
+            <input type="hidden" name="product_id[]" value="{{ $product->id }}">
             <div class="mb-5 flex items-center">
               <div class="relative mr-3 w-20 sm:pr-0">
                 <div class="flex h-20 items-center justify-center rounded">
@@ -132,26 +137,37 @@
               </div>
               <p class="font-hk text-lg text-secondary">{{ $product->name }}</p>
             </div>
+            @endforeach
           </div>
+
+          @foreach ($quantities as $q)
+            <input type="hidden" name="quantities[]" value="{{ $q }}">
+          @endforeach
 
           <h4 class="font-hkbold pt-1 pb-2 text-secondary">총 합계</h4>
           <div class="flex justify-between border-b border-grey-darker py-3">
             <span class="font-hk leading-none text-secondary">주문 금액</span>
-            <span class="font-hk leading-none text-secondary">{{ number_format($product->selling_price) }} 원</span>
+            <span class="font-hk leading-none text-secondary">{{ number_format($payments['total_price']) }} 원</span>
+            <input type="hidden" name="total_price" value="{{ $payments['total_price'] }}" />
           </div>
           <div class="flex justify-between border-b border-grey-darker py-3">
             <span class="font-hk leading-none text-secondary">주문 수량</span>
-            <span class="font-hk leading-none text-secondary">{{ number_format($quantity) }} 개</span>
-            <input type="hidden" name="quantity" value="{{ $quantity }}" />
+            <span class="font-hk leading-none text-secondary">{{ number_format($total_quantities) }} 개</span>
+            <input type="hidden" name="total_quantities" value="{{ $total_quantities }}" />
           </div>
           <div class="flex justify-between border-b border-grey-darker py-3">
             <span class="font-hk leading-none text-secondary">할인 금액</span>
             <span class="font-hk leading-none text-secondary">- 원</span>
           </div>
+          <div class="flex justify-between border-b border-grey-darker py-3">
+            <span class="font-hk leading-none text-secondary">배송비</span>
+            <span class="font-hk leading-none text-secondary">{{ number_format($payments['delivery_fee']) }} 원</span>
+            <input type="hidden" name="delivery_fee" value="{{ $payments['delivery_fee'] }}" />
+          </div>
           <div class="flex justify-between py-3">
             <span class="font-hkbold leading-none text-secondary">합계</span>
-            <span class="font-hkbold leading-none text-secondary">{{ number_format($product->selling_price * $quantity) }} 원</span>
-            <input type="hidden" name="total_amount" value="{{ $product->selling_price * $quantity }}" />
+            <span class="font-hkbold leading-none text-secondary">{{ number_format($payments['total_payment']) }} 원</span>
+            <input type="hidden" name="total_amount" value="{{ $payments['total_payment'] }}" />
           </div>
         </div>
       </div>
@@ -303,14 +319,14 @@ function saveOrder() {
     form.reportValidity();
   } else {
     const formData = new FormData(form);
-    formData.append('product_id', product_id);
+    // formData.append('product_id', product_id);
 
     const url = `{{ route('order.store') }}`;
     axios.post(url, formData)
     .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          alert("성공");
+          // alert("성공");
           location.href = "/order/shipping/" + res.data.oid;
           // location.href = "/order/shipping/123";
         }

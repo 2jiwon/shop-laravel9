@@ -37,24 +37,34 @@ class PaymentsController extends Controller
      */
     public function store(Request $request)
     {
-        $data = [
-            'order_id' => $request->order_id,
-            'pay_type' => $request->pay_type == 'bank' ? 1 : 2,
-            'status' => 1,
-            'detail' => ['remittor' => $request->remittor],
-            'total_amount' => $request->total_amount
-        ];
-        $res = Payment::create($data);
+        try {
+            $data = [
+                'order_id' => $request->order_id,
+                'pay_type' => $request->pay_type == 'bank' ? 1 : 2,
+                'status' => 1,
+                'detail' => ['remittor' => $request->remittor],
+                'total_amount' => $request->total_amount
+            ];
+            $res = Payment::create($data);
 
-        Order::find($request->order_id)->update([
-            'payments_id' => $res->id
-        ]);
+            Order::find($request->order_id)->update([
+                'payments_id' => $res->id
+            ]);
 
-        // \Log::info("this > ".$res->detail['remittor']);
+            // \Log::info("this > ".$res->detail['remittor']);
 
-        if (empty($res)) return response()->json(['result' => 'fail']);
+            if (empty($res)) throw new Exception("결제정보 저장에 실패했습니다.", 1);
+            
+            return response()->json(['result' => 'success', 'pid' => $res->id]);
 
-        return response()->json(['result' => 'success', 'pid' => $res->id]);
+        } catch (\Throwable $th) {
+            $msg = $th->getMessage();
+
+            return response()->json(['result' => 'fail', 'err' => $msg]);
+        }
+        
+
+        
     }
 
     /**

@@ -56,7 +56,8 @@ Route::middleware('auth')->group(function () {
     Route::group(['prefix' => 'cart'], function () {
         Route::get('/customer-info', function () {
             return view('customer-info');
-        });
+        })->name('order.customer-info');
+        
         Route::get('/shipping-method', function () {
             return view('shipping-method');
         });
@@ -69,9 +70,8 @@ Route::middleware('auth')->group(function () {
 
 
     Route::group(['prefix' => 'order'], function () {
-        Route::get('/shipping/{id}', [OrdersController::class, 'create']);
-        Route::get('/{id}/{quantity}', [OrdersController::class, 'preCreate']);
-
+        Route::get('/shipping/{id}', [OrdersController::class, 'create'])->name('order.create');
+        Route::post('/precreate', [OrdersController::class, 'preCreate'])->name('order.next');
         Route::post('/store', [OrdersController::class, 'store'])->name('order.store');
 
     });
@@ -97,6 +97,7 @@ Route::group(['prefix' => 'cart'], function () {
     Route::post('/add', [CartController::class, 'check']);
     Route::put('/delete/{id}', [CartController::class, 'delete']);
     Route::post('/edit', [CartController::class, 'edit'])->name('cart.edit');
+    Route::get('/check', [CartController::class, 'checkDeliveryFee'])->name('cart.delivery-fee');
 });
 // 위시리스트 체크
 Route::post('/wishlist/check', [WishlistController::class, 'simpleCheck'])->name('check.wishlist');

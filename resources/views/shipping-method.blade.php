@@ -65,12 +65,6 @@
             <a href="/cart/customer-info" class="font-hk text-primary underline">Change</a>
           </div> -->
         </div>
-        <div class="flex pt-2">
-          <div class="w-1/5">
-            <p class="font-hk text-secondary">배송비</p>
-          </div>
-          <p class="font-hk text-secondary">택배 ({{ number_format($product->delivery_fee) }}원)</p>
-        </div>
       </div>
       
       <div class="pt-8 md:pt-10">
@@ -128,7 +122,7 @@
       <div
         class="flex flex-col items-center justify-between pt-8 sm:flex-row sm:pt-12">
         <a
-          href="/cart"
+          href="{{ url()->previous() }}"
           class="group mb-3 flex items-center font-hk text-sm text-secondary transition-colors hover:text-primary group-hover:font-bold sm:mb-0">
           <i
             class="bx bx-chevron-left -mb-1 pr-2 text-2xl text-secondary transition-colors group-hover:text-primary"></i>
@@ -146,6 +140,7 @@
         <p class="font-hkbold text-center uppercase text-secondary sm:text-left">
           상품
         </p>
+        @foreach ($products as $product)
         <div class="mt-5 mb-8">
           <div class="mb-5 flex items-center">
             <div class="relative mr-3 w-20 sm:pr-0">
@@ -163,11 +158,12 @@
             <p class="font-hk text-lg text-secondary">{{ $product->name }}</p>
           </div>
         </div>
+        @endforeach
 
         <h4 class="font-hkbold pt-1 pb-2 text-secondary">총 결제금액</h4>
         <div class="flex justify-between border-b border-grey-darker py-3">
           <span class="font-hk leading-none text-secondary">상품 금액</span>
-          <span class="font-hk leading-none text-secondary">{{ number_format($product->selling_price) }} 원</span>
+          <span class="font-hk leading-none text-secondary">{{ number_format($order->total_price) }} 원</span>
         </div>
         <div class="flex justify-between border-b border-grey-darker py-3">
           <span class="font-hk leading-none text-secondary">할인 금액</span>
@@ -175,12 +171,12 @@
         </div>
         <div class="flex justify-between border-b border-grey-darker py-3">
           <span class="font-hk leading-none text-secondary">배송비</span>
-          <span class="font-hk leading-none text-secondary">{{ number_format($product->delivery_fee) }} 원</span>
+          <span class="font-hk leading-none text-secondary">{{ number_format($order->delivery_fee) }} 원</span>
         </div>
         <div class="flex justify-between py-3">
           <span class="font-hkbold leading-none text-secondary">합계</span>
-          <span class="font-hkbold leading-none text-secondary">{{ number_format(($product->selling_price * $order->quantities[0]) + $product->delivery_fee) }} 원</span>
-          <input type="hidden" name="total_amount" value="{{ ($product->selling_price * $order->quantities[0]) + $product->delivery_fee }}" />
+          <span class="font-hkbold leading-none text-secondary">{{ number_format($order->total_amount) }} 원</span>
+          <input type="hidden" name="total_amount" value="{{ $order->total_amount }}" />
         </div>
       </div>
 
@@ -194,27 +190,33 @@ var order_id = {{ $order->id }};
 function paynow() {
    event.preventDefault();
   const form = document.querySelector("form");
-  const formData = new FormData(form);
-  formData.append('order_id', order_id);
+  let isFormValid = form.checkValidity();
 
-  const url = `{{ route('pay.store') }}`;
-  axios
-  .post(url, formData)
-  .then((res) => {
-      console.log(res);
-      if (res.status === 200) {
-          //alert("등록 완료");
-          // const target = document.querySelector('#toast-success');
-          // target.classList.remove('hidden');
-          // const msg = document.querySelector('#toast-message');
-          // msg.innerText = "message here";
+  if (!isFormValid) {
+    form.reportValidity();
+  } else {
+    const formData = new FormData(form);
+    formData.append('order_id', order_id);
 
-          location.href = "/pay/complete/" + res.data.pid;
-      }
-  })
-  .catch((err) => {
-      console.log("에러 발생 " + err);
-  });
+    const url = `{{ route('pay.store') }}`;
+    axios
+    .post(url, formData)
+    .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+            //alert("등록 완료");
+            // const target = document.querySelector('#toast-success');
+            // target.classList.remove('hidden');
+            // const msg = document.querySelector('#toast-message');
+            // msg.innerText = "message here";
+
+            location.href = "/pay/complete/" + res.data.pid;
+        }
+    })
+    .catch((err) => {
+        console.log("에러 발생 " + err);
+    });
+  }
 }
 </script>
 
