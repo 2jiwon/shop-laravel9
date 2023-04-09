@@ -25,42 +25,80 @@
             </div>
           </div>
         </div>
-        
-        <div class="mb-3 flex flex-col items-center justify-between rounded bg-white px-4 py-5 shadow sm:flex-row sm:py-4">
-          <div class="flex w-full flex-col border-b border-grey-dark pb-4 text-center sm:w-1/3 sm:border-b-0 sm:pb-0 sm:text-left md:w-2/5 md:flex-row md:items-center">
-            <span class="font-gowunbatangbold block pb-2 text-center text-sm uppercase text-secondary sm:hidden">상품명</span>
-            <div class="relative mx-auto w-20 sm:mx-0 sm:mr-3 sm:pr-0">
-              <div class="flex h-20 items-center justify-center rounded">
-                <div class="aspect-w-1 aspect-h-1 w-full">
-                  <img src="https://elyssi.redpixelthemes.com/assets/img/unlicensed/shoes-3.png"
-                    alt="product image"     class="object-cover"/>
-                </div>
+
+        @php
+          $perPage = 5;
+          $currentPage = empty(request()->page) ? 1 : request()->page;
+          $total = count($orders);
+          $target = ($currentPage - 1) * $perPage;
+          $total_pages = ceil($total / $perPage);
+        @endphp
+
+        @for ($i = 0; $i < $perPage; $i++)
+          @if (($target + $i) < $total)
+
+            @php
+              $order = $orders[$target + $i];
+            @endphp
+
+            <div class="mb-3 flex flex-col items-center justify-between rounded bg-white px-4 py-5 shadow sm:flex-row sm:py-4">
+              <div class="flex w-full flex-col border-b border-grey-dark pb-4 text-center sm:w-1/3 sm:border-b-0 sm:pb-0 sm:text-left md:w-2/5 md:flex-row md:items-center">
+                <span class="font-gowunbatangbold block pb-2 text-center text-sm uppercase text-secondary">
+                  {{ $order->updated_at }}
+                </span>
               </div>
             </div>
-            <span class="mt-2 font-gowunbatang text-base text-secondary">Classic Beige</span>
-          </div>
-          <div class="w-full border-b border-grey-dark pb-4 text-center sm:w-1/5 sm:border-b-0 sm:pb-0">
-            <span class="font-gowunbatangbold block pt-3 pb-2 text-center text-sm uppercase text-secondary sm:hidden">수량</span>
-            <span class="font-gowunbatang text-secondary">11</span>
-          </div>
-          <div class="w-full pb-4 text-center sm:w-1/6 sm:pr-6 sm:pb-0 sm:text-right xl:w-1/5 xl:pr-16">
-            <span class="font-gowunbatangbold block pt-3 pb-2 text-center text-sm uppercase text-secondary sm:hidden">구매가</span>
-            <span class="font-gowunbatang text-secondary">$1045</span>
-          </div>
-          <a href="/collection-grid" class="btn btn-primary whitespace-nowrap">Buy Again</a>
-        </div>
+
+            @php
+                $product = $products[$order->id];
+                $quantity = $quantities[$order->id];
+              @endphp
+
+              @for ($j = 0; $j < count($product); $j++)
+                @php
+                  $image = \App\Models\ProductImage::where('product_id', $product[$j]->id)->where('type', 'main')->value('image');
+                @endphp
+                <div class="mb-3 flex flex-col items-center justify-between rounded bg-white px-4 py-5 shadow sm:flex-row sm:py-4">
+                  <div class="flex w-full flex-col border-b border-grey-dark pb-4 text-center sm:w-1/3 sm:border-b-0 sm:pb-0 sm:text-left md:w-2/5 md:flex-row md:items-center">
+                    <span class="font-gowunbatangbold block pb-2 text-center text-sm uppercase text-secondary sm:hidden">상품명</span>
+                    <div class="relative mx-auto w-20 sm:mx-0 sm:mr-3 sm:pr-0">
+                      <div class="flex h-20 items-center justify-center rounded">
+                        <div class="aspect-w-1 aspect-h-1 w-full">
+                          <img src="{{ asset('storage/'.$image) }}"
+                            alt="product image"     class="object-cover"/>
+                        </div>
+                      </div>
+                    </div>
+                    <span class="mt-2 font-gowunbatang text-base text-secondary">{{ $product[$j]->name }}</span>
+                  </div>
+                  <div class="w-full border-b border-grey-dark pb-4 text-center sm:w-1/5 sm:border-b-0 sm:pb-0">
+                    <span class="font-gowunbatangbold block pt-3 pb-2 text-center text-sm uppercase text-secondary sm:hidden">수량</span>
+                    <span class="font-gowunbatang text-secondary">{{ $quantity[$j] }}</span>
+                  </div>
+                  <div class="w-full pb-4 text-center sm:w-1/6 sm:pr-6 sm:pb-0 sm:text-right xl:w-1/5 xl:pr-16">
+                    <span class="font-gowunbatangbold block pt-3 pb-2 text-center text-sm uppercase text-secondary sm:hidden">구매가</span>
+                    <span class="font-gowunbatang text-secondary">{{ $product[$j]->selling_price }}</span>
+                  </div>
+                  <x-spanbox status="{{ $order->status }}">{{ \App\Models\Order::$status[$order->status] }}</x-spanbox>
+                </div>
+              @endfor
+          
+          @endif
+        @endfor
         
         <!-- pagination -->
         <div class="flex justify-center pt-6 md:justify-end">
           <span class="cursor-pointer pr-5 font-nanumgothic font-semibold text-grey-darkest transition-colors hover:text-black">이전</span>
-          <span class="mr-3 flex h-6 w-6 cursor-pointer items-center justify-center rounded-full font-gowunbatang text-sm font-semibold text-black transition-colors hover:bg-primary hover:text-white">1</span>
-          <span class="mr-3 flex h-6 w-6 cursor-pointer items-center justify-center rounded-full font-gowunbatang text-sm font-semibold text-black transition-colors hover:bg-primary hover:text-white">2</span>
-          <span class="mr-3 flex h-6 w-6 cursor-pointer items-center justify-center rounded-full font-gowunbatang text-sm font-semibold text-black transition-colors hover:bg-primary hover:text-white">3</span>
+          @for ($i = 1; $i <= $total_pages; $i++)
+          <a href="?page={{ $i }}" target="_self">
+            <span class="mr-3 flex h-6 w-6 cursor-pointer items-center justify-center rounded-full font-gowunbatang text-sm font-semibold text-black transition-colors hover:bg-primary hover:text-white">{{ $i }}</span>
+          </a>
+          @endfor
           <span class="cursor-pointer pl-2 font-nanumgothic font-semibold text-grey-darkest transition-colors hover:text-black">다음</span>
         </div>
         <!-- pagination End -->
+
       </div>
-  
     </div>
     <!-- 메인 컨텐츠 End -->
     
