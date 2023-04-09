@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\{AccountController, BannersController, 
     CartController, CategoriesController, CollectionLayout, 
     HomeLayout, OrdersController, PaymentsController, ProfileController, ProductsController, 
+    ReviewsController,
     UsersController, UserAddressesController, WishlistController};
 use Illuminate\Support\Facades\Route;
 
@@ -40,9 +41,8 @@ Route::middleware('auth')->group(function () {
         Route::post('/wishlist/edit', [WishlistController::class, 'edit'])->name('cart.edit');
 
 
-        Route::get('/reviews', function () {
-            return view('account.reviews');
-        })->name('account.reviews');
+        Route::get('/reviews', [ReviewsController::class, 'show'])->name('account.reviews');
+        Route::post('/reviews/create', [ReviewsController::class, 'create'])->name('reviews.create');
 
 
         Route::get('/myinfo', [AccountController::class, 'showMyInfo'])->name('account.details');

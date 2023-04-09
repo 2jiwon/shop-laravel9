@@ -59,7 +59,7 @@
 
       <!-- 상품 상단 기본 정보 -->
       <div class="px-5 pt-8 lg:w-1/2 lg:pt-0">
-        <form action="{{ route('order.next') }}" method="POST">
+        <form name="orderForm" action="{{ route('order.next') }}" method="POST">
           @csrf
           <div class="mb-8 border-b border-grey-dark">
             <div class="flex items-center">
@@ -251,108 +251,7 @@
         </div>
 
         <!-- 상품 후기 -->
-        <div :class="{ 'active': activeTab=== 'reviews' }"
-          class="tab-pane bg-grey-light py-10 transition-opacity md:py-16"
-          role="tabpanel">
-          
-          <div class="w-5/6 mx-auto border-b border-grey-darker pb-8 text-center sm:text-left">
-            <div class="flex items-center justify-center pt-3 sm:justify-start xl:pt-5">
-              <i class="bx bxs-star text-primary"></i>
-              <i class="bx bxs-star text-primary"></i>
-              <i class="bx bxs-star text-primary"></i>
-              <i class="bx bxs-star text-primary"></i>
-              <i class="bx bxs-star text-primary"></i>
-            </div>
-            <p class="font-dohyeonbold pt-3 text-lg text-secondary">
-              Perfect for everyday use
-            </p>
-            <p class="pt-4 font-dohyeon text-secondary lg:w-5/6 xl:w-2/3">
-              I loooveeeee this product!!! It feels so soft and smells like real leather!!! I ordered this fancy backpack looking for something that can be used at work and, at the same time, after work; and I found it.  Honestly.. Amazing!!
-            </p>
-            <div class="flex items-center justify-center pt-3 sm:justify-start">
-              <p class="font-dohyeon text-sm text-grey-darkest">
-                <span>By</span> Melanie Ashwood
-              </p>
-              <span class="block px-4 font-dohyeon text-sm text-grey-darkest">.</span>
-              <p class="font-dohyeon text-sm text-grey-darkest">6 days ago</p>
-            </div>
-          </div>
-          
-          <div class="w-5/6 mx-auto border-b border-transparent pb-8 text-center sm:text-left">
-            <div class="flex items-center justify-center pt-3 sm:justify-start xl:pt-5">
-              <i class="bx bxs-star text-primary"></i>
-              <i class="bx bxs-star text-primary"></i>
-              <i class="bx bxs-star text-primary"></i>
-              <i class="bx bxs-star text-primary"></i>
-              <i class="bx bxs-star text-primary"></i>
-            </div>
-            <p class="font-dohyeonbold pt-3 text-lg text-secondary">
-              Gift for my girlfriend
-            </p>
-            <p class="pt-4 font-dohyeon text-secondary lg:w-5/6 xl:w-2/3">
-              I paid this thing thinking about my girlfriend’s birthday present, however I had my doubts cuz’ she is kind of picky. But Seriously, from now on, Elyssi is my best friend! She loved it!! She’s crazy about it!  DISCLAIMER: It is smaller than it appears. 
-            </p>
-            <div class="flex items-center justify-center pt-3 sm:justify-start">
-              <p class="font-dohyeon text-sm text-grey-darkest">
-                <span>By</span> Jake Houston
-              </p>
-              <span class="block px-4 font-dohyeon text-sm text-grey-darkest">.</span>
-              <p class="font-dohyeon text-sm text-grey-darkest">4 days ago</p>
-            </div>
-          </div>
-          
-          <form class="mx-auto w-5/6">
-            <div class="grid grid-cols-1 gap-x-10 gap-y-5 pt-10 sm:grid-cols-2">
-              <div class="w-full">
-                <label class="mb-2 block font-dohyeon text-sm text-secondary" for="name">Name</label>
-                <input
-                  type="text"
-                  placeholder="Enter your Name"
-                  class="form-input"
-                  id="name"/>
-              </div>
-              <div class="w-full pt-10 sm:pt-0">
-                <label class="mb-2 block font-dohyeon text-sm text-secondary" for="email">Email address</label>
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  class="form-input"
-                  id="email"/>
-              </div>
-            </div>
-            <div class="grid grid-cols-1 gap-x-10 gap-y-5 pt-10 sm:grid-cols-2">
-              <div class="w-full">
-                <label class="mb-2 block font-dohyeon text-sm text-secondary" for="review_title">Review Title</label>
-                <input
-                  type="text"
-                  placeholder="Enter your review title"
-                  class="form-input"
-                  id="review_title"/>
-              </div>
-              <div class="w-full pt-10 sm:pt-0">
-                <label class="mb-2 block font-dohyeon text-sm text-secondary">Rating</label>
-                <div class="flex pt-4">
-                  <i class="bx bxs-star pr-1 text-xl text-grey-darker"></i>
-                  <i class="bx bxs-star pr-1 text-xl text-grey-darker"></i>
-                  <i class="bx bxs-star pr-1 text-xl text-grey-darker"></i>
-                  <i class="bx bxs-star pr-1 text-xl text-grey-darker"></i>
-                  <i class="bx bxs-star text-xl text-grey-darker"></i>
-                </div>
-              </div>
-            </div>
-            <div class="sm:w-12/25 pt-10">
-              <label for="message" class="mb-2 block font-dohyeon text-sm text-secondary">Review Message</label>
-              <textarea
-                placeholder="Write your review here"
-                class="form-textarea h-28"
-                id="message"></textarea>
-            </div>
-          </form>
-
-          <div class="mx-auto w-5/6 pt-8 pb-4 text-center sm:text-left md:pt-10">
-            <a href="/" class="btn btn-primary">Submit Review</a>
-          </div>
-        </div>
+        @include('layouts.reviews')
 
         <!-- 상품 문의 -->
         <div :class="{ 'active': activeTab=== 'qna' }"
