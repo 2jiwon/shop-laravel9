@@ -11,9 +11,15 @@ class Payment extends Model
 
     protected $guarded = [];
 
-     protected $casts = [
+    protected $casts = [
         'detail' => 'array',
     ];
+
+    // json 으로 casting할때 유니코드 이스케이프 처리
+    protected function asJson($value)
+    {
+        return json_encode($value, JSON_UNESCAPED_UNICODE);
+    }
 
     public function order()
     {
