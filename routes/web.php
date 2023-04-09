@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\{BannersController, CartController, CategoriesController, CollectionLayout, 
+use App\Http\Controllers\{AccountController, BannersController, 
+    CartController, CategoriesController, CollectionLayout, 
     HomeLayout, OrdersController, PaymentsController, ProfileController, ProductsController, 
     UsersController, UserAddressesController, WishlistController};
 use Illuminate\Support\Facades\Route;
@@ -27,9 +28,8 @@ Route::get('/', HomeLayout::class);
 Route::middleware('auth')->group(function () {
 
     Route::group(['prefix' => 'account'], function () {
-        Route::get('/dashboard', function () {
-            return view('account.dashboard');
-        })->name('account.dashboard');
+        Route::get('/dashboard', [AccountController::class, 'showLastOne'])->name('account.dashboard');
+
         Route::get('/orders', function () {
             return view('account.orders');
         })->name('account.orders');
