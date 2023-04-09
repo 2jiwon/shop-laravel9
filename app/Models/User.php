@@ -47,4 +47,16 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserAddress::class, 'user_id', 'id');
     }
+
+    public static function hasReview($userId, $productId)
+    {
+        $res = Review::where(function($qry) use ($userId, $productId) {
+                $qry->where('user_id', $userId)
+                    ->where('product_id', $productId)
+                    ->where('is_deleted', 'N');
+            })->first();
+
+        if (empty($res)) return false;
+        return true;
+    }
 }
