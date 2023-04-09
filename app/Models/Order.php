@@ -26,7 +26,8 @@ class Order extends Model
         '배송시작',
         '배송중',
         '배송완료',
-        '구매확정'
+        '구매확정',
+        '배송지연'
     ];
 
     public function user()
