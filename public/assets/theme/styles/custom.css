@@ -53,3 +53,30 @@ body {
 [x-cloak] {
     display: none !important;
 }
+
+/*
+* main css override
+*/
+.text-v-blue-dark {
+    --tw-text-opacity: 1;
+    color: rgb(20 100 254/var(--tw-text-opacity))
+}
+.border-v-blue-dark {
+    --tw-border-opacity: 1;
+    border-color: rgb(20 100 254/var(--tw-border-opacity))
+}
+/*
+*  main css와 비슷한 class를 추가
+*/
+.text-v-orange {
+    --tw-text-opacity: 1;
+    color: rgb(255 145 26/var(--tw-text-opacity))
+}
+.border-v-orange {
+    --tw-border-opacity: 1;
+    border-color: rgb(255 145 26/var(--tw-border-opacity))
+}
+.bg-v-orange-light {
+    --tw-bg-opacity: 0.2;
+    background-color: rgb(255 145 26/var(--tw-bg-opacity))
+}
