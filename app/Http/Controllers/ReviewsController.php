@@ -62,7 +62,7 @@ class ReviewsController extends Controller
      */
     public function show(Review $review)
     {
-        $reviews = Review::where('is_deleted', 'N')->get();
+        $reviews = Review::where('user_id', Auth::id())->where('is_deleted', 'N')->get();
         return view('account.reviews')->with('reviews', $reviews);
     }
 

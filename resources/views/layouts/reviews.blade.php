@@ -12,34 +12,66 @@
         </div>
     </div>
     @else
-        @foreach ($reviews as $review)
-        <div class="w-5/6 mx-auto border-b border-grey-darker pb-8 text-center sm:text-left">
-            <div class="flex items-center justify-center pt-3 sm:justify-start xl:pt-5">
-                @for ($i=0; $i < $review->rate; $i++)
-                <i class="bx bxs-star text-primary"></i>
-                @endfor
-            </div>
-            <p class="font-dohyeonbold pt-3 text-lg text-secondary">
-                {{ $review->title }}
-            </p>
-            <p class="pt-4 font-dohyeon text-secondary lg:w-5/6 xl:w-2/3">
-                {{ $review->contents }}
-            </p>
-            <div class="flex items-center justify-center pt-3 sm:justify-start">
-                <p class="font-dohyeon text-sm text-grey-darkest">
+        <div x-data="{
+            loaded : [],
+            reviews : [
+                @foreach ($reviews as $review)
                     @php
                         $name = \App\Models\User::where('id', $review->user_id)->value('nickname');
                         $_name = mb_substr($name,0,1).str_repeat('*', strlen($name)-2).mb_substr($name,-1,1);
                     @endphp
-                    <span>By</span> {{ $_name }}
-                </p>
-                <span class="block px-4 font-dohyeon text-sm text-grey-darkest">.</span>
-                <p class="font-dohyeon text-sm text-grey-darkest">
-                    {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $review->created_at)->diffForHumans() }}
-                </p>
-            </div>
+                    {
+                        rate: {{ $review->rate }},
+                        title: '{{ $review->title }}',
+                        contents: '{{ $review->contents }}',
+                        name : '{{ $_name }}',
+                        created_at : '{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $review->created_at)->diffForHumans() }}'
+                    },
+                @endforeach
+            ],
+            current : 0,
+            per : 3,
+            loadmore () {
+                for (let i=0; i < this.per; i++) {
+                    if (this.current < this.reviews.length-1) {
+                        this.current++;
+                        this.loaded.push(this.reviews[this.current])
+                    }
+                }
+            },
+            call () {
+                for (let i=0; i < this.per; i++) {
+                    this.loaded.push(this.reviews[i])
+                    this.current = i;
+                }
+            }
+        }"
+        x-init="call"
+        >
+            <template x-for="(item, index) in loaded">
+                <div class="w-5/6 mx-auto border-b border-grey-darker pb-8 text-center sm:text-left">
+                    <div class="flex items-center justify-center pt-3 sm:justify-start xl:pt-5">
+                        <template x-for="(t, i) in item.rate">
+                            <i class="bx bxs-star text-primary"></i>
+                        </template>
+                    </div>
+                    <p class="font-dohyeonbold pt-3 text-lg text-secondary" x-text="item.title"></p>
+                    <p class="pt-4 font-dohyeon text-secondary lg:w-5/6 xl:w-2/3" x-text="item.contents"></p>
+                    <div class="flex items-center justify-center pt-3 sm:justify-start">
+                        <p class="font-dohyeon text-sm text-grey-darkest">
+                            <span>By</span> <span x-text="item.name"></span>
+                        </p>
+                    </div>
+                    <span class="block px-4 font-dohyeon text-sm text-grey-darkest">.</span>
+                    <p class="font-dohyeon text-sm text-grey-darkest" x-text="item.created_at"></p>
+                </div>
+            </template>
+            <template x-if="current < reviews.length-1">
+                <div class="w-5/6 mx-auto border-b border-grey-darker pb-8 text-center sm:text-left">
+                    <button type="button" @click="loadmore()" class="btn btn-xs btn-primary">더 보기</button>
+                </div>
+            </template>
         </div>
-        @endforeach
     @endif
        
     <!-- 리뷰 쓰기 -->
