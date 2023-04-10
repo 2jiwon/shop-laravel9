@@ -41,8 +41,7 @@
         </div>
         @endforeach
     @endif
-    
-   
+       
     <!-- 리뷰 쓰기 -->
     @if (Auth::check())
         @if (!\App\Models\User::hasReview(Auth::id(), $product->id))
@@ -118,6 +117,7 @@
                     placeholder="내용을 작성해주세요."
                     class="form-textarea h-28"
                     name="contents"
+                    maxlength="500"
                     id="message"></textarea>
                 </div>
 
