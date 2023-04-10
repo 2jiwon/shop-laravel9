@@ -254,60 +254,7 @@
         @include('layouts.reviews')
 
         <!-- 상품 문의 -->
-        <div :class="{ 'active': activeTab=== 'qna' }"
-          class="tab-pane bg-grey-light py-10 transition-opacity md:py-16"
-          role="tabpanel">
-          
-          <div class="w-5/6 mx-auto border-b border-grey-darker pb-8 text-center sm:text-left">
-            <div class="flex items-center justify-center pt-3 sm:justify-start xl:pt-5">
-              <i class="bx bxs-star text-primary"></i>
-              <i class="bx bxs-star text-primary"></i>
-              <i class="bx bxs-star text-primary"></i>
-              <i class="bx bxs-star text-primary"></i>
-              <i class="bx bxs-star text-primary"></i>
-            </div>
-            <p class="font-dohyeonbold pt-3 text-lg text-secondary">
-              Perfect for everyday use
-            </p>
-            <p class="pt-4 font-dohyeon text-secondary lg:w-5/6 xl:w-2/3">
-              I loooveeeee this product!!! It feels so soft and smells like real leather!!! I ordered this fancy backpack looking for something that can be used at work and, at the same time, after work; and I found it.  Honestly.. Amazing!!
-            </p>
-            <div class="flex items-center justify-center pt-3 sm:justify-start">
-              <p class="font-dohyeon text-sm text-grey-darkest">
-                <span>By</span> Melanie Ashwood
-              </p>
-              <span class="block px-4 font-dohyeon text-sm text-grey-darkest">.</span>
-              <p class="font-dohyeon text-sm text-grey-darkest">6 days ago</p>
-            </div>
-          </div>
-          
-          <div class="w-5/6 mx-auto border-b border-transparent pb-8 text-center sm:text-left">
-            <div class="flex items-center justify-center pt-3 sm:justify-start xl:pt-5">
-              <i class="bx bxs-star text-primary"></i>
-              <i class="bx bxs-star text-primary"></i>
-              <i class="bx bxs-star text-primary"></i>
-              <i class="bx bxs-star text-primary"></i>
-              <i class="bx bxs-star text-primary"></i>
-            </div>
-            <p class="font-dohyeonbold pt-3 text-lg text-secondary">
-              Gift for my girlfriend
-            </p>
-            <p class="pt-4 font-dohyeon text-secondary lg:w-5/6 xl:w-2/3">
-              I paid this thing thinking about my girlfriend’s birthday present, however I had my doubts cuz’ she is kind of picky. But Seriously, from now on, Elyssi is my best friend! She loved it!! She’s crazy about it!  DISCLAIMER: It is smaller than it appears. 
-            </p>
-            <div class="flex items-center justify-center pt-3 sm:justify-start">
-              <p class="font-dohyeon text-sm text-grey-darkest">
-                <span>By</span> Jake Houston
-              </p>
-              <span class="block px-4 font-dohyeon text-sm text-grey-darkest">.</span>
-              <p class="font-dohyeon text-sm text-grey-darkest">4 days ago</p>
-            </div>
-          </div>
-          
-          <div class="mx-auto w-5/6 pt-8 pb-4 text-center sm:text-left md:pt-10">
-            <a href="/" class="btn btn-primary">Submit Review</a>
-          </div>
-        </div>
+        @include('layouts.questions')
 
       </div>
       <!-- 탭 contents End -->
