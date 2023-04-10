@@ -59,4 +59,16 @@ class User extends Authenticatable
         if (empty($res)) return false;
         return true;
     }
+
+    public static function hasQuestion($userId, $productId)
+    {
+        $res = Question::where(function($qry) use ($userId, $productId) {
+                $qry->where('user_id', $userId)
+                    ->where('product_id', $productId)
+                    ->where('is_deleted', 'N');
+            })->first();
+
+        if (empty($res)) return false;
+        return true;
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Category, Product, ProductImage, Review};
+use App\Models\{Category, Product, ProductImage, Question, Review};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Observers\ProductObserver;
@@ -87,6 +87,8 @@ class ProductsController extends Controller
 
         // 리뷰
         $reviews = Review::where('product_id', $id)->where('is_deleted', 'N')->get();
+        // 문의
+        $questions = Question::where('product_id', $id)->where('is_deleted', 'N')->get();
 
         // 비슷한 상품 표시를 위한 데이터
         $others = Product::where('category', $product->category)->get();
@@ -95,6 +97,7 @@ class ProductsController extends Controller
                 ->with('product', $product)
                 ->with('category', $category)
                 ->with('reviews', $reviews)
+                ->with('questions', $questions)
                 ->with('others', $others);
     }
 
