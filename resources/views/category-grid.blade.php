@@ -76,7 +76,7 @@
             New
           </span> -->
 
-          <div class="group absolute inset-0 flex items-center justify-center bg-primary bg-opacity-85 py-28 opacity-0 transition-opacity group-hover:opacity-100">
+          <div class="group absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 py-28 opacity-0 transition-opacity group-hover:opacity-100">
             <a href="javascript:addTo('cart',{{ $product->id }}, 1);"
               class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
               <img src="{{ asset('assets/theme/icons/cart.svg') }}"
