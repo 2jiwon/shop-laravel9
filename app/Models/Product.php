@@ -11,6 +11,17 @@ class Product extends Model
 
     protected $guarded = [];
 
+    public static $trends;
+    public static $news;
+    public static $bests;
+
+    public static function boot()
+    {
+        parent::boot(); 
+        self::$trends = self::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('view_cnt', 'desc')->limit(20)->get();
+        self::$news = self::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('created_at', 'desc')->limit(20)->get();
+        self::$bests = self::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('order_cnt', 'desc')->limit(20)->get();
+    }
     /**
      *  Product Image
      */

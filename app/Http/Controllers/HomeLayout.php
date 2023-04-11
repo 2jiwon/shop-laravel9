@@ -32,17 +32,19 @@ class HomeLayout extends Controller
         /**
          *  트렌드 상품 가져오기
          */
-        $trends = Product::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('view_cnt', 'desc')->limit(20)->get();
+        // $trends = Product::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('view_cnt', 'desc')->limit(20)->get();
+        $trends = Product::$trends;
 
         /**
          *  신상품 가져오기
          */
-        $news = Product::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('created_at', 'desc')->limit(20)->get();
-
+        // $news = Product::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('created_at', 'desc')->limit(20)->get();
+        $news = Product::$news;
         /**
-         *  신상품 가져오기
+         *  베스트 가져오기
          */
-        $bests = Product::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('order_cnt', 'desc')->limit(20)->get();
+        // $bests = Product::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('order_cnt', 'desc')->limit(20)->get();
+        $bests = Product::$bests;
 
         return view('home')
                 ->with('main_banners', $main_banners)->with('collection_banners', $collection_banners)->with('event_banners', $event_banners)
