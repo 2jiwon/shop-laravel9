@@ -194,33 +194,40 @@
     <!-- 상품 상단 End -->
 
     <!-- 상품 설명 -->
-    <div class="pb-16 sm:pb-20 md:pb-24" x-data="{ activeTab: 'description' }">
+    <div class="pb-16 sm:pb-20 md:pb-24" 
+          x-data="{ activeTab: 'description' }"
+          x-init="activeTab = window.location.hash ? window.location.hash.replace('#', '') : 'description'">
 
       <!-- 탭  -->
       <div class="tabs flex flex-col sm:flex-row" role="tablist">
-        <span @click="activeTab = 'description'"
+        <a @click="activeTab = 'description'"
           class="tab-item cursor-pointer border-t-2 border-transparent bg-white px-10 py-5 text-center font-dohyeon font-bold text-secondary transition-colors hover:bg-grey-light sm:text-left"
-          :class="{ 'active': activeTab=== 'description' }">
+          :class="{ 'active': activeTab=== 'description' }"
+          href="#description"
+          >
           상품 상세
-        </span>
-        
-        <span @click="activeTab = 'additional-information'"
+        </a>
+        <a @click="activeTab = 'additional-information'"
           class="tab-item cursor-pointer border-t-2 border-transparent bg-white px-10 py-5 text-center font-dohyeon font-bold text-secondary transition-colors hover:bg-grey-light sm:text-left"
-          :class="{ 'active': activeTab=== 'additional-information' }">
+          :class="{ 'active': activeTab=== 'additional-information' }"
+          href="#additional-information"
+          >
           추가 정보
-        </span>
-        
-        <span @click="activeTab = 'reviews'"
+        </a>
+        <a @click="activeTab = 'reviews'"
           class="tab-item cursor-pointer border-t-2 border-transparent bg-white px-10 py-5 text-center font-dohyeon font-bold text-secondary transition-colors hover:bg-grey-light sm:text-left"
-          :class="{ 'active': activeTab=== 'reviews' }">
+          :class="{ 'active': activeTab=== 'reviews' }"
+          href="#reviews"
+          >
           상품 후기
-        </span>
-
-        <span @click="activeTab = 'qna'"
+        </a>
+        <a @click="activeTab = 'qna'"
           class="tab-item cursor-pointer border-t-2 border-transparent bg-white px-10 py-5 text-center font-dohyeon font-bold text-secondary transition-colors hover:bg-grey-light sm:text-left"
-          :class="{ 'active': activeTab=== 'qna' }">
+          :class="{ 'active': activeTab=== 'qna' }"
+          href="#qna"
+          >
           상품 문의
-        </span>
+        </a>
       </div>
       <!-- 탭 End  -->
 
