@@ -40,10 +40,14 @@
                 }
             },
             call () {
+                console.log(this.reviews.length);
                 for (let i=0; i < this.per; i++) {
-                    this.loaded.push(this.reviews[i])
-                    this.current = i;
+                    if (i < this.reviews.length) {
+                        this.loaded.push(this.reviews[i])
+                        this.current++;
+                    }
                 }
+                console.log(this.current);
             }
         }"
         x-init="call"

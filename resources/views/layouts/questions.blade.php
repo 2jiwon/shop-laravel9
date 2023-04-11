@@ -12,29 +12,62 @@
         </div>
     </div>
     @else
-        @foreach ($questions as $question)
-        <div class="w-5/6 mx-auto border-b border-grey-darker pb-8 text-center sm:text-left">
-            <p class="font-dohyeonbold pt-3 text-lg text-secondary">
-                {{ $question->title }}
-            </p>
-            <p class="pt-4 font-dohyeon text-secondary lg:w-5/6 xl:w-2/3">
-                {{ $question->contents }}
-            </p>
-            <div class="flex items-center justify-center pt-3 sm:justify-start">
-                <p class="font-dohyeon text-sm text-grey-darkest">
+        <div x-data="{
+            loaded_q : [],
+            questions : [
+                @foreach ($questions as $question)
                     @php
                         $name = \App\Models\User::where('id', $question->user_id)->value('nickname');
                         $_name = mb_substr($name,0,1).str_repeat('*', strlen($name)-2).mb_substr($name,-1,1);
                     @endphp
-                    <span>By</span> {{ $_name }}
-                </p>
-                <span class="block px-4 font-dohyeon text-sm text-grey-darkest">.</span>
-                <p class="font-dohyeon text-sm text-grey-darkest">
-                    {{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $question->created_at)->diffForHumans() }}
-                </p>
-            </div>
+                    {
+                        title: '{{ $question->title }}',
+                        contents: '{{ $question->contents }}',
+                        name : '{{ $_name }}',
+                        created_at : '{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $question->created_at)->diffForHumans() }}'
+                    },
+                @endforeach
+            ],
+            current_q : 0,
+            per_q : 3,
+            loadmore_q () {
+                for (let i=0; i < this.per_q; i++) {
+                    if (this.current_q < this.questions.length-1) {
+                        this.current_q++;
+                        this.loaded_q.push(this.questions[this.current_q])
+                    }
+                }
+            },
+            call_q () {
+                for (let i=0; i < this.per_q; i++) {
+                    if (this.current_q < this.questions.length) {
+                        this.loaded_q.push(this.questions[i])
+                        this.current_q++;
+                    }
+                }
+            }
+        }"
+        x-init="call_q"
+        >
+            <template x-for="(item, index) in loaded_q">
+                <div class="w-5/6 mx-auto border-b border-grey-darker pb-8 text-center sm:text-left">
+                    <p class="font-dohyeonbold pt-3 text-lg text-secondary" x-text="item.title"></p>
+                    <p class="pt-4 font-dohyeon text-secondary lg:w-5/6 xl:w-2/3" x-text="item.contents"></p>
+                    <div class="flex items-center justify-center pt-3 sm:justify-start">
+                        <p class="font-dohyeon text-sm text-grey-darkest">
+                            <span>By</span> <span x-text="item.name"></span>
+                        </p>
+                        <span class="block px-4 font-dohyeon text-sm text-grey-darkest">.</span>
+                        <p class="font-dohyeon text-sm text-grey-darkest" x-text="item.created_at"></p>
+                    </div>
+                </div>
+            </template>
+            <template x-if="current_q < questions.length-1">
+                <div class="w-5/6 mx-auto border-b border-grey-darker pb-8 text-center sm:text-left">
+                    <button type="button" @click="loadmore_q()" class="btn btn-xs btn-primary">더 보기</button>
+                </div>
+            </template>
         </div>
-        @endforeach
     @endif
     
     <!-- 문의 쓰기 -->
