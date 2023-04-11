@@ -22,6 +22,47 @@ class ProductsController extends Controller
         return view('admin.products')->with('products', $products);
     }
 
+    public function search(Request $request)
+    {
+        $word = $request->word;
+        $products = Product::where('name', 'like', '%'.$word.'%')->where('is_selling', 'Y')->where('is_displaying', 'Y')->get();
+        if (count($products) == 0) {
+            return view('search')->with('products', "empty");
+        }
+
+        foreach ($products as $product) {
+            $stop = false;
+            foreach (Product::$trends as $trends) {
+                if ($product->id == $trends->id) {
+                    $product->type = "trends";
+                    $stop = true;
+                    break;
+                }
+            }
+            if ($stop) continue;
+
+            foreach (Product::$news as $news) {
+                if ($product->id == $news->id) {
+                    $product->type = "news";
+                    $stop = true;
+                    break;
+                }
+            }
+            if ($stop) continue;
+
+            foreach (Product::$bests as $bests) {
+                if ($product->id == $bests->id) {
+                    $product->type = "bests";
+                    $stop = true;
+                    break;
+                }
+            }
+            if ($stop) continue;
+        }
+
+        return view('search')->with('products', $products);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
