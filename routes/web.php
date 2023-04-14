@@ -87,6 +87,7 @@ Route::get('/product/{id}', [ProductsController::class, 'show']);
 // 카테고리별 페이지
 Route::get('/category/{id}/{display}', [ProductsController::class, 'showLists'])->name('category.show');
 
+Route::post('/collection/sort', [CollectionLayout::class, 'sort'])->name('collection.sort');
 Route::get('/collection/{type}/{display}', CollectionLayout::class);
 
 // 장바구니

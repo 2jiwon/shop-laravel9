@@ -17,10 +17,13 @@ class Product extends Model
 
     public static function boot()
     {
-        parent::boot(); 
-        self::$trends = self::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('view_cnt', 'desc')->limit(20)->get();
-        self::$news = self::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('created_at', 'desc')->limit(20)->get();
-        self::$bests = self::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('order_cnt', 'desc')->limit(20)->get();
+        parent::boot();
+        // 트렌드 상품
+        self::$trends = self::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('view_cnt', 'desc')->paginate(20);
+        // 신상품
+        self::$news = self::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('created_at', 'desc')->paginate(20);
+        // 베스트
+        self::$bests = self::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('order_cnt', 'desc')->paginate(20);
     }
     /**
      *  Product Image

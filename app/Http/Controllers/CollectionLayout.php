@@ -19,8 +19,8 @@ class CollectionLayout extends Controller
     {
         return $this->getData($type, $display);
     }
-
-    public function getData($type, $display)
+    
+    public function getData($type, $display, $sort="")
     {
         $title = "";
         $sub = "";
@@ -30,7 +30,8 @@ class CollectionLayout extends Controller
                 /**
                  *  트렌드 상품 가져오기
                  */
-                $products = Product::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('view_cnt', 'desc')->paginate(20);
+                // $products = Product::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('view_cnt', 'desc')->paginate(20);
+                $products = Product::$trends;
                 $title = "트렌드 상품";
                 $sub = "회원들이 가장 많이 찾는 핫한 상품들 만나보세요!";
                 break;
@@ -38,7 +39,8 @@ class CollectionLayout extends Controller
                 /**
                  *  신상품 가져오기
                  */
-                $products = Product::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('created_at', 'desc')->paginate(20);
+                // $products = Product::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('created_at', 'desc')->paginate(20);
+                $products = Product::$news;
                 $title = "신상품";
                 $sub = "새로 들어왔어요!";
                 break;
@@ -46,7 +48,8 @@ class CollectionLayout extends Controller
                 /**
                  *  베스트 가져오기
                  */
-                $products = Product::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('order_cnt', 'desc')->paginate(20);
+                // $products = Product::where('is_selling', 'Y')->where('is_displaying', 'Y')->orderBy('order_cnt', 'desc')->paginate(20);
+                $products = Product::$bests;
                 $title = "베스트";
                 $sub = "지금 제일 많이 팔리는 인기상품 만나보세요!";
                 break;
