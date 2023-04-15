@@ -61,7 +61,7 @@
                 <span class="font-hkbold block pt-3 pb-2 text-center text-sm uppercase text-secondary sm:hidden">작성일</span>
                 <span class="font-hk text-secondary">{{ $reviews[$target+$i]->created_at }}</span>
               </div>
-              <a href="/" class="btn btn-primary btn-sm whitespace-nowrap">삭제</a>
+              <a href="/account/review/delete/{{ $reviews[$target+$i]->id }}" class="btn btn-primary btn-sm whitespace-nowrap">삭제</a>
             </div>
           @endif
         @endfor

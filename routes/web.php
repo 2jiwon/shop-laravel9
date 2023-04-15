@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/reviews', [ReviewsController::class, 'show'])->name('account.reviews');
         Route::post('/reviews/create', [ReviewsController::class, 'create'])->name('reviews.create');
+        Route::get('/review/delete/{id}', [ReviewsController::class, 'destroy'])->name('reviews.delete');
 
         Route::post('/qna/create', [QuestionsController::class, 'create'])->name('questions.create');
 

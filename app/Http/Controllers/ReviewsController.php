@@ -97,8 +97,12 @@ class ReviewsController extends Controller
      * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Review $review)
+    public function destroy($id)
     {
-        //
+        $target = Review::find($id);
+        $target->is_deleted = 'Y';
+        $target->save();
+
+        return redirect()->back();
     }
 }
