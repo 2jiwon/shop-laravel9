@@ -101,14 +101,15 @@ Route::group(['prefix' => 'cart'], function () {
 // 위시리스트 체크
 Route::post('/wishlist/check', [WishlistController::class, 'simpleCheck'])->name('check.wishlist');
 
-Route::post('/search', [ProductsController::class, 'search'])->name('search');
+// Route::get('/search', function () {
+//     return view('search');
+// });
+Route::get('/search', [ProductsController::class, 'search'])->name('search');
 
 Route::get('/faq', function () {
     return view('faq');
 });
-Route::get('/search', function () {
-    return view('search');
-});
+
 Route::get('/single', function () {
     return view('single');
 });

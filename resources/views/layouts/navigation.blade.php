@@ -13,10 +13,10 @@
                     <img src="{{ asset('assets/theme/icons/search.svg') }}" class="hidden h-5 w-5 group-hover:block sm:h-6 sm:w-6 md:h-8 md:w-8" alt="icon search hover"/>
                 </a>
 
-                <button @click="mobileSearch = !mobileSearch" class="group ml-2 block cursor-pointer rounded-full border-2 border-transparent p-2 transition-colors hover:border-secondary focus:outline-none sm:ml-3 sm:p-4 md:ml-5 lg:mr-8 lg:hidden">
+                <a href="/search"  @click="mobileSearch = !mobileSearch" class="group ml-2 block cursor-pointer rounded-full border-2 border-transparent p-2 transition-colors hover:border-secondary focus:outline-none sm:ml-3 sm:p-4 md:ml-5 lg:mr-8 lg:hidden">
                     <img src="{{ asset('assets/theme/icons/search.svg') }}" class="block h-5 w-5 group-hover:hidden sm:h-6 sm:w-6 md:h-8 md:w-8 opacity-70" alt="icon search"/>
                     <img src="{{ asset('assets/theme/icons/search.svg') }}" class="hidden h-5 w-5 group-hover:block sm:h-6 sm:w-6 md:h-8 md:w-8" alt="icon search hover"/>
-                </button>
+                </a>
 
                 <a href="/account/wishlist" class="group hidden rounded-full border-2 border-transparent p-2 transition-all hover:border-secondary sm:p-4 lg:block">
                     <img src="{{ asset('assets/theme/icons/wishlist.svg') }}" class="block h-5 w-5 group-hover:hidden sm:h-6 sm:w-6 md:h-8 md:w-8 opacity-70" alt="icon heart"/>

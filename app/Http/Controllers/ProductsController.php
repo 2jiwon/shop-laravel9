@@ -24,11 +24,21 @@ class ProductsController extends Controller
 
     public function search(Request $request)
     {
-        $word = $request->word;
-        $products = Product::where('name', 'like', '%'.$word.'%')->where('is_selling', 'Y')->where('is_displaying', 'Y')->get();
-        if (count($products) == 0) {
+        \Log::debug($request);
+
+        $word = $request->word ?? NULL;
+        if ($word == NULL) {
             return view('search')->with('products', "empty");
         }
+
+        $products = Product::where('name', 'like', '%'.$word.'%')->where('is_selling', 'Y')->where('is_displaying', 'Y')->paginate(20);
+        $products->appends(['word' => $word]);
+
+        if (count($products) == 0) {
+            return view('search')->with('products', "zero");
+        }
+
+        // \Log::debug($products);
 
         foreach ($products as $product) {
             $stop = false;
@@ -59,6 +69,8 @@ class ProductsController extends Controller
             }
             if ($stop) continue;
         }
+
+        \Log::debug($products);
 
         return view('search')->with('products', $products);
     }
