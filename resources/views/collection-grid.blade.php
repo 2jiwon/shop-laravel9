@@ -53,10 +53,8 @@
               console.log(this.products);
         }
       }">
-     
 
-
-    <!-- filter, sort -->
+      <!-- filter, sort -->
       <div class="flex flex-col justify-between py-10 sm:flex-row">
         <div class="flex items-center justify-start">
           <i class="bx bxs-filter-alt text-xl text-primary"></i>
@@ -83,72 +81,70 @@
           </select>
         </div>
       </div>
-    <!-- filter, sort End -->
+      <!-- filter, sort End -->
 
 
-    <!-- 상품 grid  -->
-    <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      
-    <template x-for="pd in products" :key="pd.id">
-      <!-- 상품 블록 한개 -->
-      <div class="group relative w-full lg:last:hidden xl:last:block">
-        <div class="relative flex items-center justify-center rounded">
-          
-          <div class="h-68 w-full bg-cover bg-center bg-no-repeat"
-            :style="{ backgroundImage: 'url(/storage/' + pd.image + ')' }"></div>
-          <span class="absolute top-0 right-0 bg-white px-5 py-1 mt-4 mr-4 rounded-full font-dohyeon font-bold  text-v-green text-sm uppercase tracking-wide">
-            {{ $type }}
-          </span>
+      <!-- 상품 grid  -->
+      <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        
+        <template x-for="pd in products" :key="pd.id">
+          <!-- 상품 블록 한개 -->
+          <div class="group relative w-full lg:last:hidden xl:last:block">
+            <div class="relative flex items-center justify-center rounded">
+              
+              <div class="h-68 w-full bg-cover bg-center bg-no-repeat"
+                :style="{ backgroundImage: 'url(/storage/' + pd.image + ')' }"></div>
+              <span class="absolute top-0 right-0 bg-white px-5 py-1 mt-4 mr-4 rounded-full font-dohyeon font-bold  text-v-green text-sm uppercase tracking-wide">
+                {{ $type }}
+              </span>
 
-          <div class="group absolute inset-0 flex items-center justify-center bg-primary py-28 bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
-            <a :href="'javascript:addTo(\'cart\', ' + pd.id +', 1)'"
-              class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
-              <img src="{{ asset('assets/theme/icons/cart.svg') }}"
-                class="h-6 w-6"
-                alt="icon cart"/>
-            </a>
-            <a :href="'/product/'+pd.id"
-              class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
-              <img src="{{ asset('assets/theme/icons/watch.svg') }}"
-                class="h-6 w-6"
-                alt="icon search"/>
-            </a>
-            <a :href="'javascript:addTo(\'wishlist\', '+pd.id+', 1)'"
-              class="flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
-              <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
-                class="h-6 w-6"
-                alt="icon heart"/>
-            </a>
-          </div>
-        </div>
-        <div class="flex items-center justify-between pt-6">
-          <div>
-            <h3 class="font-dohyeon text-base text-secondary" x-text="pd.name"></h3>
-            <!-- <div class="flex items-center">
-              <div class="flex items-center">
-                <i class="bx bxs-star text-primary"></i>
-                <i class="bx bxs-star text-primary"></i>
-                <i class="bx bxs-star text-primary"></i>
-                <i class="bx bxs-star text-primary"></i>
-                <i class="bx bxs-star text-primary"></i>
+              <div class="group absolute inset-0 flex items-center justify-center bg-primary py-28 bg-opacity-50 opacity-0 transition-opacity group-hover:opacity-100">
+                <a :href="'javascript:addTo(\'cart\', ' + pd.id +', 1)'"
+                  class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
+                  <img src="{{ asset('assets/theme/icons/cart.svg') }}"
+                    class="h-6 w-6"
+                    alt="icon cart"/>
+                </a>
+                <a :href="'/product/'+pd.id"
+                  class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
+                  <img src="{{ asset('assets/theme/icons/watch.svg') }}"
+                    class="h-6 w-6"
+                    alt="icon search"/>
+                </a>
+                <a :href="'javascript:addTo(\'wishlist\', '+pd.id+', 1)'"
+                  class="flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
+                  <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
+                    class="h-6 w-6"
+                    alt="icon heart"/>
+                </a>
               </div>
-              <p class="ml-2 font-dohyeon text-sm text-secondary">
-                (45)
-              </p>
-            </div> -->
+            </div>
+            <div class="flex items-center justify-between pt-6">
+              <div>
+                <h3 class="font-dohyeon text-base text-secondary" x-text="pd.name"></h3>
+                <!-- <div class="flex items-center">
+                  <div class="flex items-center">
+                    <i class="bx bxs-star text-primary"></i>
+                    <i class="bx bxs-star text-primary"></i>
+                    <i class="bx bxs-star text-primary"></i>
+                    <i class="bx bxs-star text-primary"></i>
+                    <i class="bx bxs-star text-primary"></i>
+                  </div>
+                  <p class="ml-2 font-dohyeon text-sm text-secondary">
+                    (45)
+                  </p>
+                </div> -->
+              </div>
+              <span class="font-dohyeon text-xl font-bold text-primary" x-text="pd.price + ' 원'"></span>
+            </div>
           </div>
-          <span class="font-dohyeon text-xl font-bold text-primary" x-text="pd.price + ' 원'"></span>
-        </div>
+        </template> 
+      
       </div>
-     </template> 
-    
-    
+      <!-- 상품 grid End -->
+
     </div>
     <!-- x-data end -->
-
-
-    </div>
-    <!-- 상품 grid End -->
     
     <!-- pagination -->
     <div class="mx-auto flex justify-center py-16" id="paginate">
