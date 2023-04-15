@@ -43,11 +43,11 @@
                     <img src="{{ asset('assets/theme/icons/cart.svg') }}" class="hidden h-6 w-6 group-hover:block sm:h-6 sm:w-6 md:h-8 md:w-8" alt="icon cart hover"/>
                 </a>
 
-                <span @click="mobileCart = !mobileCart"
+                <a href="/cart" @click="mobileCart = !mobileCart"
                       class="group ml-2 block rounded-full border-2 border-transparent p-2 transition-all hover:border-secondary sm:ml-3 sm:p-4 md:ml-5 lg:ml-8 lg:hidden">
                     <img src="{{ asset('assets/theme/icons/cart.svg') }}" class="block h-6 w-6 group-hover:hidden sm:h-6 sm:w-6 md:h-8 md:w-8 opacity-70" alt="icon cart"/>
                     <img src="{{ asset('assets/theme/icons/cart.svg') }}" class="hidden h-6 w-6 group-hover:block sm:h-6 sm:w-6 md:h-8 md:w-8" alt="icon cart hover"/>
-                </span>
+                </a>
             </div>
         
         </div>
