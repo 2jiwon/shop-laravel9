@@ -92,7 +92,7 @@
                         <img src="{{ asset('storage/'.$product->images->pluck('image')->first()) }}" alt="product image" class="object-cover"/>
                       </div>
                       <div class="absolute top-0 right-0 -mt-2 -mr-2 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-grey-dark bg-white shadow">
-                        <i class="bx bx-x text-xl text-grey-darkest"></i>
+                        <i class="bx bx-x text-xl text-grey-darkest" onclick="deleteThis({{ $product->id }})"></i>
                       </div>
                     </div>
                     <div class="pl-4">
