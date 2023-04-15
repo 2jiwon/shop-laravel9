@@ -89,66 +89,66 @@
       <!-- 상품 grid  -->
       <div class="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-10 xl:gap-10">
         
-      <template x-for="pd in products" :key="pd.id">
-        <!-- 상품 블록 한개 -->
-        <div class="w-full">
-          <div class="shadow-none rounde group flex flex-col items-center border border-grey-dark transition-shadow hover:shadow-lg sm:flex-row">
-            <div class="relative w-full sm:w-2/5 lg:w-5/11">
-              <div class="relative rounded-l">
-                <div class="h-68 w-full bg-cover bg-center bg-no-repeat"
-                  :style="{ backgroundImage: 'url(/storage/' + pd.image + ')' }"></div>
-                <span class="absolute top-0 right-0 bg-white px-5 py-1 mt-4 mr-4 rounded-full font-hk font-bold  text-v-green text-sm uppercase tracking-wide">
-                  {{ $type }}
-                </span>
-                <div class="group absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 py-28 opacity-0 transition-all hover:shadow-lg group-hover:opacity-100">
-                  <a :href="'javascript:addTo(\'cart\', ' + pd.id +', 1)'"
-                    class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
-                    <img src="{{ asset('assets/theme/icons/cart.svg') }}"
-                      class="h-6 w-6"
-                      alt="icon cart"/>
-                  </a>
-                  <a :href="'/product/'+pd.id"
-                    class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
-                    <img src="{{ asset('assets/theme/icons/watch.svg') }}"
-                      class="h-6 w-6"
-                      alt="icon search"/>
-                  </a>
-                  <a :href="'javascript:addTo(\'wishlist\', '+pd.id+', 1)'"
-                    class="flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
-                    <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
-                      class="h-6 w-6"
-                      alt="icon heart"/>
-                  </a>
+        <template x-for="pd in products" :key="pd.id">
+          <!-- 상품 블록 한개 -->
+          <div class="w-full">
+            <div class="shadow-none rounde group flex flex-col items-center border border-grey-dark transition-shadow hover:shadow-lg sm:flex-row">
+              <div class="relative w-full sm:w-2/5 lg:w-5/11">
+                <div class="relative rounded-l">
+                  <div class="h-68 w-full bg-cover bg-center bg-no-repeat"
+                    :style="{ backgroundImage: 'url(/storage/' + pd.image + ')' }"></div>
+                  <span class="absolute top-0 right-0 bg-white px-5 py-1 mt-4 mr-4 rounded-full font-hk font-bold  text-v-green text-sm uppercase tracking-wide">
+                    {{ $type }}
+                  </span>
+                  <div class="group absolute inset-0 flex items-center justify-center bg-primary bg-opacity-50 py-28 opacity-0 transition-all hover:shadow-lg group-hover:opacity-100">
+                    <a :href="'javascript:addTo(\'cart\', ' + pd.id +', 1)'"
+                      class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
+                      <img src="{{ asset('assets/theme/icons/cart.svg') }}"
+                        class="h-6 w-6"
+                        alt="icon cart"/>
+                    </a>
+                    <a :href="'/product/'+pd.id"
+                      class="mr-3 flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
+                      <img src="{{ asset('assets/theme/icons/watch.svg') }}"
+                        class="h-6 w-6"
+                        alt="icon search"/>
+                    </a>
+                    <a :href="'javascript:addTo(\'wishlist\', '+pd.id+', 1)'"
+                      class="flex items-center rounded-full bg-white px-3 py-3 transition-all hover:bg-secondary">
+                      <img src="{{ asset('assets/theme/icons/wishlist.svg') }}"
+                        class="h-6 w-6"
+                        alt="icon heart"/>
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="w-full px-6 py-6 sm:w-3/5 sm:py-0 lg:w-6/11">
-              <h3 class="font-hk text-xl text-grey-darkest xl:text-2xl" x-text="pd.name"></h3>
-              <span class="block pt-1 font-hk text-xl font-bold text-secondary" x-text="pd.price + ' 원'"></span>
-              <!-- <span class="block pt-4 font-hk text-base font-bold text-v-green">In Stock</span> -->
-              <p class="pt-2 font-hk text-sm text-grey-darkest xl:text-base" x-text="pd.detail"></p>
-              <!-- <div class="flex items-center pt-3 xl:pt-5">
-                <div class="flex items-center">
-                  <i class="bx bxs-star text-primary"></i>
-                  <i class="bx bxs-star text-primary"></i>
-                  <i class="bx bxs-star text-primary"></i>
-                  <i class="bx bxs-star text-primary"></i>
-                  <i class="bx bxs-star text-primary"></i>
-                </div>
-                <p class="ml-2 font-hk text-sm text-secondary">
-                  45
-                </p>
-              </div> -->
+              <div class="w-full px-6 py-6 sm:w-3/5 sm:py-0 lg:w-6/11">
+                <h3 class="font-hk text-xl text-grey-darkest xl:text-2xl" x-text="pd.name"></h3>
+                <span class="block pt-1 font-hk text-xl font-bold text-secondary" x-text="pd.price + ' 원'"></span>
+                <!-- <span class="block pt-4 font-hk text-base font-bold text-v-green">In Stock</span> -->
+                <p class="pt-2 font-hk text-sm text-grey-darkest xl:text-base" x-text="pd.detail"></p>
+                <!-- <div class="flex items-center pt-3 xl:pt-5">
+                  <div class="flex items-center">
+                    <i class="bx bxs-star text-primary"></i>
+                    <i class="bx bxs-star text-primary"></i>
+                    <i class="bx bxs-star text-primary"></i>
+                    <i class="bx bxs-star text-primary"></i>
+                    <i class="bx bxs-star text-primary"></i>
+                  </div>
+                  <p class="ml-2 font-hk text-sm text-secondary">
+                    45
+                  </p>
+                </div> -->
+              </div>
             </div>
           </div>
-        </div>
-      </template>
+        </template>
 
       </div>
-      <!-- x-data end -->
-        
+      <!-- 상품 grid End -->
+
     </div>
-    <!-- 상품 grid End -->
+    <!-- x-data end -->
     
     <!-- pagination -->
     <div class="mx-auto flex justify-center py-16" id="paginate">
