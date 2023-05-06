@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
 use App\Models\Category;
 
 
@@ -25,6 +26,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        if (!app()->isLocal()) {
+            URL::forceScheme('https');
+        }
+
         $main = Category::where('type', 'main')->get();
         $sub1 = Category::where('type', 'sub1')->get();
         $sub2 = Category::where('type', 'sub2')->get();
